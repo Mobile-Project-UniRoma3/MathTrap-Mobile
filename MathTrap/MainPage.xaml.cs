@@ -13,12 +13,70 @@ namespace MathTrap
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+        private int indice = 0;
+        private double divisione = 0;
+        private long operazione = 0;
+
         public MainPage()
         {
             InitializeComponent();
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private void onOne(object sender, EventArgs e)
+        {
+
+        }
+
+        private void onTwo(object sender, EventArgs e)
+        {
+
+        }
+
+        private void onThree(object sender, EventArgs e)
+        {
+
+        }
+
+        private void onFour(object sender, EventArgs e)
+        {
+
+        }
+
+        private void onFive(object sender, EventArgs e)
+        {
+
+        }
+
+        private void onSix(object sender, EventArgs e)
+        {
+
+        }
+
+        private void onSeven(object sender, EventArgs e)
+        {
+
+        }
+
+        private void onEigth(object sender, EventArgs e)
+        {
+
+        }
+        private void onNine(object sender, EventArgs e)
+        {
+
+        }
+
+        private void onZero(object sender, EventArgs e)
+        {
+
+        }
+
+        private void onInvio(object sender, EventArgs e)
+        {
+
+        }
+
+        private void onCancel(object sender, EventArgs e)
         {
 
         }
