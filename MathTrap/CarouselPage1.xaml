@@ -7,12 +7,16 @@
              x:Class="MathTrap.CarouselPage1">
   <!--Pages can be added as references or inline-->
     <ContentPage Title="Main Manu'">
-    <StackLayout>
-    </StackLayout>
+        <ContentPage.Content>
+            <StackLayout>
+            </StackLayout>
+        </ContentPage.Content>
     </ContentPage>
     <ContentPage Title="Documentation">
-    <StackLayout>
-    </StackLayout>
+        <ContentPage.Content>
+            <StackLayout>
+            </StackLayout>
+        </ContentPage.Content>
     </ContentPage>
     
 </CarouselPage>
