@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MathTrap.MathPage">
+
+    <StackLayout>
+        <!-- Place new controls here -->
+        <Grid VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" RowSpacing="4">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="1" Text="MathTrap" FontSize="28" HorizontalOptions="CenterAndExpand" 
+                   BackgroundColor="White"  WidthRequest="370" HeightRequest="100" x:Name="label1" ></Label>
+            <Label Grid.Row="2" Text="********" FontSize="28" HorizontalOptions="CenterAndExpand" 
+                   BackgroundColor="White"  WidthRequest="370" HeightRequest="100" x:Name="label2"></Label>
+            <Label Grid.Row="3" Text="********" FontSize="28" HorizontalOptions="CenterAndExpand" 
+                   BackgroundColor="White"  WidthRequest="370" HeightRequest="100" x:Name="label3"></Label>
+        </Grid>
+        <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" RowSpacing="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Button Grid.Row="1" Grid.Column="0" Text="1" BackgroundColor="AliceBlue" Clicked="onOne"></Button>
+            <Button Grid.Row="1" Grid.Column="1" Text="2" BackgroundColor="AliceBlue" Clicked="onTwo"></Button>
+            <Button Grid.Row="1" Grid.Column="2" Text="3" BackgroundColor="AliceBlue" Clicked="onThree"></Button>
+            <Button Grid.Row="2" Grid.Column="0" Text="4" BackgroundColor="AliceBlue" Clicked="onFour"></Button>
+            <Button Grid.Row="2" Grid.Column="1" Text="5" BackgroundColor="AliceBlue" Clicked="onFive"></Button>
+            <Button Grid.Row="2" Grid.Column="2" Text="6" BackgroundColor="AliceBlue" Clicked="onSix"></Button>
+            <Button Grid.Row="3" Grid.Column="0" Text="7" BackgroundColor="AliceBlue" Clicked="onSeven"></Button>
+            <Button Grid.Row="3" Grid.Column="1" Text="8" BackgroundColor="AliceBlue" Clicked="onEigth"></Button>
+            <Button Grid.Row="3" Grid.Column="2" Text="9" BackgroundColor="AliceBlue" Clicked="onNine"></Button>
+            <Button Grid.Row="4" Grid.Column="0" Text="INVIO" BackgroundColor="AliceBlue" Clicked="onInvio"></Button>
+            <Button Grid.Row="4" Grid.Column="1" Text="0" BackgroundColor="AliceBlue" Clicked="onZero"></Button>
+            <Button Grid.Row="4" Grid.Column="2" Text="CANCEL" BackgroundColor="AliceBlue" Clicked="onCancel"></Button>
+        </Grid>
+    </StackLayout>
+
+</ContentPage>

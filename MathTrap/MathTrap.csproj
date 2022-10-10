@@ -16,13 +16,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="CarouselPage1.xaml.cs">
-      <DependentUpon>CarouselPage1.xaml</DependentUpon>
+    <Compile Update="MathPage.xaml.cs">
+      <DependentUpon>MathPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="CarouselPage1.xaml">
+    <EmbeddedResource Update="MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
