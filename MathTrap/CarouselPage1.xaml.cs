@@ -16,5 +16,15 @@ namespace MathTrap
         {
             InitializeComponent();
         }
+
+        private void onResume(object sender, EventArgs e)
+        {
+
+        }
+
+        private void onNew(object sender, EventArgs e)
+        {
+
+        }
     }
 }
