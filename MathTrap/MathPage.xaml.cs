@@ -18,69 +18,110 @@ namespace MathTrap
         private double divisione = 0;
         private long operazione = 0;
 
-        public MathPage()
+        public MathPage(int argc)
         {
             InitializeComponent();
-            //Label.HorizontalTextAlignmentProperty
+            label1.Text = "0";
+            label2.Text = "0";
+            label3.Text = "0";
+            if (argc > 0) { } else { }
         }
 
-        private void onOne(object sender, EventArgs e)
+        async private void onOne(object sender, EventArgs e)
         {
-
+            if (label3.Text == "0")
+                label3.Text = "1";
+            else
+                label3.Text += "1";
         }
 
-        private void onTwo(object sender, EventArgs e)
+        async private void onTwo(object sender, EventArgs e)
         {
-
+            if (label3.Text == "0")
+                label3.Text = "2";
+            else
+                label3.Text += "2";
         }
 
-        private void onThree(object sender, EventArgs e)
+        async private void onThree(object sender, EventArgs e)
         {
-
+            if (label3.Text == "0")
+                label3.Text = "3";
+            else
+                label3.Text += "3";
         }
 
-        private void onFour(object sender, EventArgs e)
+        async private void onFour(object sender, EventArgs e)
         {
-
+            if (label3.Text == "0")
+                label3.Text = "4";
+            else
+                label3.Text += "4";
         }
 
-        private void onFive(object sender, EventArgs e)
+        async private void onFive(object sender, EventArgs e)
         {
-
+            if (label3.Text == "0")
+                label3.Text = "5";
+            else
+                label3.Text += "5";
         }
 
-        private void onSix(object sender, EventArgs e)
+        async private void onSix(object sender, EventArgs e)
         {
-
+            if (label3.Text == "0")
+                label3.Text = "6";
+            else
+                label3.Text += "6";
         }
 
-        private void onSeven(object sender, EventArgs e)
+        async private void onSeven(object sender, EventArgs e)
         {
-
+            if (label3.Text == "0")
+                label3.Text = "7";
+            else
+                label3.Text += "7";
         }
 
-        private void onEigth(object sender, EventArgs e)
+        async private void onEigth(object sender, EventArgs e)
         {
-
+            if (label3.Text == "0")
+                label3.Text = "8";
+            else
+                label3.Text += "8";
         }
-        private void onNine(object sender, EventArgs e)
+        async private void onNine(object sender, EventArgs e)
         {
-
-        }
-
-        private void onZero(object sender, EventArgs e)
-        {
-
-        }
-
-        private void onInvio(object sender, EventArgs e)
-        {
-
+            if (label3.Text == "0")
+                label3.Text = "9";
+            else
+                label3.Text += "9";
         }
 
-        private void onCancel(object sender, EventArgs e)
+        async private void onZero(object sender, EventArgs e)
         {
+            if (label3.Text == "0")
+                label3.Text = "0";
+            else
+                label3.Text += "0";
+        }
 
+        async private void onInvio(object sender, EventArgs e)
+        {
+            if (label2.Text == label3.Text)
+                label2.Text = "1";
+            else
+                label2.Text += "1";
+        }
+
+        async private void onCancel(object sender, EventArgs e)
+        {
+            label3.Text = "0";
+        }
+
+        async private void onExit(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new MainPage(), false);
         }
     }
 }

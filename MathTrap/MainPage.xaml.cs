@@ -17,19 +17,19 @@ namespace MathTrap
             InitializeComponent();
         }
 
-        private void onNew(object sender, EventArgs e)
+        async private void onNew(object sender, EventArgs e)
         {
-
+            await Navigation.PushModalAsync(new MathPage(0),false);
         }
 
-        private void onResume(object sender, EventArgs e)
+        async private void onResume(object sender, EventArgs e)
         {
-
+            await Navigation.PushModalAsync(new MathPage(1),false);
         }
 
-        private void onHelp(object sender, EventArgs e)
+        async private void onHelp(object sender, EventArgs e)
         {
-
+            await Navigation.PushModalAsync(new HelpPage(),false);
         }
     }
 }

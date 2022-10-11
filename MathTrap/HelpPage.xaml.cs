@@ -16,5 +16,10 @@ namespace MathTrap
         {
             InitializeComponent();
         }
+
+        async private void onMain(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new MainPage(),false);
+        }
     }
 }

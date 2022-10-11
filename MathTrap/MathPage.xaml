@@ -35,6 +35,7 @@
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
             <Button Grid.Row="1" Grid.Column="0" Text="1" BackgroundColor="AliceBlue" Clicked="onOne"></Button>
             <Button Grid.Row="1" Grid.Column="1" Text="2" BackgroundColor="AliceBlue" Clicked="onTwo"></Button>
@@ -48,6 +49,9 @@
             <Button Grid.Row="4" Grid.Column="0" Text="INVIO" BackgroundColor="AliceBlue" Clicked="onInvio"></Button>
             <Button Grid.Row="4" Grid.Column="1" Text="0" BackgroundColor="AliceBlue" Clicked="onZero"></Button>
             <Button Grid.Row="4" Grid.Column="2" Text="CANCEL" BackgroundColor="AliceBlue" Clicked="onCancel"></Button>
+            <Button Grid.Row="5" Grid.Column="0" Text="" BackgroundColor="AliceBlue" ></Button>
+            <Button Grid.Row="5" Grid.Column="1" Text="Exit" BackgroundColor="AliceBlue" Clicked="onExit"></Button>
+            <Button Grid.Row="5" Grid.Column="2" Text="" BackgroundColor="AliceBlue" ></Button>
         </Grid>
     </StackLayout>
 
