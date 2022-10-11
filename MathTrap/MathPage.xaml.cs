@@ -21,7 +21,7 @@ namespace MathTrap
         public MathPage()
         {
             InitializeComponent();
-            
+            //Label.HorizontalTextAlignmentProperty
         }
 
         private void onOne(object sender, EventArgs e)

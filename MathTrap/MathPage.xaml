@@ -8,7 +8,7 @@
 
     <StackLayout>
         <!-- Place new controls here -->
-        <Grid VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" RowSpacing="4">
+        <Grid  RowSpacing="4" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
@@ -17,11 +17,11 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Label HorizontalOptions="End" Grid.Row="1" Grid.Column="0" Text="MathTrap" FontSize="28" 
+            <Label HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="0" Text="MathTrap" FontSize="28" 
                    BackgroundColor="White" x:Name="label1"></Label>
-            <Label HorizontalOptions="End" Grid.Row="2" Grid.Column="0" Text="********" FontSize="28" 
+            <Label HorizontalTextAlignment="End" Grid.Row="2" Grid.Column="0" Text="********" FontSize="28" 
                    BackgroundColor="White" x:Name="label2"></Label>
-            <Label HorizontalOptions="End" Grid.Row="3" Grid.Column="0" Text="********" FontSize="28"
+            <Label HorizontalTextAlignment="End" Grid.Row="3" Grid.Column="0" Text="********" FontSize="28"
                    BackgroundColor="White" x:Name="label3"></Label>
         </Grid>
         <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" RowSpacing="2">
