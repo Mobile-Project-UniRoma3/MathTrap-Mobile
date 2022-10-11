@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace MathTrap
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPage: TabbedPage
+    public partial class MainPage : ContentPage
     {
         public MainPage()
         {
@@ -23,6 +23,11 @@ namespace MathTrap
         }
 
         private void onResume(object sender, EventArgs e)
+        {
+
+        }
+
+        private void onHelp(object sender, EventArgs e)
         {
 
         }

@@ -1,24 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="MathTrap.MainPage">
-  <!--Pages can be added as references or inline-->
-    <ContentPage Title="Main Manu">
-        
-            <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                <Button Text="New" Clicked="onNew"></Button>
-                <Button Text="Resume" Clicked="onResume"></Button>
-            </StackLayout>
-        
-    </ContentPage>
-    <ContentPage Title="Documentation">
-        
-            <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                <Label Text="Documentazione"></Label>
-            </StackLayout>
-        
-    </ContentPage>
-</TabbedPage>
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" RowSpacing="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Button Grid.Column="0" Grid.Row="1"  Text="New" Clicked="onNew"></Button>
+            <Button Grid.Column="0" Grid.Row="2"  Text="Resume" Clicked="onResume"></Button>
+            <Button Grid.Column="0" Grid.Row="3"  Text="Help" Clicked="onHelp"></Button>
+        </Grid>
+    </StackLayout>
+</ContentPage>

@@ -21,6 +21,7 @@ namespace MathTrap
         public MathPage()
         {
             InitializeComponent();
+            
         }
 
         private void onOne(object sender, EventArgs e)
