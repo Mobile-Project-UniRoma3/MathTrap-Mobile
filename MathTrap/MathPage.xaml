@@ -50,9 +50,9 @@
                     <Button Grid.Row="4" Grid.Column="0" Text="INVIO" BackgroundColor="AliceBlue" Clicked="onInvio"></Button>
                     <Button Grid.Row="4" Grid.Column="1" Text="0" BackgroundColor="AliceBlue" Clicked="onZero"></Button>
                     <Button Grid.Row="4" Grid.Column="2" Text="CANCEL" BackgroundColor="AliceBlue" Clicked="onCancel"></Button>
-                    <Button Grid.Row="5" Grid.Column="0" Text="" BackgroundColor="AliceBlue" ></Button>
+                    <Button Grid.Row="5" Grid.Column="0" Text="." BackgroundColor="AliceBlue" ></Button>
                     <Button Grid.Row="5" Grid.Column="1" Text="Exit" BackgroundColor="AliceBlue" Clicked="onExit"></Button>
-                    <Button Grid.Row="5" Grid.Column="2" Text="" BackgroundColor="AliceBlue" ></Button>
+                    <Button Grid.Row="5" Grid.Column="2" Text="Skip" BackgroundColor="AliceBlue" ></Button>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

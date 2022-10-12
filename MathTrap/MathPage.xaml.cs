@@ -12,7 +12,7 @@ namespace MathTrap
         private int index = 10;
         private int level = 0;
         private string operator_;
-        private string[] operators = new string[] { "+", "-", ":", "x", "/", "log", "^" };
+        private string[] operators = new string[] { "+", "-", ":", "x", "/", "^" };
 
         public MathPage(int argc)
         {
@@ -41,7 +41,7 @@ namespace MathTrap
 
             if (level % 10 == 2)
             {
-                str = operators[r.Next(4, 7)];
+                str = operators[r.Next(4, 6)];
                 operator_int_A = r.Next(1, 11);
                 operator_int_B = r.Next(1, 10);
                 
@@ -77,20 +77,21 @@ namespace MathTrap
 
                  case "/":
                     this.label1.Text = Convert.ToString((operator_int_A) ^ operator_int_B);
-                    this.label2.Text = "1/" + Convert.ToString(operator_int_B);
+                    this.label2.Text = "(1/" + Convert.ToString(operator_int_B)+")";
                     this.label4.Text = "^";
                     this.operator_ = Convert.ToString(operator_int_A);
                     break;
 
                  case "^":
+                    this.label2.Text = "(" + Convert.ToString(operator_int_B) + ")";
                     this.operator_ = Convert.ToString((operator_int_A) ^ operator_int_B);
                     break;
 
-                 case "log":
+                /* case "log":
                     this.label1.Text = Convert.ToString(operator_int_B);
                     this.label2.Text = Convert.ToString((operator_int_A)^operator_int_B);
                     this.operator_ = Convert.ToString(operator_int_A);
-                    break;
+                    break;*/
 
                  default:
                     this.operator_ = Convert.ToString(operator_int_A ^ 2);
@@ -181,7 +182,6 @@ namespace MathTrap
 
         private void onInvio(object sender, EventArgs e)
         {
-            this.label6.Text = "";
 
             if (this.label3.Text.Equals(this.operator_)) { 
                 this.label6.Text = "ok";
