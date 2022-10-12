@@ -14,9 +14,11 @@ namespace MathTrap
     [DesignTimeVisible(false)]
     public partial class MathPage : ContentPage
     {
-        private int indice = 0;
-        private double divisione = 0;
-        private long operazione = 0;
+        private int index = 10;
+        private int level = 0;
+        private double operator_real = 0;
+        private long operator_int = 0;
+        private string[] operators = new string[] { "+", "-", ":", "x", "dx", "int", "log", "ln", "e", "cos", "sin", "^","/","(",")" };
 
         public MathPage(int argc)
         {
@@ -24,9 +26,37 @@ namespace MathTrap
             label1.Text = "0";
             label2.Text = "0";
             label3.Text = "0";
-            if (argc > 0) { } else { }
+            if (argc > 0) { } else { calculetor(index, level); }
         }
 
+        async private void calculetor(int index, int level) {
+            Random r = new Random();
+            long operator_int_A = r.Next(index, (index * 10));
+            long operator_int_B = r.Next(0, index);
+
+            label1.Text = Convert.ToString(operator_int_A);                        
+            label2.Text = Convert.ToString(operator_int_B);
+            if (level % 10 == 2) { }
+            else { }
+            switch (operators[r.Next(0, 4)]) {
+                case "+": operator_int = (operator_int_A + operator_int_B);
+                          break;
+
+                case "-": operator_int = (operator_int_A - operator_int_B); 
+                          break;
+
+                case ":": operator_real =(operator_int_A / operator_int_B);
+                          break;
+
+                case "x": operator_int = (operator_int_A * operator_int_B); 
+                          break;
+
+                default:  operator_int = (operator_int_A ^ 2);
+                          break;
+            }
+
+
+        }
         async private void onOne(object sender, EventArgs e)
         {
             if (label3.Text == "0")
