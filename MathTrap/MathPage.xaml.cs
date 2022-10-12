@@ -20,6 +20,9 @@ namespace MathTrap
             this.label1.Text = "0";
             this.label2.Text = "0";
             this.label3.Text = "0";
+            this.label4.Text = "";
+            this.label5.Text = "";
+            this.label6.Text = "";
             if (argc > 0) {
             
             } else { 
@@ -33,21 +36,27 @@ namespace MathTrap
             long operator_int_B;
             string str;
 
+            this.label6.Text = "";
+            this.label3.Text = "0";
+
             if (level % 10 == 2)
             {
                 str = operators[r.Next(4, 7)];
-                operator_int_A = r.Next(0, 11);
-                operator_int_B = r.Next(0, 10);
+                operator_int_A = r.Next(1, 11);
+                operator_int_B = r.Next(1, 10);
+                
             }
             else
             {
                 str =operators[r.Next(0, 4)];
                 operator_int_A = r.Next(index, (index * 10));
-                operator_int_B = r.Next(0, index);
+                operator_int_B = r.Next(1, index);
             }
 
-            label1.Text = Convert.ToString(operator_int_A);                        
-            label2.Text = Convert.ToString(operator_int_B);
+            this.label1.Text = Convert.ToString(operator_int_A);                        
+            this.label2.Text = Convert.ToString(operator_int_B);
+            this.label4.Text = str;
+            this.label5.Text = "=";
 
             switch (str) {
                  case "+":
@@ -69,6 +78,7 @@ namespace MathTrap
                  case "/":
                     this.label1.Text = Convert.ToString((operator_int_A) ^ operator_int_B);
                     this.label2.Text = "1/" + Convert.ToString(operator_int_B);
+                    this.label4.Text = "^";
                     this.operator_ = Convert.ToString(operator_int_A);
                     break;
 
@@ -171,10 +181,19 @@ namespace MathTrap
 
         private void onInvio(object sender, EventArgs e)
         {
-            if (this.operator_ == this.label3.Text)
-                this.label2.Text = "1";
-            else
-                this.label2.Text += "1";
+            this.label6.Text = "";
+
+            if (this.label3.Text.Equals(this.operator_)) { 
+                this.label6.Text = "ok";
+                this.level += 1;
+                if (this.level==11) { this.level = 1; this.index += 10; }
+                calculetor(this.index, this.level);
+            }              
+            else {
+                this.label6.Text = "ko";
+                this.label3.Text = "0"; 
+            }
+                
         }
 
         private void onCancel(object sender, EventArgs e)
@@ -185,6 +204,11 @@ namespace MathTrap
         async private void onExit(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new MainPage(), false);
+        }
+
+        private bool equals(Object o){
+            MathPage that = (MathPage)o;
+            return this.label3.Text.Equals(that.operator_);
         }
     }
 }
