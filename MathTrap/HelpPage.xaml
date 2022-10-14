@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="MathTrap.HelpPage">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="#FFB200">
             <Label Text="Welcome MathTrap!!" x:Name="label1" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></Label>
             <Button Text="Main" Clicked="onMain"></Button>
         </StackLayout>

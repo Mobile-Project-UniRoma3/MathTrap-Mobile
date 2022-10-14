@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="MathTrap.MathPage">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="#FFB200">
              <!-- Place new controls here -->
             <Grid  RowSpacing="4" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" >
                  <Grid.ColumnDefinitions>
@@ -21,9 +21,9 @@
                  <Label HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="0" FontSize="28" x:Name="label1"></Label>
                  <Label HorizontalTextAlignment="End" Grid.Row="2" Grid.Column="0" FontSize="28" x:Name="label2"></Label>
                  <Label HorizontalTextAlignment="End" Grid.Row="3" Grid.Column="0" FontSize="28" x:Name="label3"></Label>
-                 <Label Grid.Row="1" Grid.Column="1" x:Name="label4"></Label>
-                 <Label Grid.Row="2" Grid.Column="1" x:Name="label5"></Label>
-                 <Label Grid.Row="3" Grid.Column="1" x:Name="label6"></Label>
+                 <Label HorizontalTextAlignment="Start" Grid.Row="1" Grid.Column="1" x:Name="label4" FontSize="28"></Label>
+                 <Label HorizontalTextAlignment="Start" Grid.Row="2" Grid.Column="1" x:Name="label5" FontSize="28"></Label>
+                 <Label HorizontalTextAlignment="Start" Grid.Row="3" Grid.Column="1" x:Name="label6" FontSize="28"></Label>
             </Grid>
             <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" RowSpacing="2">
                 <Grid.ColumnDefinitions>

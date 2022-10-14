@@ -5,10 +5,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="MathTrap.MainPage">
-   <ContentPage.Content >
-        <StackLayout VerticalOptions="Center" HorizontalOptions="Center" >
+   <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="#FFB200">
             <Grid RowSpacing="2">
-                <Image Source="Principale.jpg" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"></Image>    
+                <Image Source="Principale.jpg" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+                       Aspect="Fill"></Image>    
             </Grid>
             <Grid RowSpacing="2">
             <Grid.ColumnDefinitions>
