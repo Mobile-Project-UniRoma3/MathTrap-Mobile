@@ -21,9 +21,9 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Button Grid.Column="0" Grid.Row="2"  Text="New" Clicked="onNew"></Button>
-            <Button Grid.Column="0" Grid.Row="3"  Text="Resume" Clicked="onResume"></Button>
-            <Button Grid.Column="0" Grid.Row="4"  Text="Help" Clicked="onHelp"></Button>
+                <Button Grid.Column="0" Grid.Row="2"  Text="New" Clicked="onNew" TextColor="Black"></Button>
+                <Button Grid.Column="0" Grid.Row="3"  Text="Resume" Clicked="onResume" TextColor="Black"></Button>
+                <Button Grid.Column="0" Grid.Row="4"  Text="Help" Clicked="onHelp" TextColor="Black"></Button>
         </Grid>
     </StackLayout>
    </ContentPage.Content>

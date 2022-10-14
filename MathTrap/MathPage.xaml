@@ -18,12 +18,12 @@
                      <RowDefinition />
                      <RowDefinition />
                  </Grid.RowDefinitions>
-                 <Label HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="0" FontSize="28" x:Name="label1"></Label>
-                 <Label HorizontalTextAlignment="End" Grid.Row="2" Grid.Column="0" FontSize="28" x:Name="label2"></Label>
-                 <Label HorizontalTextAlignment="End" Grid.Row="3" Grid.Column="0" FontSize="28" x:Name="label3"></Label>
-                 <Label HorizontalTextAlignment="Start" Grid.Row="1" Grid.Column="1" x:Name="label4" FontSize="28"></Label>
-                 <Label HorizontalTextAlignment="Start" Grid.Row="2" Grid.Column="1" x:Name="label5" FontSize="28"></Label>
-                 <Label HorizontalTextAlignment="Start" Grid.Row="3" Grid.Column="1" x:Name="label6" FontSize="28"></Label>
+                 <Label HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="0" FontSize="28" x:Name="label1" TextColor="Black"></Label>
+                 <Label HorizontalTextAlignment="End" Grid.Row="2" Grid.Column="0" FontSize="28" x:Name="label2" TextColor="Black"></Label>
+                 <Label HorizontalTextAlignment="End" Grid.Row="3" Grid.Column="0" FontSize="28" x:Name="label3" TextColor="Black"></Label>
+                 <Label HorizontalTextAlignment="Start" Grid.Row="1" Grid.Column="1" x:Name="label4" FontSize="28" TextColor="Black"></Label>
+                 <Label HorizontalTextAlignment="Start" Grid.Row="2" Grid.Column="1" x:Name="label5" FontSize="28" TextColor="Black"></Label>
+                 <Label HorizontalTextAlignment="Start" Grid.Row="3" Grid.Column="1" x:Name="label6" FontSize="28" TextColor="Black"></Label>
             </Grid>
             <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" RowSpacing="2">
                 <Grid.ColumnDefinitions>
@@ -38,21 +38,21 @@
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                    <Button Grid.Row="1" Grid.Column="0" Text="1" BackgroundColor="AliceBlue" Clicked="onOne"></Button>
-                    <Button Grid.Row="1" Grid.Column="1" Text="2" BackgroundColor="AliceBlue" Clicked="onTwo"></Button>
-                    <Button Grid.Row="1" Grid.Column="2" Text="3" BackgroundColor="AliceBlue" Clicked="onThree"></Button>
-                    <Button Grid.Row="2" Grid.Column="0" Text="4" BackgroundColor="AliceBlue" Clicked="onFour"></Button>
-                    <Button Grid.Row="2" Grid.Column="1" Text="5" BackgroundColor="AliceBlue" Clicked="onFive"></Button>
-                    <Button Grid.Row="2" Grid.Column="2" Text="6" BackgroundColor="AliceBlue" Clicked="onSix"></Button>
-                    <Button Grid.Row="3" Grid.Column="0" Text="7" BackgroundColor="AliceBlue" Clicked="onSeven"></Button>
-                    <Button Grid.Row="3" Grid.Column="1" Text="8" BackgroundColor="AliceBlue" Clicked="onEigth"></Button>
-                    <Button Grid.Row="3" Grid.Column="2" Text="9" BackgroundColor="AliceBlue" Clicked="onNine"></Button>
-                    <Button Grid.Row="4" Grid.Column="0" Text="INVIO" BackgroundColor="AliceBlue" Clicked="onInvio"></Button>
-                    <Button Grid.Row="4" Grid.Column="1" Text="0" BackgroundColor="AliceBlue" Clicked="onZero"></Button>
-                    <Button Grid.Row="4" Grid.Column="2" Text="CANCEL" BackgroundColor="AliceBlue" Clicked="onCancel"></Button>
-                    <Button Grid.Row="5" Grid.Column="0" Text="." BackgroundColor="AliceBlue" ></Button>
-                    <Button Grid.Row="5" Grid.Column="1" Text="Exit" BackgroundColor="AliceBlue" Clicked="onExit"></Button>
-                    <Button Grid.Row="5" Grid.Column="2" Text="Skip" BackgroundColor="AliceBlue" ></Button>
+                <Button Grid.Row="1" Grid.Column="0" Text="1" BackgroundColor="AliceBlue" Clicked="onOne" TextColor="Black"></Button>
+                <Button Grid.Row="1" Grid.Column="1" Text="2" BackgroundColor="AliceBlue" Clicked="onTwo" TextColor="Black"></Button>
+                <Button Grid.Row="1" Grid.Column="2" Text="3" BackgroundColor="AliceBlue" Clicked="onThree" TextColor="Black"></Button>
+                <Button Grid.Row="2" Grid.Column="0" Text="4" BackgroundColor="AliceBlue" Clicked="onFour" TextColor="Black"></Button>
+                <Button Grid.Row="2" Grid.Column="1" Text="5" BackgroundColor="AliceBlue" Clicked="onFive" TextColor="Black"></Button>
+                <Button Grid.Row="2" Grid.Column="2" Text="6" BackgroundColor="AliceBlue" Clicked="onSix" TextColor="Black"></Button>
+                <Button Grid.Row="3" Grid.Column="0" Text="7" BackgroundColor="AliceBlue" Clicked="onSeven" TextColor="Black"></Button>
+                <Button Grid.Row="3" Grid.Column="1" Text="8" BackgroundColor="AliceBlue" Clicked="onEigth" TextColor="Black"></Button>
+                <Button Grid.Row="3" Grid.Column="2" Text="9" BackgroundColor="AliceBlue" Clicked="onNine" TextColor="Black"></Button>
+                <Button Grid.Row="4" Grid.Column="0" Text="INVIO" BackgroundColor="AliceBlue" Clicked="onInvio" TextColor="Black"></Button>
+                <Button Grid.Row="4" Grid.Column="1" Text="0" BackgroundColor="AliceBlue" Clicked="onZero" TextColor="Black"></Button>
+                <Button Grid.Row="4" Grid.Column="2" Text="CANCEL" BackgroundColor="AliceBlue" Clicked="onCancel" TextColor="Black"></Button>
+                <Button Grid.Row="5" Grid.Column="0" Text="." BackgroundColor="AliceBlue"  TextColor="Black"></Button>
+                <Button Grid.Row="5" Grid.Column="1" Text="Exit" BackgroundColor="AliceBlue" Clicked="onExit" TextColor="Black"></Button>
+                <Button Grid.Row="5" Grid.Column="2" Text="Skip" BackgroundColor="AliceBlue" Clicked="onSkip" TextColor="Black"></Button>
             </Grid>
         </StackLayout>
     </ContentPage.Content>
