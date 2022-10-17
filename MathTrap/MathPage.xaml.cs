@@ -30,13 +30,24 @@ namespace MathTrap
             this.label4.Text = "";
             this.label5.Text = "";
             this.label6.Text = "";
+            
+
             if (argc > 0) {
+                //carico punteggio salvato
             
             } else {
+                //implemento nuovo punteggio
                 this.life = 5;
                 this.right_counter = 0;
                 this.fail_counter = 0;            
             }
+
+            //aggirno score
+            this.label10.Text = Convert.ToString(this.right_counter);
+            this.label11.Text = Convert.ToString(this.fail_counter);
+            this.label12.Text = Convert.ToString(this.life);
+
+            //gioca
             calculetor(this.index, this.level); 
         }
 
@@ -205,10 +216,10 @@ namespace MathTrap
                         this.index += 10; 
                     }
                     //aumento punti vita
-                    this.life += 1;
+                    this.life += 1;                 
                 }
                 //aggiorno risposte esatte
-                this.right_counter += 1;
+                this.right_counter += 1;              
                 calculetor(this.index, this.level);
             }            
             else {
@@ -221,11 +232,14 @@ namespace MathTrap
                 //controllo vita residua
                 if (this.life <= 0) {
                     //fine gioco
-                    this.msgBox();
-                    Navigation.PushModalAsync(new MainPage(), false);
+                    saveAndExit();
                 }
             }
-                
+
+            //aggiorno le etichette
+            this.label10.Text = Convert.ToString(this.right_counter);
+            this.label11.Text = Convert.ToString(this.fail_counter);
+            this.label12.Text = Convert.ToString(this.life);    
         }
 
         private void onCancel(object sender, EventArgs e)
@@ -240,7 +254,7 @@ namespace MathTrap
 
         async private void onExit(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new MainPage(), false);
+            saveAndExit();
         }
 
         private bool equals(Object o){
@@ -248,8 +262,9 @@ namespace MathTrap
             return this.label3.Text.Equals(that.operator_);
         }
 
-        async private void msgBox() {
-            await DisplayAlert("MathTrap", "Game Over", "OK");
+        async private void saveAndExit() { 
+            await Navigation.PushModalAsync(new SavePage(), false);
         }
+
     }
 }
