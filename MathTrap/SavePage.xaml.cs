@@ -20,15 +20,14 @@ namespace MathTrap
         public SavePage(ClassSave value)
         {
             InitializeComponent(); 
-            this.saveMetodo = value;   
+            this.saveMetodo = value;
+            this.saveMetodo.CreateDirectory(this.saveMetodo.CreatePathToDir());
         }
 
         private void onYes(object sender, EventArgs e)
         {
-            
-            if (this.saveMetodo.FileExists(this.saveMetodo.getNameFile())) {
-            
-            }
+            this.saveMetodo.ClearData(this.saveMetodo.getNameFile());
+            this.saveMetodo.SaveAsync(this.saveMetodo.getNameFile(), this.saveMetodo.getTextSave());
             comeBackHome();
         }
 
