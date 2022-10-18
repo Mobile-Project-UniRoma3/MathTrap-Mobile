@@ -14,15 +14,18 @@ namespace MathTrap
     
     public partial class SavePage : ContentPage
     {
-        private ClassSave saveMetodo = new ClassSave();
+        private ClassSave saveMetodo;
+       
 
-        public SavePage()
+        public SavePage(ClassSave value)
         {
-            InitializeComponent();
+            InitializeComponent(); 
+            this.saveMetodo = value;   
         }
 
         private void onYes(object sender, EventArgs e)
         {
+            
             if (this.saveMetodo.FileExists(this.saveMetodo.getNameFile())) {
             
             }

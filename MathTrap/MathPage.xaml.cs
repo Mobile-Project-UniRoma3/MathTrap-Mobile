@@ -15,11 +15,9 @@ namespace MathTrap
     {
         private long index = 10;
         private long level = 0;
-        private long right_counter = 0;
-        private long fail_counter = 0;
-        private long life = 0;
         private string operator_ ; 
         private string[] operators = new string[] { "+", "-", ":", "x", "/", "^" };
+        ClassSave value = new ClassSave();
 
         public MathPage(int argc)
         {
@@ -34,18 +32,16 @@ namespace MathTrap
 
             if (argc > 0) {
                 //carico punteggio salvato
-            
-            } else {
-                //implemento nuovo punteggio
-                this.life = 5;
-                this.right_counter = 0;
-                this.fail_counter = 0;            
-            }
+                if (this.value.FileExists(this.value.getNameFile())) {
+                    this.value.LoadAsync(this.value.getNameFile());                  
+                }                        
+            } 
+            this.value.composedScore();
 
             //aggirno score
-            this.label10.Text = Convert.ToString(this.right_counter);
-            this.label11.Text = Convert.ToString(this.fail_counter);
-            this.label12.Text = Convert.ToString(this.life);
+            this.label10.Text = Convert.ToString(this.value.getRight());
+            this.label11.Text = Convert.ToString(this.value.getFail());
+            this.label12.Text = Convert.ToString(this.value.getLife());
 
             //gioca
             calculetor(this.index, this.level); 
@@ -216,30 +212,31 @@ namespace MathTrap
                         this.index += 10; 
                     }
                     //aumento punti vita
-                    this.life += 1;                 
+                    this.value.setLife(this.value.getLife() + 1);                 
                 }
-                //aggiorno risposte esatte
-                this.right_counter += 1;              
+                //aumento risposte esatte
+                this.value.setRight(this.value.getRight() + 1);
+           
                 calculetor(this.index, this.level);
             }            
             else {
                 this.label6.Text = "ko";
                 this.label3.Text = "0";
                 //levo punti vita
-                this.life -= 1;
-                //aggiorno risposte sbagliate
-                this.fail_counter += 1;
+                this.value.setLife(this.value.getLife() - 1);
+                //aumento risposte sbagliate
+                this.value.setFail(this.value.getFail() + 1);
                 //controllo vita residua
-                if (this.life <= 0) {
+                if (this.value.getLife() <= 0) {
                     //fine gioco
                     saveAndExit();
                 }
             }
 
             //aggiorno le etichette
-            this.label10.Text = Convert.ToString(this.right_counter);
-            this.label11.Text = Convert.ToString(this.fail_counter);
-            this.label12.Text = Convert.ToString(this.life);    
+            this.label10.Text = Convert.ToString(this.value.getRight());
+            this.label11.Text = Convert.ToString(this.value.getFail());
+            this.label12.Text = Convert.ToString(this.value.getLife());    
         }
 
         private void onCancel(object sender, EventArgs e)
@@ -263,7 +260,7 @@ namespace MathTrap
         }
 
         async private void saveAndExit() { 
-            await Navigation.PushModalAsync(new SavePage(), false);
+            await Navigation.PushModalAsync(new SavePage(this.value), false);
         }
 
     }
