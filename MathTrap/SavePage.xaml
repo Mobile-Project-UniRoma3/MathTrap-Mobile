@@ -12,7 +12,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <Label Text="Vuoi sovrascrivere il punteggio?" VerticalOptions="Center" HorizontalOptions="Center" 
+                <Label Text="Vuoi salvare il punteggio?" VerticalOptions="Center" HorizontalOptions="Center" 
                        TextColor="Black" Grid.Row="1" Grid.Column="0" FontSize="22" x:Name="label1"></Label>
             </Grid>
             <Grid  RowSpacing="4" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
