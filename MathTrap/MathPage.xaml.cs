@@ -120,81 +120,51 @@ namespace MathTrap
 
         private void onOne(object sender, EventArgs e)
         {
-            if (this.label3.Text == "0")
-                this.label3.Text = "1";
-            else
-                this.label3.Text += "1";
+            this.tastiera("1");
         }
 
         private void onTwo(object sender, EventArgs e)
         {
-            if (this.label3.Text == "0")
-                this.label3.Text = "2";
-            else
-                this.label3.Text += "2";
+            this.tastiera("2");
         }
 
         private void onThree(object sender, EventArgs e)
         {
-            if (this.label3.Text == "0")
-                this.label3.Text = "3";
-            else
-                this.label3.Text += "3";
+            this.tastiera("3");
         }
 
         private void onFour(object sender, EventArgs e)
         {
-            if (this.label3.Text == "0")
-                this.label3.Text = "4";
-            else
-                this.label3.Text += "4";
+            this.tastiera("4");
         }
 
         private void onFive(object sender, EventArgs e)
         {
-            if (this.label3.Text == "0")
-                this.label3.Text = "5";
-            else
-                this.label3.Text += "5";
+            this.tastiera("5");
         }
 
         private void onSix(object sender, EventArgs e)
         {
-            if (this.label3.Text == "0")
-                this.label3.Text = "6";
-            else
-                this.label3.Text += "6";
+            this.tastiera("6");
         }
 
         private void onSeven(object sender, EventArgs e)
         {
-            if (this.label3.Text == "0")
-                this.label3.Text = "7";
-            else
-                this.label3.Text += "7";
+            this.tastiera("7");
         }
 
         private void onEigth(object sender, EventArgs e)
         {
-            if (this.label3.Text == "0")
-                this.label3.Text = "8";
-            else
-                this.label3.Text += "8";
+            this.tastiera("8");
         }
         private void onNine(object sender, EventArgs e)
         {
-            if (this.label3.Text == "0")
-                this.label3.Text = "9";
-            else
-                this.label3.Text += "9";
+            this.tastiera("9");
         }
 
         private void onZero(object sender, EventArgs e)
         {
-            if (this.label3.Text == "0")
-                this.label3.Text = "0";
-            else
-                this.label3.Text += "0";
+            this.tastiera("0");
         }
 
         private void onInvio(object sender, EventArgs e)
@@ -239,9 +209,16 @@ namespace MathTrap
             this.label12.Text = Convert.ToString(this.value.getLife());    
         }
 
+        private void tastiera(string numero) {
+            if (this.label3.Text == "0")
+                this.label3.Text = numero;
+            else
+                this.label3.Text += numero;
+        }
+
         private void onCancel(object sender, EventArgs e)
         {
-            this.label3.Text = "0";
+            this.tastiera("0");
         }
 
         private void onSkip(object sender, EventArgs e)
