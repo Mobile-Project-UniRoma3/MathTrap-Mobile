@@ -67,7 +67,7 @@
                 <Button Grid.Row="4" Grid.Column="0" Text="INVIO" BackgroundColor="AliceBlue" Clicked="onInvio" TextColor="Black"></Button>
                 <Button Grid.Row="4" Grid.Column="1" Text="0" BackgroundColor="AliceBlue" Clicked="onZero" TextColor="Black"></Button>
                 <Button Grid.Row="4" Grid.Column="2" Text="CANCEL" BackgroundColor="AliceBlue" Clicked="onCancel" TextColor="Black"></Button>
-                <Button Grid.Row="5" Grid.Column="0" Text="." BackgroundColor="AliceBlue"  TextColor="Black"></Button>
+                <Button Grid.Row="5" Grid.Column="0" Text="." BackgroundColor="AliceBlue" Clicked="onPoint" TextColor="Black"></Button>
                 <Button Grid.Row="5" Grid.Column="1" Text="Exit" BackgroundColor="AliceBlue" Clicked="onExit" TextColor="Black"></Button>
                 <Button Grid.Row="5" Grid.Column="2" Text="Skip" BackgroundColor="AliceBlue" Clicked="onSkip" TextColor="Black"></Button>
             </Grid>

@@ -7,8 +7,16 @@
              x:Class="MathTrap.HelpPage">
     <ContentPage.Content>
         <StackLayout BackgroundColor="#FFB200">
-            <Label Text="Welcome MathTrap!!" x:Name="label1" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" TextColor="Black"></Label>
-            <Button Text="Main" Clicked="onMain" TextColor="Black"></Button>
+            <Grid>
+                <Label Text="Welcome MathTrap!!" x:Name="label1" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Black" FontSize="28" ></Label>
+            </Grid>
+            <Grid  VerticalOptions="Center" HorizontalOptions="Center" >
+                <Label x:Name="textcell1"   VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"  TextColor="Black" FontSize="16" >
+                </Label>
+            </Grid>
+            <Grid>
+                <Button Text="Main" Clicked="onMain" TextColor="Black"></Button>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -13,8 +13,9 @@ namespace MathTrap
 
     public partial class MathPage : ContentPage
     {
+        //dati di partenza
         private long index = 10;
-        private long level = 0;
+        private long level = 1;
         private string operator_ ; 
         private string[] operators = new string[] { "+", "-", ":", "x", "/", "^" };
         ClassSave value = new ClassSave();
@@ -58,9 +59,10 @@ namespace MathTrap
 
             if (level % 10 == 0)
             {
+                //livello bonus --> potenza o radice esponenti compresi tra 1 e 3
                 str = operators[r.Next(4, 6)];
                 operator_int_A = r.Next(1, 11);
-                operator_int_B = r.Next(1, 10);
+                operator_int_B = r.Next(1, 4);
                 
             }
             else
@@ -85,7 +87,10 @@ namespace MathTrap
                     break;
 
                  case ":":
-                    this.operator_ = Convert.ToString(operator_int_A / operator_int_B);
+                    double a, b;
+                    a = operator_int_A;
+                    b = operator_int_B;
+                    this.operator_ = Convert.ToString(Math.Round((a / b), 2));
                     break;
 
                  case "x":
@@ -210,15 +215,38 @@ namespace MathTrap
         }
 
         private void tastiera(string numero) {
-            if (this.label3.Text == "0")
-                this.label3.Text = numero;
-            else
-                this.label3.Text += numero;
+
+            switch (numero) {
+                case "cancel": this.label3.Text = "0";
+                               break;
+                case "point": if(!this.label3.Text.Contains("."))
+                                 this.label3.Text += ".";
+                              break;
+                default: if (this.label3.Text == "0")
+                         {
+                            this.label3.Text = numero;
+                         }
+                         else
+                         {
+                            if (this.label3.Text.Contains(".")) 
+                            {                        
+                                if ((this.label3.Text.Substring(this.label3.Text.IndexOf("."), this.label3.Text.Length -1).Length) < 3) 
+                                {
+                                    this.label3.Text += numero;
+                                } 
+                            } 
+                            else 
+                            {
+                                this.label3.Text += numero; 
+                            }                           
+                         }
+                         break;
+            }          
         }
 
         private void onCancel(object sender, EventArgs e)
         {
-            this.tastiera("0");
+            this.tastiera("cancel");
         }
 
         private void onSkip(object sender, EventArgs e)
@@ -238,6 +266,11 @@ namespace MathTrap
 
         async private void saveAndExit() { 
             await Navigation.PushModalAsync(new SavePage(this.value), false);
+        }
+
+        async private void onPoint(object sender, EventArgs e)
+        {
+            this.tastiera("point");
         }
 
     }
