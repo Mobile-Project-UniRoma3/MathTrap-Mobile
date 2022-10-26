@@ -2,53 +2,60 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Reflection;
 
 namespace MathTrap
 {
 
     public class ClassSave
     {
-        [assembly: Dependency(typeof(IFileManager_OSName))]
-
-        private const string file_name = "SaveScore.txt";
+       [assembly : IntrospectionExtensions.GetTypeInfo(typeof(LoadResourceText)),Assembly]
+ 
+        private string file_name;
         private long right_counter = 0;
         private long fail_counter = 0;
         private long life = 5;
         private string text_save = "";
+        const string nameSpace_resorse = "MathTrap.Risorse.";
+        private Stream stream ;
+        private StreamReader reader;
+        private StreamWriter sw;
 
-        public ClassSave() {         
+        public ClassSave(string file_name) {
+
+            this.file_name = file_name;
+
             this.composedText();
+            
+            this.stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(nameSpace_resorse + file_name);
+            
+            //leggi file txt associato alla soluzione
+            this.reader = new StreamReader(this.getStream());
+            
+            //scrivi file txt associato alla soluzione
+            if (this.stream.CanWrite)
+                this.sw = new StreamWriter(this.getStream());
+            
         }
 
-        async public void SaveAsync(string filename, string text){
-            string path = CreatePathToFile(filename);
-            using (StreamWriter sw = File.CreateText(path))
-                await sw.WriteAsync(text);
+        public void SaveAsync(string value){
+            this.getSw().Write(value);
         }
 
-        async public void LoadAsync(string filename){
-            string path = CreatePathToFile(filename);
-            using (StreamReader sr = File.OpenText(path))
-            this.setTextSave(await sr.ReadToEndAsync());
+        public void LoadAsync(){
+            this.setTextSave(this.getReader().ReadToEnd());
         }
 
-        public bool FileExists(string filename){
-            return (File.Exists(CreatePathToFile(filename))) ? false : true;
+        private Stream getStream() {
+            return this.stream; 
         }
 
-        public string CreatePathToFile(string filename){
-            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), filename);
+        private StreamReader getReader() {
+            return this.reader;
         }
 
-        public string CreatePathToDir(){
-            return Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-        }
-
-        public void ClearData(string filename){
-            if (FileExists(filename))
-            {
-                File.Delete(CreatePathToFile(filename));
-            }
+        private StreamWriter getSw() {
+            return this.sw;
         }
 
         public void CreateDirectory(string filePathDir) {
@@ -85,7 +92,7 @@ namespace MathTrap
         }
 
         public string getNameFile() {
-            return file_name;
+            return this.file_name;
         }
 
         public long getRight()

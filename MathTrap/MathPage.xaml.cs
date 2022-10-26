@@ -18,11 +18,15 @@ namespace MathTrap
         private long level = 1;
         private string operator_ ; 
         private string[] operators = new string[] { "+", "-", ":", "x", "/", "^" };
-        ClassSave value = new ClassSave();
+
+        private const string file_name = "SaveScore.txt";
+        private ClassSave value;
 
         public MathPage(int argc)
         {
             InitializeComponent();
+            value = new ClassSave(file_name);
+
             this.label1.Text = "0";
             this.label2.Text = "0";
             this.label3.Text = "0";
@@ -32,10 +36,8 @@ namespace MathTrap
             
 
             if (argc > 0) {
-                //carico punteggio salvato
-                if (this.value.FileExists(this.value.getNameFile())) {
-                    this.value.LoadAsync(this.value.getNameFile());                  
-                }                        
+                //carico punteggio salvato             
+                this.value.LoadAsync();                                        
             } 
             this.value.composedScore();
 
@@ -229,8 +231,8 @@ namespace MathTrap
                          else
                          {
                             if (this.label3.Text.Contains(".")) 
-                            {                        
-                                if ((this.label3.Text.Substring(this.label3.Text.IndexOf("."), this.label3.Text.Length -1).Length) < 3) 
+                            {
+                                if (((this.label3.Text.Length)-(this.label3.Text.IndexOf("."))) < 3) 
                                 {
                                     this.label3.Text += numero;
                                 } 
@@ -257,11 +259,6 @@ namespace MathTrap
         async private void onExit(object sender, EventArgs e)
         {
             saveAndExit();
-        }
-
-        private bool equals(Object o){
-            MathPage that = (MathPage)o;
-            return this.label3.Text.Equals(that.operator_);
         }
 
         async private void saveAndExit() { 
