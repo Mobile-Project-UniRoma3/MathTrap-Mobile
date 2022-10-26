@@ -28,7 +28,7 @@ namespace MathTrap
             this.composedText();
             
             this.stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(nameSpace_resorse + file_name);
-            
+            //FileStream a = new FileStream("", FileMode.OpenOrCreate, FileAccess.Write);
             //leggi file txt associato alla soluzione
             this.reader = new StreamReader(this.getStream());
             
