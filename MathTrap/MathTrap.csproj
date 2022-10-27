@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <UserSecretsId>943539ac-f687-4c6d-aaa4-e9a5d7964776</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -11,7 +12,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="SaveScore.txt"  />
+    <None Remove="Risorse\SaveScore.txt" />
+    <None Remove="SaveScore.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Risorse\SaveScore.txt" />
   </ItemGroup>
 
   <ItemGroup>
