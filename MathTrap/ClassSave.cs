@@ -28,13 +28,18 @@ namespace MathTrap
             this.composedText();
             
             this.stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(nameSpace_resorse + file_name);
-            //FileStream a = new FileStream("", FileMode.OpenOrCreate, FileAccess.Write);
+            //this.stream = File.OpenWrite(file_name);
+            //FileStream a = new FileStream("SaveScore.txt", FileMode.OpenOrCreate, FileAccess.Write);
             //leggi file txt associato alla soluzione
-            this.reader = new StreamReader(this.getStream());
+            if (this.stream.CanRead)
+                this.reader = new StreamReader(this.getStream());
             
             //scrivi file txt associato alla soluzione
             if (this.stream.CanWrite)
                 this.sw = new StreamWriter(this.getStream());
+            
+                
+
             
         }
 
