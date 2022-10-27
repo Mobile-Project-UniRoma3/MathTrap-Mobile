@@ -28,8 +28,9 @@ namespace MathTrap
             this.composedText();
             
             this.stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(nameSpace_resorse + file_name);
+            
             //this.stream = File.OpenWrite(file_name);
-            //FileStream a = new FileStream("SaveScore.txt", FileMode.OpenOrCreate, FileAccess.Write);
+            //FileStream a = new FileStream("SaveScore.txt", FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
             //leggi file txt associato alla soluzione
             if (this.stream.CanRead)
                 this.reader = new StreamReader(this.getStream());
@@ -37,17 +38,59 @@ namespace MathTrap
             //scrivi file txt associato alla soluzione
             if (this.stream.CanWrite)
                 this.sw = new StreamWriter(this.getStream());
-            
-                
+            //else
 
-            
+
+            FileStream a = new FileStream(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), file_name), FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            // MemoryStream stream = new MemoryStream();
+            // this.sw = new StreamWriter(fs);
+            //
+            //  Stream.CopyTo(stream);
+            //  this.sw.Write(stream.ToArray());
+            //}
+
+
         }
 
-        public void SaveAsync(string value){
+        async public void SaveAsync(string filename, string text)
+        {
+            string path = this.PathToFile(filename);
+            using (StreamWriter sw = File.CreateText(path))
+                await sw.WriteAsync(text);
+        }
+
+        async public void LoadAsync(string filename)
+        {
+            string path = this.PathToFile(filename);
+            using (StreamReader sr = File.OpenText(path))
+                this.setTextSave(await sr.ReadToEndAsync());
+        }
+
+        public bool FileExists(string filename)
+        {
+            return (File.Exists(this.PathToFile(filename))) ? false : true;
+        }
+
+        public string PathToFile(string filename)
+        {
+            return Path.Combine(this.PathToDir(), filename);
+        }
+
+        public string PathToDir()
+        {
+            return Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+        }
+
+        public void ClearData(string filename)
+        {       
+                File.Delete(this.PathToFile(filename));
+        }
+
+        public void Save(string value){
             this.getSw().Write(value);
         }
 
-        public void LoadAsync(){
+        public void Load(){
             this.setTextSave(this.getReader().ReadToEnd());
         }
 
