@@ -11,21 +11,26 @@ namespace MathTrap
     {
        [assembly : IntrospectionExtensions.GetTypeInfo(typeof(LoadResourceText)),Assembly]
  
-        private string file_name;
-        private long right_counter = 0;
-        private long fail_counter = 0;
-        private long life = 5;
-        private string text_save = "";
+        
+        private long right_counter;
+        private long fail_counter;
+        private long life;
+
         const string nameSpace_resorse = "MathTrap.Risorse.";
+        private string file_name;
+        private string text_save;
+        
         private Stream stream ;
         private FileStream file;
         private StreamReader reader;
         private StreamWriter sw;
 
         public ClassSave(string file_name) {
-
+            this.right_counter = 0;
+            this.fail_counter = 0;
+            this.life = 5;
             this.file_name = file_name;
-
+            this.text_save = "";
             this.composedText();
                      
             // MemoryStream stream = new MemoryStream();
