@@ -12,12 +12,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Risorse\SaveScore.txt" />
+    <None Remove="Risorse\SaveLenguage.txt" />
     <None Remove="SaveScore.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Risorse\SaveScore.txt" />
+    <EmbeddedResource Include="Risorse\SaveLenguage.txt" />
   </ItemGroup>
 
   <ItemGroup>

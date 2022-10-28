@@ -18,6 +18,7 @@ namespace MathTrap
         private string text_save = "";
         const string nameSpace_resorse = "MathTrap.Risorse.";
         private Stream stream ;
+        private FileStream file;
         private StreamReader reader;
         private StreamWriter sw;
 
@@ -33,57 +34,23 @@ namespace MathTrap
             //FileStream a = new FileStream("SaveScore.txt", FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
             //leggi file txt associato alla soluzione
             if (this.stream.CanRead)
-                this.reader = new StreamReader(this.getStream());
+                
             
             //scrivi file txt associato alla soluzione
             if (this.stream.CanWrite)
-                this.sw = new StreamWriter(this.getStream());
+                
             //else
 
 
-            FileStream a = new FileStream(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), file_name), FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            FileStream file = new FileStream(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), file_name), FileMode.OpenOrCreate, FileAccess.ReadWrite);
             // MemoryStream stream = new MemoryStream();
             // this.sw = new StreamWriter(fs);
             //
             //  Stream.CopyTo(stream);
             //  this.sw.Write(stream.ToArray());
             //}
+            
 
-
-        }
-
-        async public void SaveAsync(string filename, string text)
-        {
-            string path = this.PathToFile(filename);
-            using (StreamWriter sw = File.CreateText(path))
-                await sw.WriteAsync(text);
-        }
-
-        async public void LoadAsync(string filename)
-        {
-            string path = this.PathToFile(filename);
-            using (StreamReader sr = File.OpenText(path))
-                this.setTextSave(await sr.ReadToEndAsync());
-        }
-
-        public bool FileExists(string filename)
-        {
-            return (File.Exists(this.PathToFile(filename))) ? false : true;
-        }
-
-        public string PathToFile(string filename)
-        {
-            return Path.Combine(this.PathToDir(), filename);
-        }
-
-        public string PathToDir()
-        {
-            return Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-        }
-
-        public void ClearData(string filename)
-        {       
-                File.Delete(this.PathToFile(filename));
         }
 
         public void Save(string value){
@@ -92,6 +59,71 @@ namespace MathTrap
 
         public void Load(){
             this.setTextSave(this.getReader().ReadToEnd());
+        }
+
+        async public void SaveAsync(string filename, string text)
+        {
+            string path = this.PathToFile(filename);
+            using (this.sw = File.CreateText(path))
+                await this.getSw().WriteAsync(text);
+        }
+
+        async public void LoadAsync(string filename)
+        {
+            string path = this.PathToFile(filename);
+            using (this.reader = File.OpenText(path))
+                this.setTextSave(await this.getReader().ReadToEndAsync());
+        }
+
+        public bool FileExists(string filename)
+        {
+            return (File.Exists(this.PathToFile(filename))) ? false : true;
+        }
+
+        public void ClearData(string filename)
+        {       
+                File.Delete(this.PathToFile(filename));
+        } 
+
+        private string PathToFile(string filename)
+        {
+            return Path.Combine(this.PathToDir(), filename);
+        }
+
+        private string PathToDir()
+        {
+            return Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+        }
+     
+        private void CreateDirectory(string filePathDir) {
+            if (!File.Exists(filePathDir))
+            {
+                Directory.CreateDirectory(filePathDir);
+            }
+        }
+     
+        private void Stream() {
+            this.stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(this.getNameSpace_resorse() + this.getNameFile());
+        }
+
+        private void FileStream() { 
+            this.file = new FileStream(Path.Combine(this.PathToFile(this.getNameFile())), FileMode.OpenOrCreate, FileAccess.ReadWrite);
+        }
+
+        private void StreamRead() { 
+            this.reader = new StreamReader(this.getStream());
+        }
+
+        private void StreamWtrite() { 
+            this.sw = new StreamWriter(this.getStream());
+        }
+
+        private bool canRead() {
+            return ((this.getStream().CanRead)) ? false : true;
+        }
+
+        private bool canWrite() {
+            return ((this.getStream().CanWrite)) ? false : true;
         }
 
         private Stream getStream() {
@@ -106,37 +138,8 @@ namespace MathTrap
             return this.sw;
         }
 
-        public void CreateDirectory(string filePathDir) {
-            if (!File.Exists(filePathDir))
-            {
-                Directory.CreateDirectory(filePathDir);
-            }
-        }
-
-        public void composedScore() {
-            string r;
-            string f;
-            string l;
-
-            int i = this.getTextSave().Length;
-            int k = this.getTextSave().IndexOf(';');
-            //La sottostringa inizia in corrispondenza della posizione del carattere specificata e ha la lunghezza specificata
-            r = this.getTextSave().Substring(0, k);
-            k +=1;
-            i = (i - k);
-            f = this.getTextSave().Substring(k, i);
-
-            k = f.IndexOf(';');
-            l = f;
-            f = f.Substring(0, k);
-           
-            k +=1;
-            i = (i - k);
-            l = l.Substring(k,i);
-            
-            this.setRight(Convert.ToInt64(r));
-            this.setFail(Convert.ToInt64(f));
-            this.setLife(Convert.ToInt64(l));
+        private string getNameSpace_resorse() {
+            return nameSpace_resorse;
         }
 
         public string getNameFile() {
@@ -187,6 +190,32 @@ namespace MathTrap
             this.setTextSave(Convert.ToString(this.right_counter) + ";"
                                  + Convert.ToString(this.fail_counter) + ";"
                                  + Convert.ToString(this.life));
+        }
+
+        public void composedScore() {
+            string r;
+            string f;
+            string l;
+
+            int i = this.getTextSave().Length;
+            int k = this.getTextSave().IndexOf(';');
+            //La sottostringa inizia in corrispondenza della posizione del carattere specificata e ha la lunghezza specificata
+            r = this.getTextSave().Substring(0, k);
+            k +=1;
+            i = (i - k);
+            f = this.getTextSave().Substring(k, i);
+
+            k = f.IndexOf(';');
+            l = f;
+            f = f.Substring(0, k);
+           
+            k +=1;
+            i = (i - k);
+            l = l.Substring(k,i);
+            
+            this.setRight(Convert.ToInt64(r));
+            this.setFail(Convert.ToInt64(f));
+            this.setLife(Convert.ToInt64(l));
         }
     }
 }
