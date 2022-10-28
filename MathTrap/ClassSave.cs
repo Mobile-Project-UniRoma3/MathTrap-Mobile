@@ -27,30 +27,14 @@ namespace MathTrap
             this.file_name = file_name;
 
             this.composedText();
-            
-            this.stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(nameSpace_resorse + file_name);
-            
-            //this.stream = File.OpenWrite(file_name);
-            //FileStream a = new FileStream("SaveScore.txt", FileMode.Create, FileAccess.ReadWrite, FileShare.Read);
-            //leggi file txt associato alla soluzione
-            if (this.stream.CanRead)
-                
-            
-            //scrivi file txt associato alla soluzione
-            if (this.stream.CanWrite)
-                
-            //else
-
-
-            FileStream file = new FileStream(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), file_name), FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                     
             // MemoryStream stream = new MemoryStream();
             // this.sw = new StreamWriter(fs);
             //
             //  Stream.CopyTo(stream);
             //  this.sw.Write(stream.ToArray());
             //}
-            
-
+          
         }
 
         public void Save(string value){
