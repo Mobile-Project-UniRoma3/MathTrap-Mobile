@@ -22,10 +22,10 @@ namespace MathTrap
         private const string file_name = "SaveScore.txt";
         private ClassSave value;
 
-        public MathPage(int argc)
+        public MathPage(int index)
         {
             InitializeComponent();
-            value = new ClassSave(file_name);
+            value = new ClassSave(index, file_name);
 
             this.label1.Text = "0";
             this.label2.Text = "0";
@@ -35,7 +35,7 @@ namespace MathTrap
             this.label6.Text = "";
             
 
-            if (argc > 0) {
+            if (index > 0) {
                 //carico punteggio salvato             
                 this.value.LoadAsync();                                        
             } 
@@ -64,8 +64,7 @@ namespace MathTrap
                 //livello bonus --> potenza o radice esponenti compresi tra 1 e 3
                 str = operators[r.Next(4, 6)];
                 operator_int_A = r.Next(1, 11);
-                operator_int_B = r.Next(1, 4);
-                
+                operator_int_B = r.Next(1, 4);                
             }
             else
             {
@@ -256,7 +255,7 @@ namespace MathTrap
             calculetor(this.index, this.level);
         }
 
-        async private void onExit(object sender, EventArgs e)
+        private void onExit(object sender, EventArgs e)
         {
             saveAndExit();
         }
@@ -265,7 +264,7 @@ namespace MathTrap
             await Navigation.PushModalAsync(new SavePage(this.value), false);
         }
 
-        async private void onPoint(object sender, EventArgs e)
+        private void onPoint(object sender, EventArgs e)
         {
             this.tastiera("point");
         }

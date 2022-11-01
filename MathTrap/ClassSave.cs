@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
@@ -9,9 +10,10 @@ namespace MathTrap
 
     public class ClassSave
     {
-       [assembly : IntrospectionExtensions.GetTypeInfo(typeof(LoadResourceText)),Assembly]
- 
-        
+       [assembly: IntrospectionExtensions.GetTypeInfo(typeof(LoadResourceText)),Assembly]
+       [assembly: Dependency(typeof(IFileManager_OSName))]
+
+
         private long right_counter;
         private long fail_counter;
         private long life;
@@ -24,25 +26,32 @@ namespace MathTrap
         private FileStream file;
         private StreamReader reader;
         private StreamWriter sw;
+       
 
-        public ClassSave(string file_name) {
+        public ClassSave(int index, string file_name) {
             this.right_counter = 0;
             this.fail_counter = 0;
             this.life = 5;
             this.file_name = file_name;
             this.text_save = "";
             this.composedText();
-                     
-            // MemoryStream stream = new MemoryStream();
-            // this.sw = new StreamWriter(fs);
-            //
-            //  Stream.CopyTo(stream);
-            //  this.sw.Write(stream.ToArray());
-            //}
-          
-        }
 
-        public void Save(string value){
+            switch (index) {
+                case 2 :this.setStream(this.getNameSpace_resorse(), this.getNameFile());
+                       break;
+
+                default:this.setFileStream(this.getNameFile());
+                        this.stream = getFileStream();
+                        break;           
+            }
+                  
+            this.setStreamRead(this.getStream());
+            this.setStreamWrite(this.getStream());     
+        }
+       
+        public void Save(string value)
+        {
+            this.CreateFile();
             this.getSw().Write(value);
         }
 
@@ -50,18 +59,17 @@ namespace MathTrap
             this.setTextSave(this.getReader().ReadToEnd());
         }
 
-        async public void SaveAsync(string filename, string text)
+        async public void SaveAsync(string text)
         {
-            string path = this.PathToFile(filename);
-            using (this.sw = File.CreateText(path))
-                await this.getSw().WriteAsync(text);
+            this.CreateFile();
+            //using (this.sw = File.CreateText(this.PathToFile(this.getNameFile())))
+            await this.getSw().WriteAsync(text);
         }
 
-        async public void LoadAsync(string filename)
+        async public void LoadAsync()
         {
-            string path = this.PathToFile(filename);
-            using (this.reader = File.OpenText(path))
-                this.setTextSave(await this.getReader().ReadToEndAsync());
+            //using (this.reader = File.OpenText(this.PathToFile(this.getNameFile())))
+            this.setTextSave(await this.getReader().ReadToEndAsync());
         }
 
         public bool FileExists(string filename)
@@ -84,27 +92,36 @@ namespace MathTrap
             return Environment.GetFolderPath(Environment.SpecialFolder.Personal);
         }
      
-        private void CreateDirectory(string filePathDir) {
-            if (!File.Exists(filePathDir))
+        private void CreateDirectory() {
+            if (!File.Exists(this.PathToDir()))
             {
-                Directory.CreateDirectory(filePathDir);
+                Directory.CreateDirectory(this.PathToDir());
             }
         }
-     
-        private void Stream() {
-            this.stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(this.getNameSpace_resorse() + this.getNameFile());
+
+        private void CreateFile()
+        {
+            if (!this.FileExists(this.getNameFile()))
+            {
+                this.CreateDirectory();
+                File.Create(this.PathToFile(this.getNameFile()));
+            }
         }
 
-        private void FileStream() { 
-            this.file = new FileStream(Path.Combine(this.PathToFile(this.getNameFile())), FileMode.OpenOrCreate, FileAccess.ReadWrite);
+        private void setStream(string getNameSpace_resorse, string getNameFile) {
+            this.stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(getNameSpace_resorse + getNameFile);
         }
 
-        private void StreamRead() { 
-            this.reader = new StreamReader(this.getStream());
+        private void setFileStream(string getNameFile) { 
+            this.file = new FileStream(Path.Combine(this.PathToFile(getNameFile)), FileMode.OpenOrCreate, FileAccess.ReadWrite);
         }
 
-        private void StreamWtrite() { 
-            this.sw = new StreamWriter(this.getStream());
+        private void setStreamRead(Stream getStream) { 
+            this.reader = new StreamReader(getStream);
+        }
+
+        private void setStreamWrite(Stream getStream) { 
+            this.sw = new StreamWriter(getStream);
         }
 
         private bool canRead() {
@@ -117,6 +134,11 @@ namespace MathTrap
 
         private Stream getStream() {
             return this.stream; 
+        }
+
+        private FileStream getFileStream()
+        {
+            return this.file;
         }
 
         private StreamReader getReader() {
