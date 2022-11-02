@@ -12,10 +12,10 @@ namespace MathTrap
     
     public partial class SavePage : ContentPage
     {
-        private ClassSave saveMetodo;
+        private ClassSQL saveMetodo;
        
 
-        public SavePage(ClassSave value)
+        public SavePage(ClassSQL value)
         {
             InitializeComponent(); 
             this.saveMetodo = value;         
@@ -23,13 +23,25 @@ namespace MathTrap
 
         private void onYes(object sender, EventArgs e)
         {
-            this.saveMetodo.SaveAsync(this.saveMetodo.getTextSave());
+            this.OnSave();
             comeBackHome();
         }
 
         private void onNo(object sender, EventArgs e)
         {
             comeBackHome();
+        }
+
+        async void OnSave()
+        {
+            TableItem item = new TableItem();
+            item.ID = this.saveMetodo.getSave().getId(); 
+            item.right = this.saveMetodo.getSave().getRight();
+            item.fail = this.saveMetodo.getSave().getFail();
+            item.life = this.saveMetodo.getSave().getLife();
+            item.done = false;
+            await this.saveMetodo.SaveItemAsync(item);
+
         }
 
         async private void comeBackHome() {

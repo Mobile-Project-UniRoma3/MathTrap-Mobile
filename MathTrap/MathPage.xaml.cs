@@ -18,14 +18,13 @@ namespace MathTrap
         private long level = 1;
         private string operator_ ; 
         private string[] operators = new string[] { "+", "-", ":", "x", "/", "^" };
-
-        private const string file_name = "SaveScore.txt";
-        private ClassSave value;
+        
+        private ClassSQL value;
 
         public MathPage(int index)
         {
             InitializeComponent();
-            value = new ClassSave(index, file_name);
+            value = new ClassSQL();
 
             this.label1.Text = "0";
             this.label2.Text = "0";
@@ -33,18 +32,18 @@ namespace MathTrap
             this.label4.Text = "";
             this.label5.Text = "";
             this.label6.Text = "";
-            
 
+            TableItem item = new TableItem();
             if (index > 0) {
                 //carico punteggio salvato             
-                this.value.LoadAsync();                                        
+                item = this.value.GetItemLoad().Result;                                        
             } 
-            this.value.composedScore();
+            this.value.getSave().composedScore(item);
 
             //aggirno score
-            this.label10.Text = Convert.ToString(this.value.getRight());
-            this.label11.Text = Convert.ToString(this.value.getFail());
-            this.label12.Text = Convert.ToString(this.value.getLife());
+            this.label10.Text = Convert.ToString(this.value.getSave().getRight());
+            this.label11.Text = Convert.ToString(this.value.getSave().getFail());
+            this.label12.Text = Convert.ToString(this.value.getSave().getLife());
 
             //gioca
             calculetor(this.index, this.level); 
@@ -188,10 +187,10 @@ namespace MathTrap
                         this.index += 10; 
                     }
                     //aumento punti vita
-                    this.value.setLife(this.value.getLife() + 1);                 
+                    this.value.getSave().setLife(this.value.getSave().getLife() + 1);                 
                 }
                 //aumento risposte esatte
-                this.value.setRight(this.value.getRight() + 1);
+                this.value.getSave().setRight(this.value.getSave().getRight() + 1);
            
                 calculetor(this.index, this.level);
             }            
@@ -199,20 +198,20 @@ namespace MathTrap
                 this.label6.Text = "ko";
                 this.label3.Text = "0";
                 //levo punti vita
-                this.value.setLife(this.value.getLife() - 1);
+                this.value.getSave().setLife(this.value.getSave().getLife() - 1);
                 //aumento risposte sbagliate
-                this.value.setFail(this.value.getFail() + 1);
+                this.value.getSave().setFail(this.value.getSave().getFail() + 1);
                 //controllo vita residua
-                if (this.value.getLife() <= 0) {
+                if (this.value.getSave().getLife() <= 0) {
                     //fine gioco
                     saveAndExit();
                 }
             }
 
             //aggiorno le etichette
-            this.label10.Text = Convert.ToString(this.value.getRight());
-            this.label11.Text = Convert.ToString(this.value.getFail());
-            this.label12.Text = Convert.ToString(this.value.getLife());    
+            this.label10.Text = Convert.ToString(this.value.getSave().getRight());
+            this.label11.Text = Convert.ToString(this.value.getSave().getFail());
+            this.label12.Text = Convert.ToString(this.value.getSave().getLife());    
         }
 
         private void tastiera(string numero) {

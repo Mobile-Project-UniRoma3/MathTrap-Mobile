@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
 using System.Reflection;
 
 namespace MathTrap
 {
-
+    
     public class ClassSave
     {
-       [assembly: IntrospectionExtensions.GetTypeInfo(typeof(LoadResourceText)),Assembly]
-       [assembly: Dependency(typeof(IFileManager_OSName))]
+        [assembly: Dependency(typeof(IFileManager_OSName))]
+        [assembly: IntrospectionExtensions.GetTypeInfo(typeof(LoadResourceText)), Assembly] 
 
-
+   
+        private int id_score;
         private long right_counter;
         private long fail_counter;
         private long life;
@@ -37,11 +37,11 @@ namespace MathTrap
             this.composedText();
 
             switch (index) {
-                case 2 :this.setStream(this.getNameSpace_resorse(), this.getNameFile());
+                case 2 :this.setStream();
                        break;
 
-                default:this.setFileStream(this.getNameFile());
-                        this.stream = getFileStream();
+                default:this.setFileStream();
+                        this.stream = this.getFileStream();
                         break;           
             }
                   
@@ -72,22 +72,22 @@ namespace MathTrap
             this.setTextSave(await this.getReader().ReadToEndAsync());
         }
 
-        public bool FileExists(string filename)
+        public bool FileExists()
         {
-            return (File.Exists(this.PathToFile(filename))) ? false : true;
+            return (File.Exists(this.PathToFile())) ? false : true;
         }
 
-        public void ClearData(string filename)
+        public void ClearData()
         {       
-                File.Delete(this.PathToFile(filename));
-        } 
-
-        private string PathToFile(string filename)
-        {
-            return Path.Combine(this.PathToDir(), filename);
+                File.Delete(this.PathToFile());
         }
 
-        private string PathToDir()
+        public string PathToFile()
+        {
+            return Path.Combine(this.PathToDir(), this.getNameFile());
+        }
+
+        public string PathToDir()
         {
             return Environment.GetFolderPath(Environment.SpecialFolder.Personal);
         }
@@ -101,19 +101,19 @@ namespace MathTrap
 
         private void CreateFile()
         {
-            if (!this.FileExists(this.getNameFile()))
+            if (!this.FileExists())
             {
                 this.CreateDirectory();
-                File.Create(this.PathToFile(this.getNameFile()));
+                File.Create(this.PathToFile());
             }
         }
 
-        private void setStream(string getNameSpace_resorse, string getNameFile) {
-            this.stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(getNameSpace_resorse + getNameFile);
+        private void setStream() {
+            this.stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(this.getNameSpace_resorse() + this.getNameFile());
         }
 
-        private void setFileStream(string getNameFile) { 
-            this.file = new FileStream(Path.Combine(this.PathToFile(getNameFile)), FileMode.OpenOrCreate, FileAccess.ReadWrite);
+        private void setFileStream() { 
+            this.file = new FileStream(Path.Combine(this.PathToFile()), FileMode.OpenOrCreate, FileAccess.ReadWrite);
         }
 
         private void setStreamRead(Stream getStream) { 
@@ -155,6 +155,16 @@ namespace MathTrap
 
         public string getNameFile() {
             return this.file_name;
+        }
+
+        public int getId()
+        {
+            return this.id_score;
+        }
+
+        public void setId(int v)
+        {
+            this.id_score = v;
         }
 
         public long getRight()
@@ -227,6 +237,26 @@ namespace MathTrap
             this.setRight(Convert.ToInt64(r));
             this.setFail(Convert.ToInt64(f));
             this.setLife(Convert.ToInt64(l));
+        }
+
+        public void composedScore(TableItem item)
+        {
+            int i=0;
+            long r=0;
+            long f=0;
+            long l=5;
+
+            if (item.ID >0) {
+                i = item.ID;
+                r = item.right;
+                f = item.fail;
+                l = item.life;
+            }
+
+            this.setId(i);
+            this.setRight(r);
+            this.setFail(f);
+            this.setLife(l);
         }
     }
 }
