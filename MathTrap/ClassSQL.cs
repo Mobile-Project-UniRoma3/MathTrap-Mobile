@@ -1,4 +1,7 @@
 ﻿using System;
+using System.IO;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -25,63 +28,30 @@ namespace MathTrap
      * utilizza l'inizializzazione lazy asincrona. 
      * Il delegato factory passato al costruttore può essere sincrono o asincrono.
      */
-    public class AsyncLazy<T>
-    {
-
-        readonly Lazy<Task<T>> instance;
-
-        public AsyncLazy(Func<T> factory)
-        {
-            instance = new Lazy<Task<T>>(() => Task.Run(factory));
-        }
-
-        public AsyncLazy(Func<Task<T>> factory)
-        {
-            instance = new Lazy<Task<T>>(() => Task.Run(factory));
-        }
-
-        public TaskAwaiter<T> GetAwaiter()
-        {
-            return instance.Value.GetAwaiter();
-        }
-
-       
-    }
+    
    
     public class ClassSQL 
     {
-        static SQLiteAsyncConnection Database;
-        
-        public const string DatabaseFilename = "MathTrap.db3";
+        static SQLiteAsyncConnection Connection;    
+        private const string DatabaseFilename = "MathTrap.db3";
+        private ClassSave save;
+        public TableItem item;
 
-        // specifica i valori enum predefiniti SQLiteOpenFlagutilizzati per inizializzare la connessione al database.
-        public const SQLite.SQLiteOpenFlags Flags =
-        // La connessione creerà automaticamente il file di database se non esiste.
-        SQLite.SQLiteOpenFlags.ReadWrite |
-        // La connessione può leggere e scrivere dati.
-        SQLite.SQLiteOpenFlags.Create |
-        // la connessione parteciperà alla cache condivisa, se abilitata
-        SQLite.SQLiteOpenFlags.SharedCache;
-
-        public ClassSave save;
-
-        public static readonly AsyncLazy<ClassSQL> Instance = new AsyncLazy<ClassSQL>(async () => { 
-            var instance = new ClassSQL();  CreateTableResult result = await Database.CreateTableAsync<TableItem>();  return instance; 
-        });
 
         public ClassSQL()
         {
+            this.item = new TableItem();
             this.save= new ClassSave(3, DatabaseFilename);
-            Database = new SQLiteAsyncConnection(DatabasePath, Flags);
-            EnabledReadWrite();
+            Connection = new SQLiteAsyncConnection(DatabasePath);
+            CreateTable();
         }
 
         async private void EnabledReadWrite() 
         { 
-            await Database.EnableWriteAheadLoggingAsync(); 
+            await Connection.EnableWriteAheadLoggingAsync(); 
         }
       
-        public string DatabasePath
+        private string DatabasePath
         {
             get
             {               
@@ -93,62 +63,59 @@ namespace MathTrap
             return this.save;
         }
 
+        public TableItem getItem
+        {
+            get { return this.item; }
+        }
         /*
-         * Metodi di manipolazione dei dati
-         * La Classe ClassSQL include metodi per i quattro tipi di manipolazione dei dati: 
-         * creare, leggere, modificare ed eliminare. 
-         * La libreria SQLite.NET fornisce una semplice mappa relazionale degli oggetti (ORM) 
-         * che consente di archiviare e recuperare oggetti senza scrivere istruzioni SQL.
-         */
+        * Metodi di manipolazione dei dati
+        * La Classe ClassSQL include metodi per i quattro tipi di manipolazione dei dati: 
+        * creare, leggere, modificare ed eliminare. 
+        * La libreria SQLite.NET fornisce una semplice mappa relazionale degli oggetti (ORM) 
+        * che consente di archiviare e recuperare oggetti senza scrivere istruzioni SQL.
+        */
 
-        async public void CreateTable() {
-            await Database.CreateTableAsync<TableItem>();
+        private void CreateTable() {
+            Connection.CreateTableAsync<TableItem>().Wait();
         }
 
         public Task<List<TableItem>> GetItemsAsync()
         {
-            return Database.Table<TableItem>().ToListAsync();
+            return Connection.Table<TableItem>().ToListAsync();
         }
 
-        public Task<List<TableItem>> GetItemsNotDateAsync()
+        public Task<List<TableItem>> GetItemsAllAsync()
         {
             // SQL queries are also possible
-            return Database.QueryAsync<TableItem>("SELECT * FROM [tabella] WHERE [Date] = ''");
+            return Connection.QueryAsync<TableItem>("SELECT * FROM [tabella] ");
         }
 
-        public Task<TableItem> GetItemAsync(int id)
+        public Task<TableItem> GetItemWhereIdAsync(int id)
         {
-            return Database.Table<TableItem>().Where(i => i.ID == id).FirstOrDefaultAsync();
+            return Connection.Table<TableItem>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
         public Task<TableItem> GetItemLoad()
         {
-            return Database.Table<TableItem>().Where(i => i.done == false).FirstOrDefaultAsync();
+            return Connection.Table<TableItem>().Where(i => i.done == false).FirstOrDefaultAsync();
         }
 
         public Task<int> SaveItemAsync(TableItem item)
         {
             if (item.ID != 0)
             {
-                return Database.UpdateAsync(item);
+                return Connection.UpdateAsync(item);
             }
             else
             {
-                this.CreateTable();
-                return Database.InsertAsync(item);
+                return Connection.InsertAsync(item);
             }
         }
 
         public Task<int> DeleteItemAsync(TableItem item)
         {
-            return Database.DeleteAsync(item);
-        }
-
-
-        async void OnDelete(TableItem item)
-        {
-            await DeleteItemAsync(item);          
-        }
+            return Connection.DeleteAsync(item);
+        }     
 
     }
 }

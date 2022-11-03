@@ -6,12 +6,28 @@ namespace MathTrap
 {
     public partial class App : Application
     {
+        /*
+         * La connessione va aperta una volta sola
+         * altrimrnti genera un'eccezione.
+         */
+        static ClassSQL database;
+
+        public static ClassSQL connection {
+            get
+            {
+                if (database == null)
+                {
+                    database = new ClassSQL();
+                }
+                return database;
+            }
+        }
+
         public App()
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
-           
+            MainPage = new MainPage();          
         }
 
         protected override void OnStart()

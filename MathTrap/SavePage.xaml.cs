@@ -34,13 +34,13 @@ namespace MathTrap
 
         async void OnSave()
         {
-            TableItem item = new TableItem();
-            item.ID = this.saveMetodo.getSave().getId(); 
-            item.right = this.saveMetodo.getSave().getRight();
-            item.fail = this.saveMetodo.getSave().getFail();
-            item.life = this.saveMetodo.getSave().getLife();
-            item.done = false;
-            await this.saveMetodo.SaveItemAsync(item);
+            
+            this.saveMetodo.item.ID = this.saveMetodo.getSave().getId();
+            this.saveMetodo.item.right = this.saveMetodo.getSave().getRight();
+            this.saveMetodo.item.fail = this.saveMetodo.getSave().getFail();
+            this.saveMetodo.item.life = this.saveMetodo.getSave().getLife();
+            this.saveMetodo.item.done = false;
+            await this.saveMetodo.SaveItemAsync(this.saveMetodo.getItem);
 
         }
 

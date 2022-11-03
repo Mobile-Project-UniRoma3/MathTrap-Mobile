@@ -4,15 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
+
 namespace MathTrap
 {
-    
+
     public class ClassSave
     {
-        [assembly: Dependency(typeof(IFileManager_OSName))]
-        [assembly: IntrospectionExtensions.GetTypeInfo(typeof(LoadResourceText)), Assembly] 
-
-   
+ 
         private int id_score;
         private long right_counter;
         private long fail_counter;
@@ -34,6 +32,7 @@ namespace MathTrap
             this.life = 5;
             this.file_name = file_name;
             this.text_save = "";
+
             this.composedText();
 
             switch (index) {
@@ -89,7 +88,7 @@ namespace MathTrap
 
         public string PathToDir()
         {
-            return Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         }
      
         private void CreateDirectory() {

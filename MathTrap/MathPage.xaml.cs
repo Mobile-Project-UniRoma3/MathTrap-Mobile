@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MathTrap
@@ -19,12 +23,16 @@ namespace MathTrap
         private string operator_ ; 
         private string[] operators = new string[] { "+", "-", ":", "x", "/", "^" };
         
+        
         private ClassSQL value;
+        
 
         public MathPage(int index)
         {
             InitializeComponent();
-            value = new ClassSQL();
+
+            //assegno la connessione aperta
+            value = App.connection;
 
             this.label1.Text = "0";
             this.label2.Text = "0";
@@ -33,12 +41,12 @@ namespace MathTrap
             this.label5.Text = "";
             this.label6.Text = "";
 
-            TableItem item = new TableItem();
+            
             if (index > 0) {
                 //carico punteggio salvato             
-                item = this.value.GetItemLoad().Result;                                        
+                this.value.item = this.value.GetItemLoad().Result;                                        
             } 
-            this.value.getSave().composedScore(item);
+            this.value.getSave().composedScore(this.value.getItem);
 
             //aggirno score
             this.label10.Text = Convert.ToString(this.value.getSave().getRight());
@@ -209,6 +217,7 @@ namespace MathTrap
             }
 
             //aggiorno le etichette
+            
             this.label10.Text = Convert.ToString(this.value.getSave().getRight());
             this.label11.Text = Convert.ToString(this.value.getSave().getFail());
             this.label12.Text = Convert.ToString(this.value.getSave().getLife());    
@@ -267,6 +276,6 @@ namespace MathTrap
         {
             this.tastiera("point");
         }
-
+ 
     }
 }

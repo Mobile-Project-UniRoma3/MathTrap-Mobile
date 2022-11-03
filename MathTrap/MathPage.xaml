@@ -18,12 +18,12 @@
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <Label HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="0" FontSize="20" x:Name="label7" TextColor="Black" BackgroundColor="AliceBlue" Text="Score Right"></Label>
-                <Label HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="1" FontSize="20" x:Name="label8" TextColor="Black" BackgroundColor="AliceBlue" Text="Score Fail"></Label>
-                <Label HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="2" FontSize="20" x:Name="label9" TextColor="Black" BackgroundColor="AliceBlue" Text="Life"></Label>
-                <Label HorizontalTextAlignment="End" Grid.Row="2" Grid.Column="0" FontSize="20" x:Name="label10" TextColor="Black" BackgroundColor="AliceBlue"></Label>
-                <Label HorizontalTextAlignment="End" Grid.Row="2" Grid.Column="1" FontSize="20" x:Name="label11" TextColor="Black" BackgroundColor="AliceBlue"></Label>
-                <Label HorizontalTextAlignment="End" Grid.Row="2" Grid.Column="2" FontSize="20" x:Name="label12" TextColor="Black" BackgroundColor="AliceBlue"></Label>
+                    <Label HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="0" FontSize="20" x:Name="label7" TextColor="Black" BackgroundColor="AliceBlue" Text="Score Right"></Label>
+                    <Label HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="1" FontSize="20" x:Name="label8" TextColor="Black" BackgroundColor="AliceBlue" Text="Score Fail"></Label>
+                    <Label HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="2" FontSize="20" x:Name="label9" TextColor="Black" BackgroundColor="AliceBlue" Text="Life"></Label>
+                    <Label HorizontalTextAlignment="End" Grid.Row="2" Grid.Column="0" FontSize="20" x:Name="label10" TextColor="Black" BackgroundColor="AliceBlue" ></Label>
+                    <Label HorizontalTextAlignment="End" Grid.Row="2" Grid.Column="1" FontSize="20" x:Name="label11" TextColor="Black" BackgroundColor="AliceBlue" ></Label>
+                <Label HorizontalTextAlignment="End" Grid.Row="2" Grid.Column="2" FontSize="20" x:Name="label12" TextColor="Black" BackgroundColor="AliceBlue" ></Label>
             </Grid>
             <Grid  RowSpacing="4" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" >
                  <Grid.ColumnDefinitions>
