@@ -31,5 +31,10 @@ namespace MathTrap
         {
             await Navigation.PushModalAsync(new HelpPage(),false);
         }
+
+        async private void onScore(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new ScorePage(), false);
+        }
     }
 }

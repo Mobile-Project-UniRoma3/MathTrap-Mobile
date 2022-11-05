@@ -41,7 +41,8 @@ namespace MathTrap
         public ClassSQL()
         {
             this.item = new TableItem();
-            this.save= new ClassSave(3, DatabaseFilename);
+            this.save= new ClassSave();
+            this.getSave().accessStream(3, DatabaseFilename);
             Connection = new SQLiteAsyncConnection(DatabasePath);
             CreateTable();
         }
@@ -79,15 +80,15 @@ namespace MathTrap
             Connection.CreateTableAsync<TableItem>().Wait();
         }
 
-        public Task<List<TableItem>> GetItemsAsync()
+        public Task<List<TableItem>> GetItemsAllAsync()
         {
             return Connection.Table<TableItem>().ToListAsync();
         }
 
-        public Task<List<TableItem>> GetItemsAllAsync()
+        public Task<List<TableItem>> GetSqlItemsAllAsync()
         {
             // SQL queries are also possible
-            return Connection.QueryAsync<TableItem>("SELECT * FROM [tabella] ");
+            return Connection.QueryAsync<TableItem>("SELECT * FROM [TableItem] ");
         }
 
         public Task<TableItem> GetItemWhereIdAsync(int id)

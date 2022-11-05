@@ -11,11 +11,6 @@ namespace MathTrap
     public class ClassSave
     {
  
-        private int id_score;
-        private long right_counter;
-        private long fail_counter;
-        private long life;
-
         const string nameSpace_resorse = "MathTrap.Risorse.";
         private string file_name;
         private string text_save;
@@ -26,14 +21,10 @@ namespace MathTrap
         private StreamWriter sw;
        
 
-        public ClassSave(int index, string file_name) {
-            this.right_counter = 0;
-            this.fail_counter = 0;
-            this.life = 5;
-            this.file_name = file_name;
-            this.text_save = "";
+        public ClassSave() {}
 
-            this.composedText();
+        public void accessStream(int index, string file_name){ 
+            this.file_name = file_name;
 
             switch (index) {
                 case 2 :this.setStream();
@@ -45,7 +36,7 @@ namespace MathTrap
             }
                   
             this.setStreamRead(this.getStream());
-            this.setStreamWrite(this.getStream());     
+            this.setStreamWrite(this.getStream());
         }
        
         public void Save(string value)
@@ -156,46 +147,6 @@ namespace MathTrap
             return this.file_name;
         }
 
-        public int getId()
-        {
-            return this.id_score;
-        }
-
-        public void setId(int v)
-        {
-            this.id_score = v;
-        }
-
-        public long getRight()
-        {
-            return this.right_counter;
-        }
-
-        public void setRight(long v)
-        {
-            this.right_counter = v;
-        }
-
-        public long getFail()
-        {
-            return this.fail_counter;
-        }
-
-        public void setFail(long v)
-        {
-            this.fail_counter = v;
-        }
-
-        public long getLife()
-        {
-            return this.life;
-        }
-
-        public void setLife(long v)
-        {
-            this.life = v;
-        }
-
         public string getTextSave()
         {
             return this.text_save;
@@ -206,7 +157,7 @@ namespace MathTrap
             this.text_save = t;
         }
 
-        private void composedText() {
+        /*private void composedText() {
             this.setTextSave(Convert.ToString(this.right_counter) + ";"
                                  + Convert.ToString(this.fail_counter) + ";"
                                  + Convert.ToString(this.life));
@@ -236,26 +187,8 @@ namespace MathTrap
             this.setRight(Convert.ToInt64(r));
             this.setFail(Convert.ToInt64(f));
             this.setLife(Convert.ToInt64(l));
-        }
+        }*/
 
-        public void composedScore(TableItem item)
-        {
-            int i=0;
-            long r=0;
-            long f=0;
-            long l=5;
-
-            if (item.ID >0) {
-                i = item.ID;
-                r = item.right;
-                f = item.fail;
-                l = item.life;
-            }
-
-            this.setId(i);
-            this.setRight(r);
-            this.setFail(f);
-            this.setLife(l);
-        }
+        
     }
 }

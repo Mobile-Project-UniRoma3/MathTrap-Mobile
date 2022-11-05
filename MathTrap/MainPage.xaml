@@ -20,10 +20,12 @@
                 <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
                 <Button Grid.Column="0" Grid.Row="2"  Text="New" Clicked="onNew" TextColor="Black"></Button>
                 <Button Grid.Column="0" Grid.Row="3"  Text="Resume" Clicked="onResume" TextColor="Black"></Button>
                 <Button Grid.Column="0" Grid.Row="4"  Text="Help" Clicked="onHelp" TextColor="Black"></Button>
+                <Button Grid.Column="0" Grid.Row="5"  Text="Hight Scores" Clicked="onScore" TextColor="Black"></Button>
         </Grid>
     </StackLayout>
    </ContentPage.Content>

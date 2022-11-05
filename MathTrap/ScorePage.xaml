@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MathTrap.ScorePage">
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="#FFB200">
+        <Grid RowSpacing="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="1"  Text="Date" TextColor="Black"></Label>
+            <Label Grid.Column="1" Grid.Row="1"  Text="Right" TextColor="Black"></Label>
+            <Label Grid.Column="2" Grid.Row="1"  Text="Fail" TextColor="Black"></Label>
+            <Label Grid.Column="3" Grid.Row="1"  Text="done" TextColor="Black"></Label>
+            <Label Grid.Column="4" Grid.Row="1"  Text="id" TextColor="Black"></Label>
+        </Grid>
+        <ListView x:Name="MyListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Grid RowSpacing="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Label Text="{Binding date}"  Style="{DynamicResource ListItemTextStyle}"  Grid.Column="0" Grid.Row="1" TextColor="Black"/>
+                                <Label Text="{Binding right}" Style="{DynamicResource ListItemDetailTextStyle}" Grid.Column="1" Grid.Row="1" TextColor="Black"/>
+                                <Label Text="{Binding fail}" Style="{DynamicResource ListItemDetailTextStyle}" Grid.Column="2" Grid.Row="1" TextColor="Black"/>
+                                <Label Text="{Binding done}" Style="{DynamicResource ListItemDetailTextStyle}" Grid.Column="3" Grid.Row="1" TextColor="Black"/>
+                                <Label Text="{Binding ID}" Style="{DynamicResource ListItemDetailTextStyle}" Grid.Column="4" Grid.Row="1" TextColor="Black"/>
+                            </Grid>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
