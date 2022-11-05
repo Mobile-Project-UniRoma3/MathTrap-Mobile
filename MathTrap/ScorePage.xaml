@@ -3,49 +3,84 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MathTrap.ScorePage">
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="#FFB200">
-        <Grid RowSpacing="2">
+
+        <Grid  RowSpacing="2" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+              
+        <!---->
+            
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
+               <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+               <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackLayout>
+                <Label Text="HIGH SCORE" HorizontalTextAlignment="Center"  Grid.Column="0" Grid.Row="1"  TextColor="Black"/>
+            </StackLayout>
+        </Grid>
+        
+        <Grid RowSpacing="2" >
+           <Grid.ColumnDefinitions>
+               <ColumnDefinition />
+               <ColumnDefinition />
+               <ColumnDefinition />
+               <ColumnDefinition />
+               <ColumnDefinition />
+           </Grid.ColumnDefinitions>
+           <Grid.RowDefinitions>
+               <RowDefinition />
+           </Grid.RowDefinitions>
+            
+               <Label Grid.Column="0" VerticalTextAlignment="Center" HorizontalTextAlignment="End"  Grid.Row="1"  Text="   " TextColor="Black"></Label>
+               <Label Grid.Column="1" VerticalTextAlignment="Center" HorizontalTextAlignment="End"  BackgroundColor="AliceBlue" Grid.Row="1"  Text="Date" TextColor="Black"></Label>
+               <Label Grid.Column="2" VerticalTextAlignment="Center" HorizontalTextAlignment="End"  BackgroundColor="AliceBlue" Grid.Row="1"  Text="Right" TextColor="Black"></Label>
+               <Label Grid.Column="3" VerticalTextAlignment="Center" HorizontalTextAlignment="End"  BackgroundColor="AliceBlue" Grid.Row="1"  Text="Fail" TextColor="Black"></Label>
+               <Label Grid.Column="4" VerticalTextAlignment="Center" HorizontalTextAlignment="End"   Grid.Row="1"  Text="   " TextColor="Black"></Label>
+            
+        </Grid>
+        
+            
+            
+        <Grid>
+            <ListView x:Name="MyListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                             <StackLayout>
+                                 <Grid RowSpacing="2">
+                                     <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                     </Grid.ColumnDefinitions>
+                                     <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                     </Grid.RowDefinitions>
+                                        <Label Text="   " HorizontalTextAlignment="End" Grid.Column="0" Grid.Row="1" TextColor="Black"/>
+                                        <Label Text="{Binding date}" HorizontalTextAlignment="End"  BackgroundColor="AliceBlue" Grid.Column="1" Grid.Row="1" TextColor="Black"/>
+                                        <Label Text="{Binding right}" HorizontalTextAlignment="End"  BackgroundColor="AliceBlue" Grid.Column="2" Grid.Row="1" TextColor="Black"/>
+                                        <Label Text="{Binding fail}" HorizontalTextAlignment="End"  BackgroundColor="AliceBlue" Grid.Column="3" Grid.Row="1" TextColor="Black"/>
+                                        <Label Text="   " HorizontalTextAlignment="End" Grid.Column="4" Grid.Row="1" TextColor="Black"/>
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+             </ListView>
+         </Grid> 
+            
+        <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" RowSpacing="2" >
+            <Grid.ColumnDefinitions>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Label Grid.Column="0" Grid.Row="1"  Text="Date" TextColor="Black"></Label>
-            <Label Grid.Column="1" Grid.Row="1"  Text="Right" TextColor="Black"></Label>
-            <Label Grid.Column="2" Grid.Row="1"  Text="Fail" TextColor="Black"></Label>
-            <Label Grid.Column="3" Grid.Row="1"  Text="done" TextColor="Black"></Label>
-            <Label Grid.Column="4" Grid.Row="1"  Text="id" TextColor="Black"></Label>
+            <Button Text="Cancell High Score" Grid.Column="0" Grid.Row="1" Clicked="onCancel" TextColor="Black"/>
         </Grid>
-        <ListView x:Name="MyListView">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout>
-                            <Grid RowSpacing="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-                                <Label Text="{Binding date}"  Style="{DynamicResource ListItemTextStyle}"  Grid.Column="0" Grid.Row="1" TextColor="Black"/>
-                                <Label Text="{Binding right}" Style="{DynamicResource ListItemDetailTextStyle}" Grid.Column="1" Grid.Row="1" TextColor="Black"/>
-                                <Label Text="{Binding fail}" Style="{DynamicResource ListItemDetailTextStyle}" Grid.Column="2" Grid.Row="1" TextColor="Black"/>
-                                <Label Text="{Binding done}" Style="{DynamicResource ListItemDetailTextStyle}" Grid.Column="3" Grid.Row="1" TextColor="Black"/>
-                                <Label Text="{Binding ID}" Style="{DynamicResource ListItemDetailTextStyle}" Grid.Column="4" Grid.Row="1" TextColor="Black"/>
-                            </Grid>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+            
+            
     </StackLayout>
 </ContentPage>

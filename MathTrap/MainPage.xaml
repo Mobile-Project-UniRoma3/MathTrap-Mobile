@@ -8,8 +8,8 @@
    <ContentPage.Content>
         <StackLayout VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="#FFB200">
             <Grid RowSpacing="2">
-                <Image Source="Principale.jpg" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
-                       Aspect="Fill"></Image>    
+                <Image Source="Principale.jpg" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"  Aspect="Fill">
+                </Image>    
             </Grid>
             <Grid RowSpacing="2">
             <Grid.ColumnDefinitions>
@@ -26,7 +26,7 @@
                 <Button Grid.Column="0" Grid.Row="3"  Text="Resume" Clicked="onResume" TextColor="Black"></Button>
                 <Button Grid.Column="0" Grid.Row="4"  Text="Help" Clicked="onHelp" TextColor="Black"></Button>
                 <Button Grid.Column="0" Grid.Row="5"  Text="Hight Scores" Clicked="onScore" TextColor="Black"></Button>
-        </Grid>
-    </StackLayout>
+            </Grid>
+        </StackLayout>
    </ContentPage.Content>
 </ContentPage>

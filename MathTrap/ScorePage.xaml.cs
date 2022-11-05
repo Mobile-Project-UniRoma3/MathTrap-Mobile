@@ -12,20 +12,31 @@ namespace MathTrap
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ScorePage : ContentPage
     {
-       
+
+        private ClassSQL value;
 
         public ScorePage()
         {
             InitializeComponent();
 
+            //assegno la connessione aperta
+            value = App.connection;
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            MyListView.ItemsSource = await App.connection.GetItemsAllAsync();
+            MyListView.ItemsSource = await this.value.GetItemsAllAsync();
         }
 
-       
+        private void onCancel(object sender, EventArgs e)
+        {
+            DeleteAll();
+            OnAppearing();
+        }
+
+        async private void DeleteAll() {
+            await this.value.DeleteItemAllAsync();
+        }
     }
 }

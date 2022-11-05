@@ -116,7 +116,11 @@ namespace MathTrap
         public Task<int> DeleteItemAsync(TableItem item)
         {
             return Connection.DeleteAsync(item);
-        }     
+        }
 
+        public Task<int> DeleteItemAllAsync()
+        {
+            return Connection.DeleteAllAsync<TableItem>();
+        }
     }
 }
