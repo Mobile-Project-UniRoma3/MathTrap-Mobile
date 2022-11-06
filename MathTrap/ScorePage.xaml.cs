@@ -29,7 +29,12 @@ namespace MathTrap
             MyListView.ItemsSource = await this.value.GetItemsAllAsync();
         }
 
-        private void onCancel(object sender, EventArgs e)
+        async private void onMain(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new MainPage(), false);
+        }
+
+        private void onClear(object sender, EventArgs e)
         {
             DeleteAll();
             OnAppearing();

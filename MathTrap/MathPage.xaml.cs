@@ -45,15 +45,22 @@ namespace MathTrap
             this.label5.Text = "";
             this.label6.Text = "";
 
-            /*Carico l'ultima partita aperta*/
-            //carico punteggio salvato nel database            
-            this.value.item = this.value.GetItemLoad().Result;
-            if (index == 0) { 
-                //se nuovo record -->chiudo partita vecchia inponendo done = true e aggiorno
-                this.value.item.done = true;
-                this.value.SaveItemAsync(this.value.item);
-                //aggiornando l'indice = 0 composedScore riporta i valori a 0
+            /*Carico l'ultima partita aperta
+              se: se ritorna la tabella vuota -->primo record di gioco
+              altrimenti: carico punteggio salvato nel database
+             */                            
+            if ( (this.value.item = this.value.GetItemLoad().Result)==null) {
+                this.value.item = new TableItem();
                 this.value.item.ID = 0;
+            } else { 
+                if (index == 0)
+                {
+                    //se nuovo record -->chiudo partita vecchia inponendo done = true e aggiorno
+                    this.value.item.done = true;
+                    this.value.SaveItemAsync(this.value.item);
+                    //aggiornando l'indice = 0 composedScore riporta i valori a 0
+                    this.value.item.ID = 0;
+                }
             }
 
             this.composedScore(this.value.getItem);
