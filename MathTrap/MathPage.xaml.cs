@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace MathTrap
 {
-    
+
 
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
@@ -20,16 +20,22 @@ namespace MathTrap
         //dati di partenza
         private long index = 10;
         private long level = 1;
-        private string operator_ ; 
-        private string[] operators = new string[] { "+", "-", ":", "x", "/", "^" };
+        private string operator_;
+        private string[] selector = new string[] { "+", "-", ":", "x", "^", "/" };
+        private string[] operators = new string[6];
 
         private int id_score;
         private long right_counter;
         private long fail_counter;
         private long life;
 
+        private bool flag_p;
+        private bool flag_r;
+
+        private string bonus;
+
         private ClassSQL value;
-        
+
 
         public MathPage(int index)
         {
@@ -48,11 +54,11 @@ namespace MathTrap
             /*Carico l'ultima partita aperta
               se: se ritorna la tabella vuota -->primo record di gioco
               altrimenti: carico punteggio salvato nel database
-             */                            
-            if ( (this.value.item = this.value.GetItemLoad().Result)==null) {
+             */
+            if ((this.value.item = this.value.GetItemLoad().Result) == null) {
                 this.value.item = new TableItem();
                 this.value.item.ID = 0;
-            } else { 
+            } else {
                 if (index == 0)
                 {
                     //se nuovo record -->chiudo partita vecchia inponendo done = true e aggiorno
@@ -71,7 +77,7 @@ namespace MathTrap
             this.label12.Text = Convert.ToString(this.getLife());
 
             //gioca
-            calculetor(this.index, this.level); 
+            calculetor(this.index, this.level);
         }
 
         private void onOne(object sender, EventArgs e)
@@ -126,32 +132,32 @@ namespace MathTrap
         private void onInvio(object sender, EventArgs e)
         {
 
-            if (this.label3.Text.Equals(this.operator_)) { 
+            if (this.label3.Text.Equals(this.operator_)) {
                 this.label6.Text = "ok";
                 this.level += 1;
-                if (this.level==11) { 
+                if (this.level == 11) {
                     //Superato il livello bonus =10 ricomincio il conteggio
                     this.level = 0;
                     //limite di conversione long to int
                     if (this.index <= Int32.MaxValue) {
                         //raggiunto limite di difficolta randomica
-                        this.index += 10; 
+                        this.index += 10;
                     }
                     //aumento punti vita
-                    this.setLife(this.getLife() + 1);                 
+                    this.setLife(this.getLife() + 1);
                 }
                 //aumento risposte esatte
-                this.setRight(this.getRight() + 1);
-           
+                this.score(0);
+
                 calculetor(this.index, this.level);
-            }            
+            }
             else {
                 this.label6.Text = "ko";
                 this.label3.Text = "0";
                 //levo punti vita
                 this.setLife(this.getLife() - 1);
                 //aumento risposte sbagliate
-                this.setFail(this.getFail() + 1);
+                this.score(1);
                 //controllo vita residua
                 if (this.getLife() <= 0) {
                     //fine gioco
@@ -160,10 +166,43 @@ namespace MathTrap
             }
 
             //aggiorno le etichette
-            
+
             this.label10.Text = Convert.ToString(this.getRight());
             this.label11.Text = Convert.ToString(this.getFail());
-            this.label12.Text = Convert.ToString(this.getLife());    
+            this.label12.Text = Convert.ToString(this.getLife());
+        }
+
+        private void score(int indexe) {
+
+            if (index == 0) {  
+                switch (this.label4.Text)   {
+
+                case "+":
+                    this.setRight(this.getRight() + 1); 
+                    break;
+                case "-":
+                    this.setRight(this.getRight() + 2); 
+                    break;
+                case "x":
+                    this.setRight(this.getRight() + 3);
+                    break;
+                case ":":
+                    this.setRight(this.getRight() + 4);
+                    break;
+                case "^":
+                    this.setRight(this.getRight() + 5);
+                    break;
+                case "/":
+                    this.setRight(this.getRight() + 6);
+                    break;
+                default:
+                    this.setRight(this.getRight() + 0);
+                    break;
+            }
+            }else{ 
+                this.setFail(this.getFail() + 1); 
+            }
+
         }
 
         private void onCancel(object sender, EventArgs e)
@@ -234,6 +273,36 @@ namespace MathTrap
             this.life = v;
         }
 
+        private bool getFlag_p()
+        {
+            return this.flag_p;
+        }
+
+        public void setFlag_p(bool f)
+        {
+            this.flag_p = f;
+        }
+
+        private bool getFlag_r()
+        {
+            return this.flag_r;
+        }
+
+        public void setFlag_r(bool f)
+        {
+            this.flag_r = f;
+        }
+
+        private string getBonus() 
+        {
+            return this.bonus;
+        }
+
+        public void setBonus(string b) 
+        {
+            this.bonus = b;
+        }
+       
         private void tastiera(string numero) {
 
             switch (numero) {
@@ -266,9 +335,16 @@ namespace MathTrap
         private void composedScore(TableItem item)
         {
             int i = 0;
+            int j = 0;
             long r = 0;
             long f = 0;
             long l = 5;
+
+            //default le quattro operazioni
+            this.operators[j++] = this.selector[0]; 
+            this.operators[j++] = this.selector[1];
+            this.operators[j++] = this.selector[2]; 
+            this.operators[j++] = this.selector[3];
 
             if (item.ID > 0)
             {
@@ -276,11 +352,22 @@ namespace MathTrap
                 r = item.right;
                 f = item.fail;
                 l = item.life;
+                
+                if (item.flag_p == true) { this.operators[j] = this.selector[4]; j++; }
+                if (item.flag_r == true) { this.operators[j] = this.selector[5]; j++; }
+                if (item.bonus != null) { this.operators[j] = item.bonus; j++; }
             }
-            else {
+            else {//qualora resume risulta la prima partita
                 item.right = r;
                 item.fail = f ;
                 item.life = l;
+                
+                //default tutte le operazioni
+                item.flag_p = false;
+                item.flag_r = false;
+                item.bonus = "^";
+                this.operators[j] = item.bonus;
+
                 item.date = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
                 this.value.item.done = false;
             }
@@ -300,24 +387,22 @@ namespace MathTrap
             this.label6.Text = "";
             this.label3.Text = "0";
 
+           
+
             if (level % 10 == 0)
             {
                 //livello bonus --> potenza o radice esponenti compresi tra 1 e 3
-                str = operators[r.Next(4, 6)];
-                operator_int_A = r.Next(1, 11);
-                operator_int_B = r.Next(1, 4);                
+                str =operators[r.Next((operators.Length - 1), operators.Length)];                         
             }
             else
-            {
-                str =operators[r.Next(0, 4)];
-                operator_int_A = r.Next(Convert.ToInt32(index), (Convert.ToInt32(index) * 10));
-                operator_int_B = r.Next(1, Convert.ToInt32(index));
+            { 
+                str = operators[r.Next(0, (operators.Length - 1))];  
             }
 
-            this.label1.Text = Convert.ToString(operator_int_A);                        
-            this.label2.Text = Convert.ToString(operator_int_B);
-            this.label4.Text = str;
-            this.label5.Text = "=";
+            operator_int_A = r.Next(Convert.ToInt32(index), (Convert.ToInt32(index) * 10));
+            operator_int_B = r.Next(1, Convert.ToInt32(index));
+
+            
 
             switch (str) {
                  case "+":
@@ -340,6 +425,8 @@ namespace MathTrap
                     break;
 
                  case "/":
+                    operator_int_A = r.Next(1, 11);
+                    operator_int_B = r.Next(1, 4);
                     this.label1.Text = Convert.ToString(Math.Pow(operator_int_A, operator_int_B));
                     this.label2.Text = "(1/" + Convert.ToString(operator_int_B)+")";
                     this.label4.Text = "^";
@@ -347,6 +434,8 @@ namespace MathTrap
                     break;
 
                  case "^":
+                    operator_int_A = r.Next(1, 11);
+                    operator_int_B = r.Next(1, 4);
                     this.label2.Text = "(" + Convert.ToString(operator_int_B) + ")";
                     this.operator_ = Convert.ToString(Math.Pow(operator_int_A, operator_int_B));
                     break;
@@ -361,6 +450,12 @@ namespace MathTrap
                     this.operator_ = Convert.ToString(Math.Pow(operator_int_A, 2));
                     break;
                 }
+
+            this.label1.Text = Convert.ToString(operator_int_A);                        
+            this.label2.Text = Convert.ToString(operator_int_B);
+            this.label4.Text = str;
+            this.label5.Text = "=";
+
         }
     }
 }

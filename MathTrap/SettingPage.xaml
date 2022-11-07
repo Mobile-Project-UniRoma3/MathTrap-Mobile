@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MathTrap.SettingPage">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#FFB200">
+            <Label Text="Setting New Game" VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand" x:Name="label1" TextColor="Black"/>
+            
+            <Entry x:Name="name_Entry" Placeholder="Enter name" />
+            <CheckBox x:Name="flag_p_Entry" IsChecked="False" CheckedChanged="OnCheckBoxCheckedChanged_One"></CheckBox>
+            <CheckBox x:Name="flag_r_Entry" IsChecked="False" CheckedChanged="OnCheckBoxCheckedChanged_Two"></CheckBox>
+            
+            
+            <Button Text="Save Setting" Clicked="onNew" />
+            
+            <CollectionView x:Name="collectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+
+                            <Label Text="{Binding name}" TextColor="Black"></Label>
+                            <Label Text="{Binding flag_p}" TextColor="Black"></Label>
+                            <Label Text="{Binding flag_r}" TextColor="Black"></Label>
+                            <Label Text="{Binding bonus}" TextColor="Black"></Label>
+
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

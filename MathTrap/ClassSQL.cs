@@ -15,6 +15,10 @@ namespace MathTrap
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
+        public string name { get; set; }
+        public bool flag_p { get; set; }
+        public bool flag_r { get; set; }
+        public string bonus { get; set; }
         public long right { get; set; }
         public long fail { get; set; }
         public long life { get; set; }
