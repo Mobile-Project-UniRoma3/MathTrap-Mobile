@@ -12,9 +12,10 @@
             <Entry x:Name="name_Entry" Placeholder="Enter name" />
             <CheckBox x:Name="flag_p_Entry" IsChecked="False" CheckedChanged="OnCheckBoxCheckedChanged_One"></CheckBox>
             <CheckBox x:Name="flag_r_Entry" IsChecked="False" CheckedChanged="OnCheckBoxCheckedChanged_Two"></CheckBox>
-            
-            
-            <Button Text="Save Setting" Clicked="onNew" />
+            <Picker></Picker>
+
+
+            <Button Text="Save Setting" Clicked="OnButtonClicked" />
             
             <CollectionView x:Name="collectionView">
                 <CollectionView.ItemTemplate>

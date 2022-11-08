@@ -54,6 +54,7 @@
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <Button Grid.Row="1" Grid.Column="0" Text="1" BackgroundColor="AliceBlue" Clicked="onOne" TextColor="Black"></Button>
                 <Button Grid.Row="1" Grid.Column="1" Text="2" BackgroundColor="AliceBlue" Clicked="onTwo" TextColor="Black"></Button>
@@ -70,6 +71,9 @@
                 <Button Grid.Row="5" Grid.Column="0" Text="." BackgroundColor="AliceBlue" Clicked="onPoint" TextColor="Black"></Button>
                 <Button Grid.Row="5" Grid.Column="1" Text="Exit" BackgroundColor="AliceBlue" Clicked="onExit" TextColor="Black"></Button>
                 <Button Grid.Row="5" Grid.Column="2" Text="Skip" BackgroundColor="AliceBlue" Clicked="onSkip" TextColor="Black"></Button>
+                <Button Grid.Row="6" Grid.Column="0" Text="Settings" BackgroundColor="AliceBlue" Clicked="onSettings" TextColor="Black"></Button>
+                <Button Grid.Row="6" Grid.Column="1" Text="" BackgroundColor="AliceBlue" TextColor="Black"></Button>
+                <Button Grid.Row="6" Grid.Column="2" Text="" BackgroundColor="AliceBlue" TextColor="Black"></Button>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

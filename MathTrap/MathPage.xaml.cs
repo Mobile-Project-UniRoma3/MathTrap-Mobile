@@ -21,7 +21,7 @@ namespace MathTrap
         private long index = 10;
         private long level = 1;
         private string operator_;
-        private string[] selector = new string[] { "+", "-", ":", "x", "^", "/" };
+        private string[] selector = new string[] { "+", "-", "x", ":", "^", "/" };
         private string[] operators = new string[6];
 
         private int id_score;
@@ -172,6 +172,33 @@ namespace MathTrap
             this.label12.Text = Convert.ToString(this.getLife());
         }
 
+        private void onCancel(object sender, EventArgs e)
+        {
+            this.tastiera("cancel");
+        }
+
+        private void onSkip(object sender, EventArgs e)
+        {
+            calculetor(this.index, this.level);
+        }
+
+        private void onExit(object sender, EventArgs e)
+        {
+            ExitUpDate();
+            saveAndExit();
+        }
+
+        async private void onSettings(object sender, EventArgs e)
+        {
+            ExitUpDate();
+            await Navigation.PushModalAsync(new SettingPage(this.value), false);
+        }
+
+        private void onPoint(object sender, EventArgs e)
+        {
+            this.tastiera("point");
+        }
+        
         private void score(int indexe) {
 
             if (index == 0) {  
@@ -205,32 +232,8 @@ namespace MathTrap
 
         }
 
-        private void onCancel(object sender, EventArgs e)
-        {
-            this.tastiera("cancel");
-        }
-
-        private void onSkip(object sender, EventArgs e)
-        {
-            calculetor(this.index, this.level);
-        }
-
-        private void onExit(object sender, EventArgs e)
-        {
-            this.value.item.ID = this.getId();
-            this.value.item.right = this.getRight();
-            this.value.item.fail = this.getFail();
-            this.value.item.life = this.getLife();
-            saveAndExit();
-        }
-
         async private void saveAndExit() { 
             await Navigation.PushModalAsync(new SavePage(this.value), false);
-        }
-
-        private void onPoint(object sender, EventArgs e)
-        {
-            this.tastiera("point");
         }
 
         private int getId()
@@ -456,6 +459,13 @@ namespace MathTrap
             this.label4.Text = str;
             this.label5.Text = "=";
 
+        }
+
+        private void ExitUpDate() {
+            this.value.item.ID = this.getId();
+            this.value.item.right = this.getRight();
+            this.value.item.fail = this.getFail();
+            this.value.item.life = this.getLife();
         }
     }
 }

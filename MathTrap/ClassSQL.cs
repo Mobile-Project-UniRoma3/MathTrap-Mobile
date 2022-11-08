@@ -11,6 +11,13 @@ using SQLite;
 
 namespace MathTrap
 {
+    public class TableOperator
+    {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
+        public string operatore { get; set; }
+    }
+
     public class TableItem
     {
         [PrimaryKey, AutoIncrement]
@@ -40,15 +47,18 @@ namespace MathTrap
         private const string DatabaseFilename = "MathTrap.db3";
         private ClassSave save;
         public TableItem item;
-
+        private TableOperator oper;
+        private string[] selector = new string[] { "+", "-", ":", "x", "^", "/" };
 
         public ClassSQL()
         {
+            this.oper = new TableOperator();
             this.item = new TableItem();
             this.save= new ClassSave();
             this.getSave().accessStream(3, DatabaseFilename);
             Connection = new SQLiteAsyncConnection(DatabasePath);
             CreateTable();
+            CreateOperator();
         }
 
         async private void EnabledReadWrite() 
@@ -125,6 +135,14 @@ namespace MathTrap
         public Task<int> DeleteItemAllAsync()
         {
             return Connection.DeleteAllAsync<TableItem>();
+        }
+
+        private void CreateOperator() {
+            Connection.CreateTableAsync<TableOperator>().Wait();
+            for (int i = 0; i < this.selector.Length; i++) {
+                this.oper.ID = 0;this.oper.operatore = this.selector[i];
+                Connection.InsertAsync(this.oper);
+            }           
         }
     }
 }

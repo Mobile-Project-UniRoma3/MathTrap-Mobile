@@ -19,7 +19,7 @@ namespace MathTrap
 
         async private void onNew(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new SettingPage(),false);
+            await Navigation.PushModalAsync(new MathPage(0), false);
         }
 
         async private void onResume(object sender, EventArgs e)

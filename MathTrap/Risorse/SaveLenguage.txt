@@ -1,1 +1,6 @@
-﻿
+﻿#@Benvenuti in MathTrap!!
+#@Regole di gioco: MathTrap si basa sulla soluzione delle quattro operazioni fondamentali dell'aritmetica (somma, sottrazione, moltiplicazione e divisione).
+#@E' previsto dopo un numero prestabilito di operazioni risolte(dieci), un operazione bonus tra la soluzione di una potenza o di una radice quadrata, che regalerà ogni volta che verrà risolta un punto vita, che si accumulerà a quelli presenti(ad ogni nuova partita il giocatore avrà a disposizione 5 punti vita).
+#@Per ogni operazione risolta si incrementerà un contatore di risposte esatte, mentre per ogni risposta sbagliata verra incrementato in contatore di risposte sbagliate e in più verra tolta una vita tra quelle a disposizione(quando le vite terminano, terminerà anche la partita).
+#@Se l'operazione sarà considerata troppo difficile da risolvere si potrà usare il tasto skip, che permette di saltare all'operazione successiva senza influire sul punteggio.
+#@Approposito della divisione per quanto riguarda il risultato che il giocatore dovrà fornire, questo dovrà essere fornito con due decimali, anche quando il risultato sarà intero(es: 2.34; 3.00).

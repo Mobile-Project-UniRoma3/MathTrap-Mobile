@@ -14,17 +14,17 @@ namespace MathTrap
     {
         private ClassSQL value;
 
-        public SettingPage()
+        public SettingPage(ClassSQL value)
         {
             InitializeComponent();
 
             //assegno la connessione aperta
-            this.value = App.connection;
+            this.value = value;
             this.onSave(this.value.item);
         }
         async private void onNew(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new MathPage(0), false);
+            await Navigation.PushModalAsync(new MathPage(1), false);
         }
 
         async private void OnCheckBoxCheckedChanged_One(object sender, CheckedChangedEventArgs e)
