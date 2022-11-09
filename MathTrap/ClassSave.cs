@@ -157,38 +157,7 @@ namespace MathTrap
             this.text_save = t;
         }
 
-        /*private void composedText() {
-            this.setTextSave(Convert.ToString(this.right_counter) + ";"
-                                 + Convert.ToString(this.fail_counter) + ";"
-                                 + Convert.ToString(this.life));
-        }
+       
 
-        public void composedScore() {
-            string r;
-            string f;
-            string l;
-
-            int i = this.getTextSave().Length;
-            int k = this.getTextSave().IndexOf(';');
-            //La sottostringa inizia in corrispondenza della posizione del carattere specificata e ha la lunghezza specificata
-            r = this.getTextSave().Substring(0, k);
-            k +=1;
-            i = (i - k);
-            f = this.getTextSave().Substring(k, i);
-
-            k = f.IndexOf(';');
-            l = f;
-            f = f.Substring(0, k);
-           
-            k +=1;
-            i = (i - k);
-            l = l.Substring(k,i);
-            
-            this.setRight(Convert.ToInt64(r));
-            this.setFail(Convert.ToInt64(f));
-            this.setLife(Convert.ToInt64(l));
-        }*/
-
-        
     }
 }

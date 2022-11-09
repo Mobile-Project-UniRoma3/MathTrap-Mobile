@@ -43,9 +43,9 @@ namespace MathTrap
             collectionView.ItemsSource = (System.Collections.IEnumerable)await this.value.GetItemWhereIdAsync(this.value.item.ID);
         }
 
-        async private void onSave(TableItem item) 
+        private void onSave(TableItem item) 
         {
-            await this.value.SaveItemAsync(item); 
+            this.value.SaveItemAsync(item); 
         }
 
         async private void OnButtonClicked(object sender, EventArgs e)

@@ -32,9 +32,9 @@ namespace MathTrap
             comeBackHome();
         }
 
-        async void OnSave()
+        private void OnSave()
         {        
-            await this.saveMetodo.SaveItemAsync(this.saveMetodo.getItem);
+            this.saveMetodo.SaveItemAsync(this.saveMetodo.getItem);
         }
 
         async private void comeBackHome() {

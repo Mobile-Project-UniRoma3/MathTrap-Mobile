@@ -40,8 +40,8 @@ namespace MathTrap
             OnAppearing();
         }
 
-        async private void DeleteAll() {
-            await this.value.DeleteItemAllAsync();
+       private void DeleteAll() {
+            this.value.DeleteItemAllAsync();
         }
     }
 }
