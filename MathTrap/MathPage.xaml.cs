@@ -21,8 +21,8 @@ namespace MathTrap
         private long index = 10;
         private long level = 1;
         private string operator_;
-        private string[] selector = new string[] { "+", "-", "x", ":", "^", "/" };
-        private string[] operators = new string[6];
+        private string[,] selector;
+        private string[,] operators;
 
         private int id_score;
         private long right_counter;
@@ -344,10 +344,8 @@ namespace MathTrap
             long l = 5;
 
             //default le quattro operazioni
-            this.operators[j++] = this.selector[0]; 
-            this.operators[j++] = this.selector[1];
-            this.operators[j++] = this.selector[2]; 
-            this.operators[j++] = this.selector[3];
+            this.operators = this.value.getOperandi(); 
+           
 
             if (item.ID > 0)
             {
@@ -356,9 +354,9 @@ namespace MathTrap
                 f = item.fail;
                 l = item.life;
                 
-                if (item.flag_p == true) { this.operators[j] = this.selector[4]; j++; }
-                if (item.flag_r == true) { this.operators[j] = this.selector[5]; j++; }
-                if (item.bonus != null) { this.operators[j] = item.bonus; j++; }
+               //if (item.flag_p == true) { this.operators[j] = this.selector[4]; j++; }
+               //if (item.flag_r == true) { this.operators[j] = this.selector[5]; j++; }
+               //if (item.bonus != null) { this.operators[j] = item.bonus; j++; }
             }
             else {//qualora resume risulta la prima partita
                 item.right = r;
@@ -369,7 +367,7 @@ namespace MathTrap
                 item.flag_p = false;
                 item.flag_r = false;
                 item.bonus = "^";
-                this.operators[j] = item.bonus;
+                //this.operators[j] = item.bonus;
 
                 item.date = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
                 this.value.item.done = false;
@@ -395,11 +393,11 @@ namespace MathTrap
             if (level % 10 == 0)
             {
                 //livello bonus --> potenza o radice esponenti compresi tra 1 e 3
-                str =operators[r.Next((operators.Length - 1), operators.Length)];                         
+                str = operators[r.Next((operators.Length - 1), operators.Length),1];                         
             }
             else
             { 
-                str = operators[r.Next(0, (operators.Length - 1))];  
+                str = operators[r.Next(0, (operators.Length - 1)),1];  
             }
 
             operator_int_A = r.Next(Convert.ToInt32(index), (Convert.ToInt32(index) * 10));

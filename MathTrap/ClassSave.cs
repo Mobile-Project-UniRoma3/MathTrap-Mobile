@@ -10,9 +10,11 @@ namespace MathTrap
 
     public class ClassSave
     {
- 
+        [assembly: Dependency(typeof(IFileManager_OSName))]
+        [assembly: IntrospectionExtensions.GetTypeInfo(typeof(LoadResourceText)), Assembly]
+
         const string nameSpace_resorse = "MathTrap.Risorse.";
-        private string file_name;
+        
         private string text_save;
         
         private Stream stream ;
@@ -22,26 +24,10 @@ namespace MathTrap
        
 
         public ClassSave() {}
-
-        public void accessStream(int index, string file_name){ 
-            this.file_name = file_name;
-
-            switch (index) {
-                case 2 :this.setStream();
-                       break;
-
-                default:this.setFileStream();
-                        this.stream = this.getFileStream();
-                        break;           
-            }
-                  
-            this.setStreamRead(this.getStream());
-            this.setStreamWrite(this.getStream());
-        }
-       
-        public void Save(string value)
+    
+        public void Save(string pathToDir, string file, string value)
         {
-            this.CreateFile();
+            this.CreateFile(pathToDir, file);
             this.getSw().Write(value);
         }
 
@@ -49,9 +35,9 @@ namespace MathTrap
             this.setTextSave(this.getReader().ReadToEnd());
         }
 
-        async public void SaveAsync(string text)
+        async public void SaveAsync(string pathToDir, string file, string text)
         {
-            this.CreateFile();
+            this.CreateFile(pathToDir, file);
             //using (this.sw = File.CreateText(this.PathToFile(this.getNameFile())))
             await this.getSw().WriteAsync(text);
         }
@@ -62,89 +48,110 @@ namespace MathTrap
             this.setTextSave(await this.getReader().ReadToEndAsync());
         }
 
-        public bool FileExists()
+        public bool FileExists(string pathToFile)
         {
-            return (File.Exists(this.PathToFile())) ? false : true;
+            return (File.Exists(pathToFile)) ? false : true;
         }
 
-        public void ClearData()
+        public void FileDelete(string pathToFile)
         {       
-                File.Delete(this.PathToFile());
+                File.Delete(pathToFile);
         }
 
-        public string PathToFile()
+        public string PathToFile(string pathToDir, string file)
         {
-            return Path.Combine(this.PathToDir(), this.getNameFile());
+            return Path.Combine(pathToDir, file);
         }
 
-        public string PathToDir()
+        public string PathToDirApplicationData()
         {
             return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         }
-     
-        private void CreateDirectory() {
-            if (!File.Exists(this.PathToDir()))
-            {
-                Directory.CreateDirectory(this.PathToDir());
-            }
-        }
 
-        private void CreateFile()
+        public string PathToDirPersonalFolder()
         {
-            if (!this.FileExists())
+            return Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+        }
+
+        public void CreateDirectory(string pathToDir) 
+        {   
+            Directory.CreateDirectory(pathToDir);  
+        }
+
+        public void CreateFile(string pathToDir, string file)
+        {
+            if (!this.FileExists(PathToFile(pathToDir, file)))
             {
-                this.CreateDirectory();
-                File.Create(this.PathToFile());
+                this.CreateDirectory(pathToDir);
+                File.Create(PathToFile(pathToDir, file));
             }
         }
 
-        private void setStream() {
-            this.stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(this.getNameSpace_resorse() + this.getNameFile());
+        public void setStream(Stream s) {
+            this.stream = s; 
         }
 
-        private void setFileStream() { 
-            this.file = new FileStream(Path.Combine(this.PathToFile()), FileMode.OpenOrCreate, FileAccess.ReadWrite);
+        public void setFileStrime(FileStream f) {
+            this.file = f;
         }
 
-        private void setStreamRead(Stream getStream) { 
-            this.reader = new StreamReader(getStream);
+        public Stream getStream()
+        {
+            return this.stream;
         }
 
-        private void setStreamWrite(Stream getStream) { 
-            this.sw = new StreamWriter(getStream);
-        }
-
-        private bool canRead() {
-            return ((this.getStream().CanRead)) ? false : true;
-        }
-
-        private bool canWrite() {
-            return ((this.getStream().CanWrite)) ? false : true;
-        }
-
-        private Stream getStream() {
-            return this.stream; 
-        }
-
-        private FileStream getFileStream()
+        public FileStream getFileStream()
         {
             return this.file;
         }
 
-        private StreamReader getReader() {
+        public StreamReader getReader() {
             return this.reader;
         }
 
-        private StreamWriter getSw() {
+        public StreamWriter getSw() {
             return this.sw;
         }
-
-        private string getNameSpace_resorse() {
-            return nameSpace_resorse;
+        public Stream AssigneStream(string nameSpace, string file) {
+            Stream assembly = Assembly.GetExecutingAssembly().GetManifestResourceStream(nameSpace + file);
+            using (var resourceStream = assembly)
+            {
+                if (resourceStream == null) 
+                    return null;
+                else           
+                    return resourceStream;              
+            }           
         }
 
-        public string getNameFile() {
-            return this.file_name;
+        public FileStream AssigneFileStream(string pathToDir, string file) { 
+            return new FileStream(Path.Combine(PathToFile(pathToDir, file)), FileMode.OpenOrCreate, FileAccess.ReadWrite);
+        }
+       
+        public string StreamRead(Stream getStream) 
+        {
+            string result = "";
+            //StreamReader reader = new StreamReader(getStream);
+            using (this.reader = new StreamReader(getStream))
+            {
+                result = reader.ReadToEnd();
+            }
+            return result;              
+        }
+
+        public void setStreamWrite(Stream getStream) { 
+            this.sw = new StreamWriter(getStream);
+        }
+
+        public bool canRead() {
+            return ((this.getStream().CanRead)) ? false : true;
+        }
+
+        public bool canWrite() {
+            return ((this.getStream().CanWrite)) ? false : true;
+        }
+
+        public string getNameSpace_resorse() {
+            return nameSpace_resorse;
         }
 
         public string getTextSave()
@@ -152,12 +159,10 @@ namespace MathTrap
             return this.text_save;
         }
 
-        private void setTextSave(string t)
+        public void setTextSave(string t)
         {
             this.text_save = t;
         }
-
-       
-
+    
     }
 }

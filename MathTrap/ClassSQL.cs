@@ -5,6 +5,7 @@ using Xamarin.Forms.Xaml;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Globalization;
 using SQLite;
 
 
@@ -51,16 +52,20 @@ namespace MathTrap
    
     public class ClassSQL 
     {
-        static SQLiteAsyncConnection Connection;    
+        static SQLiteAsyncConnection Connection;
+        
         private const string DatabaseFilename = "MathTrap.db3";
-        private const string SaveOper = "SaveOperator.text";
-        private const string SaveLang = "SaveLanguage.text";
+        private const string SaveOper = "SaveOperator.txt";
+        private const string SaveLang = "SaveLanguage.txt";
+
         private ClassSave save;
+
         public TableItem item;
-        private TableOperator oper;
-        private TableLanguage lang;
-        private string[] operator_;
-        private string[,] lenguage_;
+        public TableOperator oper;
+        public TableLanguage lang;
+
+        private string[,] operator_;
+        
 
         public ClassSQL()
         {
@@ -68,10 +73,18 @@ namespace MathTrap
             this.item = new TableItem();
             this.lang = new TableLanguage();
             this.save= new ClassSave();
-            this.getSave().accessStream(3, DatabaseFilename);
+            
             Connection = new SQLiteAsyncConnection(DatabasePath);
-            CreateTable();
+
+            DeleteItemAllAsync();
+            DeleteOperAllAsync();
+            DeleteLangAllAsync();
+
+
+            CreateItem();
+            
             CreateOperator();
+            
             CreateLanguage();
         }
 
@@ -84,7 +97,7 @@ namespace MathTrap
         {
             get
             {               
-                return this.getSave().PathToFile();
+                return this.getSave().PathToFile(this.getSave().PathToDirApplicationData(), DatabaseFilename);
             }
         }
 
@@ -104,7 +117,7 @@ namespace MathTrap
         * che consente di archiviare e recuperare oggetti senza scrivere istruzioni SQL.
         */
 
-        private void CreateTable() {
+        private void CreateItem() {
             Connection.CreateTableAsync<TableItem>().Wait();
         }
 
@@ -155,6 +168,11 @@ namespace MathTrap
             return Connection.QueryAsync<TableOperator>("SELECT * FROM [TableOperator] ");         
         }
 
+        public Task<List<TableOperator>> GetAllOperAsync()
+        {
+            return Connection.Table<TableOperator>().ToListAsync();
+        }
+
         public void DeleteOperAllAsync()
         {
             Connection.DeleteAllAsync<TableOperator>().Wait();
@@ -177,45 +195,49 @@ namespace MathTrap
             }
         }
 
-        private string[] getSetOperatori() {
-            
-            this.getSave().accessStream(2, SaveOper);           
+        public string[,] getOperandi() 
+        {              
             return this.operator_;
         }
 
         async private void CreateOperator() 
         {
             Connection.CreateTableAsync<TableOperator>().Wait();
+            var operazioni = await GetAllOperAsync();
+            int i= operazioni.Count;
 
-            var operazioni = await GetSqlAllOperAsync();
-            int i;
-
-            if (operazioni.Count == 0)
+            
+            if ((operazioni.Count) ==0)
             {
-                i = composed(1);
-                operazioni = await GetSqlAllOperAsync();
+                composed(1, SaveOper);              
             }
-            else 
-            {
-                i = operazioni.Count;
-            }
+           
+            operazioni =await GetAllOperAsync();
+            i = operazioni.Count;
 
-            this.operator_= new string[i];
+            this.operator_= new string[i,3];
             
             foreach (var o in operazioni)
             {
                 //Console.WriteLine($" {o.operatore}");
-                this.operator_[i] = o.text;
-            
+                this.operator_[i, 1] = o.text;
+                this.operator_[i, 2] = "0";
+                this.operator_[i, 3] = "0";
             }          
         }
 
         public Task<List<TableLanguage>> GetSqlAllLanguageAsync()
         {
-            return Connection.QueryAsync<TableLanguage>("SELECT * FROM [TableLenguage] ");
+            return Connection.QueryAsync<TableLanguage>("SELECT * FROM [TableLanguage] ");
         }
 
-        public void DeleteLenguageAllAsync()
+        public Task<List<TableLanguage>> GetAllLanguageAsync()
+        {
+            return Connection.Table<TableLanguage>().ToListAsync();
+        }
+
+
+        public void DeleteLangAllAsync()
         {
             Connection.DeleteAllAsync<TableLanguage>().Wait();
         }
@@ -237,44 +259,33 @@ namespace MathTrap
             }
         }
 
-        private string[,] getSetLanguage()
-        {
-            this.getSave().accessStream(2, SaveLang);
-            return this.lenguage_;
-        }
-
         async private void CreateLanguage()
         {
             Connection.CreateTableAsync<TableLanguage>().Wait();
 
-            var language = await GetSqlAllLanguageAsync();
-            int i;
+            var language = await GetAllLanguageAsync();
+            int i= language.Count;
 
             if (language.Count == 0)
             {
-                i = composed(2);
-                language = await GetSqlAllLanguageAsync();
+                composed(2, SaveLang);
+                this.lang = await GetLenguageLoad(CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
             }
-            else
-            {
-                i = language.Count;
-            }
-
-            this.lenguage_ = new string[i,2];
-
-            foreach (var o in language)
-            {
-                //Console.WriteLine($" {o.operatore}");
-                this.lenguage_[i,1] = o.text;
-                this.lenguage_[i,2] = o.state;
-            }
+            
         }
 
-        public int composed(int index) 
+        public int composed(int index, string file) 
         {
             //Carico il txt
-            this.getSave().LoadAsync();
+            if(this.getSave().getStream()!=null)
+                this.getSave().getStream().Close();
+            if (this.getSave().getReader() != null)
+                this.getSave().getReader().Close();
 
+            this.getSave().setStream(this.getSave().AssigneStream(this.getSave().getNameSpace_resorse(), file));
+            this.getSave().setTextSave(this.getSave().StreamRead(this.getSave().getStream())) ;
+            
+         
             int j = 0;
             
             string r;

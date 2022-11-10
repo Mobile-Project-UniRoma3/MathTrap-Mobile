@@ -13,11 +13,13 @@
 
   <ItemGroup>
     <None Remove="Risorse\SaveLanguage.txt" />
+    <None Remove="Risorse\SaveOperator.txt" />
     <None Remove="SaveScore.txt" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Risorse\SaveLanguage.txt" />
+    <EmbeddedResource Include="Risorse\SaveOperator.txt" />
   </ItemGroup>
 
   <ItemGroup>
