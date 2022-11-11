@@ -387,17 +387,16 @@ namespace MathTrap
 
             this.label6.Text = "";
             this.label3.Text = "0";
-
-           
+          
 
             if (level % 10 == 0)
             {
                 //livello bonus --> potenza o radice esponenti compresi tra 1 e 3
-                str = operators[r.Next((operators.Length - 1), operators.Length),1];                         
+                str = operators[r.Next((operators.Length - 1), operators.Length),0];                         
             }
             else
             { 
-                str = operators[r.Next(0, (operators.Length - 1)),1];  
+                str = operators[r.Next(0, (operators.Length - 1)),0];  
             }
 
             operator_int_A = r.Next(Convert.ToInt32(index), (Convert.ToInt32(index) * 10));

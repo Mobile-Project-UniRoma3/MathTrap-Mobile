@@ -27,6 +27,12 @@ namespace MathTrap
         {
             InitializeComponent();
 
+            connection.CreateItem();
+
+            connection.CreateOperator();
+
+            connection.CreateLanguage();
+
             MainPage = new MainPage();          
         }
 

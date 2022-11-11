@@ -80,12 +80,6 @@ namespace MathTrap
             DeleteOperAllAsync();
             DeleteLangAllAsync();
 
-
-            CreateItem();
-            
-            CreateOperator();
-            
-            CreateLanguage();
         }
      
         private string DatabasePath
@@ -119,7 +113,7 @@ namespace MathTrap
         */
 
         //--> SQL Punteggio
-        private void CreateItem() {
+        public void CreateItem() {
             Connection.CreateTableAsync<TableItem>().Wait();
         }
 
@@ -138,9 +132,9 @@ namespace MathTrap
             return await Connection.Table<TableItem>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
-        async public Task<TableItem> GetItemLoad()
+        public Task<TableItem> GetItemLoad()
         {
-            return await Connection .Table<TableItem>().Where(i => i.done == false).FirstOrDefaultAsync();
+            return Connection .Table<TableItem>().Where(i => i.done == false).FirstOrDefaultAsync();
         }
 
         public void SaveItemAsync(TableItem item)
@@ -166,7 +160,7 @@ namespace MathTrap
         }
 
         //-->SQL Operandi 
-        async private void CreateOperator() 
+        async public void CreateOperator() 
         {
             Connection.CreateTableAsync<TableOperator>().Wait();
             var operazioni = await GetAllOperAsync();
@@ -182,13 +176,14 @@ namespace MathTrap
             i = operazioni.Count;
 
             this.operator_= new string[i,3];
-            
+            i = 0;
             foreach (var o in operazioni)
             {
                 //Console.WriteLine($" {o.operatore}");
-                this.operator_[i, 1] = o.text;
+                this.operator_[i, 0] = o.text;
+                this.operator_[i, 1] = "0";
                 this.operator_[i, 2] = "0";
-                this.operator_[i, 3] = "0";
+                i++;
             }          
         }
 
@@ -225,7 +220,7 @@ namespace MathTrap
         }
 
         //--> SQL linguaggi
-        async private void CreateLanguage()
+        async public void CreateLanguage()
         {
             Connection.CreateTableAsync<TableLanguage>().Wait();
 
@@ -235,7 +230,8 @@ namespace MathTrap
             if (language.Count == 0)
             {
                 composed(2, SaveLang);
-                this.lang = await GetLenguageLoad(CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+                string l = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+                this.lang = await GetLenguageLoad(l);
             }
             
         }
@@ -274,42 +270,32 @@ namespace MathTrap
         }
 
         //-->Funzioni di composizione
-        public int composed(int index, string file) 
+        public void composed(int index, string file) 
         {
             //Carico il txt
             string str;
             str = this.getSave().ApriFile(file);
-            
-            int j = 0;
-            
+
             string r;
-            string f;
-            
+
             //lunghezza del testo
             int i = str.Length;
-            int k = 0; 
-
-            k = str.IndexOf('§'); 
-            r = str.Substring(0, k);
-
-            insertIntoDateComposed(index, r);
-            k = k+1;
-            i =i- 1;
-            f = str.Substring(k, i);
-            
-            for (j = 1; f.IndexOf('§') >= 0; j++){
-                     
-                i = (i - k);
-
-                k = f.IndexOf('§');
-
-                r = f.Substring(1, k);
+            int k = 0;
+            do
+            {
+                k = str.IndexOf('§');
+                // Ritorna la sotto stringa di lunghezza k dalla posizione 0  
+                r = str.Substring(0, k);
                 insertIntoDateComposed(index, r);
-
-                f = f.Substring(k, i);
-
-            }
-            return j;
+                // Salto alla posizione successiva
+                k = k + 1;
+                // Calcolo la lunghezza residua
+                i = i - k;
+                // Ritorna la sotto stringa di lunghezza k dalla posizione 0
+                str = str.Substring(k, i);
+            } while (str.IndexOf('§') >= 0);
+            r = str;
+            insertIntoDateComposed(index, r);
         }
 
         public void insertIntoDateComposed(int index, string str) {
@@ -318,9 +304,7 @@ namespace MathTrap
                          Connection.InsertAsync(this.oper).Wait();
                          break;
 
-                case 2:
-                    int k = str.Length -1;
-                    this.lang.ID = 0; this.lang.text = str.Substring(2, k); this.lang.state= str.Substring(0, 2);
+                case 2: this.lang.ID = 0; this.lang.text = str.Substring(2, (str.Length -2)); this.lang.state= str.Substring(0, 2);
                         Connection.InsertAsync(this.lang).Wait(); 
                         break;
                 
