@@ -438,8 +438,12 @@ namespace MathTrap
                 {
                     count++;
                 }
-                if (operatori[i, (this.value.CONST_OPERATOR - 1)] == "1")
-                {
+                if (operatori[i, (this.value.CONST_OPERATOR - 1)] == "1") //se bonus-->
+                { 
+                    if (operatori[i, (this.value.CONST_OPERATOR - 2)] == "1")//se operatore
+                    {
+                        count++;
+                    }               
                     bonus = operatori[i, 0];
                 }
             }

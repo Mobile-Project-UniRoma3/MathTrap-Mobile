@@ -326,38 +326,6 @@ namespace MathTrap
 
         }
 
-        public string[] AggiornaSettings(string[,] operatori) {
-
-            int count = 0;
-            string bonus="";
-           
-            for (int i =0;i<(operatori.Length/ CONST_OPERATOR); i++) {
-                if (operatori[i,(CONST_OPERATOR-2)] == "1") { 
-                    count++;
-                }
-                if (operatori[i, (CONST_OPERATOR - 1)] == "1")
-                {
-                    bonus = operatori[i, 0];
-                }
-            }
-
-            string[] oper = new string[count];
-            count = 0;
-
-            for (int i = 0; i < (operatori.Length / CONST_OPERATOR); i++)
-            {
-                if (operatori[i, (CONST_OPERATOR - 2)] == "1")
-                {
-                    oper[count] = operatori[i, 0];
-                    count++;
-                }
-            }
-            oper[count] = bonus;
-
-
-            return oper;
-        }
-
     }
 
 }
