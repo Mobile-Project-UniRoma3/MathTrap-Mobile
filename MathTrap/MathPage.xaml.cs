@@ -194,7 +194,7 @@ namespace MathTrap
             this.tastiera("point");
         }
         
-        private void score(int indexe) {
+        private void score(int index) {
 
             if (index == 0) {  
                 switch (this.label4.Text)   {
@@ -357,7 +357,7 @@ namespace MathTrap
             }
             else
             { 
-                str = operators[r.Next(0, ((operators.Length) - 2))];  
+                str = operators[r.Next(0, ((operators.Length) - 1))];  
             }
 
             operator_int_A = r.Next(Convert.ToInt32(index), (Convert.ToInt32(index) * 10));

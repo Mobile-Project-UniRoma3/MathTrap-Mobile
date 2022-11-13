@@ -73,10 +73,9 @@ namespace MathTrap
             
             Connection = new SQLiteAsyncConnection(DatabasePath);
 
-            DeleteItemAllAsync();
-            DeleteOperAllAsync();
-            DeleteLangAllAsync();
-
+            //DeleteItemAllAsync();
+            //DeleteOperAllAsync();
+            //DeleteLangAllAsync();
         }
      
         private string DatabasePath
@@ -194,11 +193,16 @@ namespace MathTrap
                     flag_oper = "0";
                 }
                 this.operator_[i, 1] = flag_oper;
-                if (o.text=="x") 
-                { 
+
+                if (o.text == "x")
+                {
                     this.operator_[i, 2] = "1";//-->operatore bonus di default 
-                } 
-                this.operator_[i, 2] = flag_bonus;
+                }
+                else 
+                { 
+                    this.operator_[i, 2] = flag_bonus;
+                }
+                
                 i++;
             }          
         }
@@ -242,14 +246,13 @@ namespace MathTrap
 
             var language = await GetAllLanguageAsync();
             int i= language.Count;
-
+            
             if (language.Count == 0)
             {
-                composed(2, SaveLang);
-                string l = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-                this.lang = await GetLenguageLoad(l);
+                composed(2, SaveLang);   
             }
-            
+            string l = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+            this.lang = await GetLenguageLoad(l);           
         }
 
         async public Task<List<TableLanguage>> GetSqlAllLanguageAsync()
