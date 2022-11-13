@@ -21,18 +21,13 @@ namespace MathTrap
         private long index = 10;
         private long level = 1;
         private string operator_;
-        private string[,] selector;
-        private string[,] operators;
+
+        private string[] operators;
 
         private int id_score;
         private long right_counter;
         private long fail_counter;
         private long life;
-
-        private bool flag_p;
-        private bool flag_r;
-
-        private string bonus;
 
         private ClassSQL value;
 
@@ -236,6 +231,7 @@ namespace MathTrap
             await Navigation.PushModalAsync(new SavePage(this.value), false);
         }
 
+        // --> SET & GET
         private int getId()
         {
             return this.id_score;
@@ -276,36 +272,12 @@ namespace MathTrap
             this.life = v;
         }
 
-        private bool getFlag_p()
-        {
-            return this.flag_p;
-        }
-
-        public void setFlag_p(bool f)
-        {
-            this.flag_p = f;
-        }
-
-        private bool getFlag_r()
-        {
-            return this.flag_r;
-        }
-
-        public void setFlag_r(bool f)
-        {
-            this.flag_r = f;
-        }
-
-        private string getBonus() 
-        {
-            return this.bonus;
-        }
-
-        public void setBonus(string b) 
-        {
-            this.bonus = b;
-        }
        
+        public void setOperator_(string[] s) {
+            this.operators = s;
+        }
+
+        //--> FUNZIONI      
         private void tastiera(string numero) {
 
             switch (numero) {
@@ -344,19 +316,14 @@ namespace MathTrap
             long l = 5;
 
             //default le quattro operazioni
-            this.operators = this.value.getOperandi(); 
+            this.operators = this.AggiornaSettings(this.value.getOperandi()); 
            
-
             if (item.ID > 0)
             {
                 i = item.ID;
                 r = item.right;
                 f = item.fail;
-                l = item.life;
-                
-               //if (item.flag_p == true) { this.operators[j] = this.selector[4]; j++; }
-               //if (item.flag_r == true) { this.operators[j] = this.selector[5]; j++; }
-               //if (item.bonus != null) { this.operators[j] = item.bonus; j++; }
+                l = item.life;                
             }
             else {//qualora resume risulta la prima partita
                 item.right = r;
@@ -364,15 +331,9 @@ namespace MathTrap
                 item.life = l;
                 
                 //default tutte le operazioni
-                item.flag_p = false;
-                item.flag_r = false;
-                item.bonus = "^";
-                //this.operators[j] = item.bonus;
-
                 item.date = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
                 this.value.item.done = false;
             }
-
             this.setId(i);
             this.setRight(r);
             this.setFail(f);
@@ -391,12 +352,12 @@ namespace MathTrap
 
             if (level % 10 == 0)
             {
-                //livello bonus --> potenza o radice esponenti compresi tra 1 e 3
-                str = operators[r.Next((operators.Length - 1), operators.Length),0];                         
+                //livello bonus 
+                str = operators[r.Next(((operators.Length) - 1), operators.Length)];                         
             }
             else
             { 
-                str = operators[r.Next(0, (operators.Length - 1)),0];  
+                str = operators[r.Next(0, ((operators.Length) - 2))];  
             }
 
             operator_int_A = r.Next(Convert.ToInt32(index), (Convert.ToInt32(index) * 10));
@@ -463,6 +424,41 @@ namespace MathTrap
             this.value.item.right = this.getRight();
             this.value.item.fail = this.getFail();
             this.value.item.life = this.getLife();
+        }
+
+        private string[] AggiornaSettings(string[,] operatori)
+        {
+
+            int count = 0;
+            string bonus = "^";//bonus di default
+
+            for (int i = 0; i < (operatori.Length / this.value.CONST_OPERATOR); i++)
+            {
+                if (operatori[i, (this.value.CONST_OPERATOR - 2)] == "1")
+                {
+                    count++;
+                }
+                if (operatori[i, (this.value.CONST_OPERATOR - 1)] == "1")
+                {
+                    bonus = operatori[i, 0];
+                }
+            }
+
+            string[] oper = new string[count];
+            count = 0;
+
+            for (int i = 0; i < (operatori.Length / this.value.CONST_OPERATOR); i++)
+            {
+                if (operatori[i, (this.value.CONST_OPERATOR - 2)] == "1")
+                {
+                    oper[count] = operatori[i, 0];
+                    count++;
+                }
+            }
+            oper[count] = bonus;
+
+
+            return oper;
         }
     }
 }

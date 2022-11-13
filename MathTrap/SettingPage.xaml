@@ -9,28 +9,46 @@
         <StackLayout BackgroundColor="#FFB200">
             <Label Text="Setting New Game" VerticalOptions="CenterAndExpand"  HorizontalOptions="CenterAndExpand" x:Name="label1" TextColor="Black"/>
             
-            <Entry x:Name="name_Entry" Placeholder="Enter name" />
-            <CheckBox x:Name="flag_p_Entry" IsChecked="False" CheckedChanged="OnCheckBoxCheckedChanged_One"></CheckBox>
-            <CheckBox x:Name="flag_r_Entry" IsChecked="False" CheckedChanged="OnCheckBoxCheckedChanged_Two"></CheckBox>
-            <Picker></Picker>
-
-
-            <Button Text="Save Setting" Clicked="OnButtonClicked" />
+            <Button Text="Save Setting" Clicked="OnSave" />
             
             <CollectionView x:Name="collectionView">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
-
-                            <Label Text="{Binding name}" TextColor="Black"></Label>
-                            <Label Text="{Binding flag_p}" TextColor="Black"></Label>
-                            <Label Text="{Binding flag_r}" TextColor="Black"></Label>
-                            <Label Text="{Binding bonus}" TextColor="Black"></Label>
-
+                            
+                            <Grid  RowSpacing="4" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Label Text="Operando" TextColor="Black"  Grid.Column="0" Grid.Row="1"></Label>
+                                <Label Text="{Binding text}" TextColor="Black" Grid.Column="0" Grid.Row="2"></Label>
+                            </Grid>
+                            
+                            <Grid  RowSpacing="4" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Label Text="Seleziona Operatore: " TextColor="Black"  Grid.Column="0" Grid.Row="1"></Label>
+                                <CheckBox x:Name="flag_oper_Entry" IsChecked="{Binding flag_o}"  Grid.Column="1" Grid.Row="1" CheckedChanged="OnCheckBoxCheckedChanged_One"></CheckBox>
+                                <Label Text="Seleziona Operatore Bonus: " TextColor="Black"  Grid.Column="0" Grid.Row="2"></Label>
+                                <Picker  Grid.Column="1" Grid.Row="2"></Picker>
+                            </Grid>
+                                                        
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <Button Text="Return" Clicked="OnReturn" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

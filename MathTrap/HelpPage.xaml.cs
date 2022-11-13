@@ -23,7 +23,7 @@ namespace MathTrap
             value = App.connection;
 
             this.label1.Text = "MATHTRAP";
-            this.textcell1.Text = this.value.lang.text;
+            this.textcell1.Text = this.value.getLang.text;
         }
 
         async private void onMain(object sender, EventArgs e)

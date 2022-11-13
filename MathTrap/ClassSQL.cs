@@ -31,10 +31,7 @@ namespace MathTrap
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
-        public string name { get; set; }
-        public bool flag_p { get; set; }
-        public bool flag_r { get; set; }
-        public string bonus { get; set; }
+        public string name { get; set; }   
         public long right { get; set; }
         public long fail { get; set; }
         public long life { get; set; }
@@ -57,7 +54,7 @@ namespace MathTrap
         private const string DatabaseFilename = "MathTrap.db3";
         private const string SaveOper = "SaveOperator.txt";
         private const string SaveLang = "SaveLanguage.txt";
-
+        public int CONST_OPERATOR = 3;
         private File save;
 
         public TableItem item;
@@ -90,6 +87,7 @@ namespace MathTrap
             }
         }
 
+        // --> GET & SET
         private File getSave() {
             return this.save;
         }
@@ -99,9 +97,19 @@ namespace MathTrap
             get { return this.item; }
         }
 
+        public TableLanguage getLang
+        {
+            get { return this.lang; }
+        }
+
         public string[,] getOperandi() 
         {              
             return this.operator_;
+        }
+
+        public void setOperandi(string[,] s)
+        {
+            this.operator_ = s;
         }
 
         /*
@@ -165,8 +173,9 @@ namespace MathTrap
             Connection.CreateTableAsync<TableOperator>().Wait();
             var operazioni = await GetAllOperAsync();
             int i= operazioni.Count;
+            string flag_oper = "1";
+            string flag_bonus = "0";
 
-            
             if ((operazioni.Count) ==0)
             {
                 composed(1, SaveOper);              
@@ -179,10 +188,14 @@ namespace MathTrap
             i = 0;
             foreach (var o in operazioni)
             {
-                //Console.WriteLine($" {o.operatore}");
+                //i primi 4 operandi sono di default true
                 this.operator_[i, 0] = o.text;
-                this.operator_[i, 1] = "0";
-                this.operator_[i, 2] = "0";
+                if (i > 3) {
+                    flag_oper = "0";
+                }
+                this.operator_[i, 1] = flag_oper;
+                if (o.text=="x") { this.operator_[i, 2] = "1"; } 
+                this.operator_[i, 2] = flag_bonus;
                 i++;
             }          
         }
@@ -311,6 +324,38 @@ namespace MathTrap
                 default:break;
             }
 
+        }
+
+        public string[] AggiornaSettings(string[,] operatori) {
+
+            int count = 0;
+            string bonus="";
+           
+            for (int i =0;i<(operatori.Length/ CONST_OPERATOR); i++) {
+                if (operatori[i,(CONST_OPERATOR-2)] == "1") { 
+                    count++;
+                }
+                if (operatori[i, (CONST_OPERATOR - 1)] == "1")
+                {
+                    bonus = operatori[i, 0];
+                }
+            }
+
+            string[] oper = new string[count];
+            count = 0;
+
+            for (int i = 0; i < (operatori.Length / CONST_OPERATOR); i++)
+            {
+                if (operatori[i, (CONST_OPERATOR - 2)] == "1")
+                {
+                    oper[count] = operatori[i, 0];
+                    count++;
+                }
+            }
+            oper[count] = bonus;
+
+
+            return oper;
         }
 
     }

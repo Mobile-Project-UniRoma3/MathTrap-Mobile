@@ -20,9 +20,9 @@ namespace MathTrap
 
             //assegno la connessione aperta
             this.value = value;
-            this.onSave(this.value.item);
+            
         }
-        async private void onNew(object sender, EventArgs e)
+        async private void OnReturn(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new MathPage(1), false);
         }
@@ -32,35 +32,20 @@ namespace MathTrap
              
         }
 
-        async private void OnCheckBoxCheckedChanged_Two(object sender, CheckedChangedEventArgs e)
-        {
-             
-        }
-
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            collectionView.ItemsSource = (System.Collections.IEnumerable)await this.value.GetItemWhereIdAsync(this.value.item.ID);
+            collectionView.ItemsSource = (System.Collections.IEnumerable)await this.value.GetAllOperAsync(); //await this.value.GetItemWhereIdAsync(this.value.item.ID);
         }
 
-        private void onSave(TableItem item) 
+        private void Save(TableItem item) 
         {
             this.value.SaveItemAsync(item); 
         }
 
-        async private void OnButtonClicked(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrWhiteSpace(name_Entry.Text))
-            {
-                this.value.item.name = name_Entry.Text;
-                this.value.item.flag_p = this.flag_p_Entry.IsChecked;
-                this.value.item.flag_r = this.flag_r_Entry.IsChecked;
-                //this.value.item.bonus=this.
-
-                this.name_Entry.Text = string.Empty;
-                this.onSave(this.value.item);
-                this.OnAppearing();
-            }
+        async private void OnSave(object sender, EventArgs e)
+        {                   
+                this.OnAppearing();  
         }
 
     }
