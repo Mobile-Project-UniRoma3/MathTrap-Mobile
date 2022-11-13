@@ -430,19 +430,19 @@ namespace MathTrap
         {
 
             int count = 0;
-            string bonus = "^";//bonus di default
+            string bonus = "x";//-->operatore bonus di default
 
             for (int i = 0; i < (operatori.Length / this.value.CONST_OPERATOR); i++)
             {
                 if (operatori[i, (this.value.CONST_OPERATOR - 2)] == "1")
                 {
-                    count++;
+                    count++;//-->aggiungo un posto
                 }
-                if (operatori[i, (this.value.CONST_OPERATOR - 1)] == "1") //se bonus-->
+                if (operatori[i, (this.value.CONST_OPERATOR - 1)] == "1") //se bonus -->
                 { 
-                    if (operatori[i, (this.value.CONST_OPERATOR - 2)] == "1")//se operatore
+                    if (operatori[i, (this.value.CONST_OPERATOR - 2)] == "1")//se operatore -->
                     {
-                        count++;
+                        count++;//-->aggiungo un posto
                     }               
                     bonus = operatori[i, 0];
                 }
@@ -460,7 +460,6 @@ namespace MathTrap
                 }
             }
             oper[count] = bonus;
-
 
             return oper;
         }

@@ -194,7 +194,10 @@ namespace MathTrap
                     flag_oper = "0";
                 }
                 this.operator_[i, 1] = flag_oper;
-                if (o.text=="x") { this.operator_[i, 2] = "1"; } 
+                if (o.text=="x") 
+                { 
+                    this.operator_[i, 2] = "1";//-->operatore bonus di default 
+                } 
                 this.operator_[i, 2] = flag_bonus;
                 i++;
             }          
