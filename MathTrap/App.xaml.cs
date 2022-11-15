@@ -27,7 +27,9 @@ namespace MathTrap
         {
             InitializeComponent();
 
-            connection.CreateItem();
+            connection.CreateScore();
+
+            connection.CreateSetting();
 
             connection.CreateOperator();
 

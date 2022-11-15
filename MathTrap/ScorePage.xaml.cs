@@ -26,7 +26,7 @@ namespace MathTrap
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            MyListView.ItemsSource = await this.value.GetItemsAllAsync();
+            MyListView.ItemsSource = await this.value.GetScoreAllAsync();
         }
 
         async private void onMain(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace MathTrap
         }
 
        private void DeleteAll() {
-            this.value.DeleteItemAllAsync();
+            this.value.DeleteScoreAllAsync();
         }
     }
 }

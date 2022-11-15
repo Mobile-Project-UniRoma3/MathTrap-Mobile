@@ -25,10 +25,10 @@
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
                                 <Label Text="Operando" TextColor="Black"  Grid.Column="0" Grid.Row="1" FontSize="20" HorizontalTextAlignment="End"></Label>
-                                <Label Text="{Binding text}" TextColor="Black" Grid.Column="1" Grid.Row="1" FontSize="20" ></Label>
+                                <Label Text="{Binding}" TextColor="Black" Grid.Column="1" Grid.Row="1" FontSize="20" ></Label>
                             </Grid>
-                            
-                            <Grid VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand" >
+
+                            <Grid VerticalOptions="StartAndExpand" HorizontalOptions="EndAndExpand">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition />
                                     <ColumnDefinition />
@@ -39,9 +39,9 @@
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
                                 <Label Text="Seleziona Operatore: " TextColor="Black"  Grid.Column="0" Grid.Row="1" FontSize="20" HorizontalTextAlignment="End"></Label>
-                                <CheckBox x:Name="flag_oper_Entry" IsChecked="{Binding flag_o}"  Grid.Column="1" Grid.Row="1" VerticalOptions="Start"  CheckedChanged="OnCheckBoxCheckedChanged_One"></CheckBox>
+                                <CheckBox x:Name="flag_oper_Entry" IsChecked="False"  Grid.Column="1" Grid.Row="1" VerticalOptions="Start"  CheckedChanged="OnCheckBoxCheckedChanged_One"></CheckBox>
                                 <Label Text="Seleziona Operatore Bonus: " TextColor="Black"  Grid.Column="0" Grid.Row="2" FontSize="20"  HorizontalTextAlignment="End"></Label>
-                                <Picker  Grid.Column="1" Grid.Row="2"></Picker>
+                                <Picker  Grid.Column="1" Grid.Row="2"  x:Name="pik" ></Picker>
                             </Grid>
                                                         
                         </StackLayout>

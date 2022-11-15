@@ -35,17 +35,51 @@ namespace MathTrap
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            collectionView.ItemsSource = (System.Collections.IEnumerable)await this.value.GetAllOperAsync(); //await this.value.GetItemWhereIdAsync(this.value.item.ID);
+            List<string> l = new List<string>(await scomposed());
+            collectionView.ItemsSource = l;
+            //this.pik.ItemsSource = l;  
         }
 
-        private void Save(TableItem item) 
+        private void Save(TableScore score) 
         {
-            this.value.SaveItemAsync(item); 
+            this.value.SaveScoreAsync(score); 
         }
 
         async private void OnSave(object sender, EventArgs e)
         {                   
                 this.OnAppearing();  
+        }
+
+        async private Task<List<string>> scomposed() {
+            List<string> l = new List<string>();
+            //
+
+            var setting_ = await this.value.GetSettingLoad(this.value.score.IdSetting);
+            if (setting_!= null) 
+            {
+                string str;
+                
+                str = setting_.text;
+                int i = str.Length;
+                int k = 0;
+                //operandi
+                while (i>0)
+                {
+                    l.Add(str.Substring(k,1));
+                    i--;
+                    k++;
+                } 
+                //bonus
+            } 
+            else 
+            {
+                var operazioni = await this.value.GetAllOperAsync();
+                foreach (var o in operazioni) {
+                    l.Add(o.text);
+                }
+            }
+           
+            return l;
         }
 
     }

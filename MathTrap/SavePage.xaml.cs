@@ -34,7 +34,7 @@ namespace MathTrap
 
         private void OnSave()
         {        
-            this.saveMetodo.SaveItemAsync(this.saveMetodo.getItem);
+            this.saveMetodo.SaveScoreAsync(this.saveMetodo.getScore);
         }
 
         async private void comeBackHome() {

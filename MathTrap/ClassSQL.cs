@@ -12,6 +12,14 @@ using SQLite;
 
 namespace MathTrap
 {
+    public class TableSetting
+    {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
+        public string text { get; set; }
+        public string bonus { get; set; }
+    }
+
     public class TableOperator
     {
         [PrimaryKey, AutoIncrement]
@@ -27,7 +35,7 @@ namespace MathTrap
         public string state { get; set; }
     }
 
-    public class TableItem
+    public class TableScore
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
@@ -37,6 +45,7 @@ namespace MathTrap
         public long life { get; set; }
         public string date { get; set; }
         public bool done { get; set; }
+        public int IdSetting { get; set; }
     }
 
     /*
@@ -57,9 +66,10 @@ namespace MathTrap
         public int CONST_OPERATOR = 3;
         private File save;
 
-        public TableItem item;
+        public TableScore score;
         public TableOperator oper;
         public TableLanguage lang;
+        public TableSetting sett;
 
         private string[,] operator_;
         
@@ -67,13 +77,14 @@ namespace MathTrap
         public ClassSQL()
         {
             this.oper = new TableOperator();
-            this.item = new TableItem();
+            this.score = new TableScore();
             this.lang = new TableLanguage();
+            this.sett = new TableSetting();
             this.save= new File();
             
             Connection = new SQLiteAsyncConnection(DatabasePath);
 
-            //DeleteItemAllAsync();
+            //DeleteScoreAllAsync();
             //DeleteOperAllAsync();
             //DeleteLangAllAsync();
         }
@@ -91,9 +102,9 @@ namespace MathTrap
             return this.save;
         }
 
-        public TableItem getItem
+        public TableScore getScore
         {
-            get { return this.item; }
+            get { return this.score; }
         }
 
         public TableLanguage getLang
@@ -120,33 +131,33 @@ namespace MathTrap
         */
 
         //--> SQL Punteggio
-        public void CreateItem() {
-            Connection.CreateTableAsync<TableItem>().Wait();
+        public void CreateScore() {
+            Connection.CreateTableAsync<TableScore>().Wait();
         }
 
-        async public Task<List<TableItem>> GetItemsAllAsync()
+        async public Task<List<TableScore>> GetScoreAllAsync()
         {
-            return await Connection.Table<TableItem>().ToListAsync();
+            return await Connection.Table<TableScore>().ToListAsync();
         }
 
-        async public Task<List<TableItem>> GetSqlItemsAllAsync()
+        async public Task<List<TableScore>> GetSqlScoreAllAsync()
         {
-            return await Connection.QueryAsync<TableItem>("SELECT * FROM [TableItem] ");
+            return await Connection.QueryAsync<TableScore>("SELECT * FROM [TableScore] ");
         }
 
-        async public Task<TableItem> GetItemWhereIdAsync(int id)
+        async public Task<TableScore> GetScoreWhereIdAsync(int id)
         {
-            return await Connection.Table<TableItem>().Where(i => i.ID == id).FirstOrDefaultAsync();
+            return await Connection.Table<TableScore>().Where(i => i.ID == id).FirstOrDefaultAsync();
         }
 
-        public Task<TableItem> GetItemLoad()
+        public Task<TableScore> GetScoreLoad()
         {
-            return Connection .Table<TableItem>().Where(i => i.done == false).FirstOrDefaultAsync();
+            return Connection .Table<TableScore>().Where(i => i.done == false).FirstOrDefaultAsync();
         }
 
-        public void SaveItemAsync(TableItem item)
+        public void SaveScoreAsync(TableScore item)
         {
-            if (item.ID != 0)
+            if (score.ID != 0)
             {
                 Connection.UpdateAsync(item).Wait();
             }
@@ -156,14 +167,14 @@ namespace MathTrap
             }
         }
 
-        public void DeleteItemAsync(TableItem item)
+        public void DeleteItemAsync(TableScore score)
         {
-            Connection.DeleteAsync(item).Wait();
+            Connection.DeleteAsync(score).Wait();
         }
 
-        public void DeleteItemAllAsync()
+        public void DeleteScoreAllAsync()
         {
-            Connection.DeleteAllAsync<TableItem>().Wait();
+            Connection.DeleteAllAsync<TableScore>().Wait();
         }
 
         //-->SQL Operandi 
@@ -265,7 +276,6 @@ namespace MathTrap
             return await Connection.Table<TableLanguage>().ToListAsync(); 
         }
 
-
         public void DeleteLangAllAsync()
         {
             Connection.DeleteAllAsync<TableLanguage>().Wait();
@@ -277,6 +287,38 @@ namespace MathTrap
         }
 
         public void SaveLangAsync(TableLanguage item)
+        {
+            if (item.ID != 0)
+            {
+                Connection.UpdateAsync(item).Wait();
+            }
+            else
+            {
+                Connection.InsertAsync(item).Wait();
+            }
+        }
+
+        //-->SQL Setting
+        async public void CreateSetting()
+        {
+            Connection.CreateTableAsync<TableSetting>().Wait();
+        }
+
+        async public Task<List<TableSetting>> GetAllSettingAsync()
+        {
+            return await Connection.Table<TableSetting>().ToListAsync();
+        }
+        public void DeleteSettAllAsync()
+        {
+            Connection.DeleteAllAsync<TableSetting>().Wait();
+        } 
+
+        async public Task<TableSetting> GetSettingLoad(int id)
+        {
+            return await Connection.Table<TableSetting>().Where(i => i.ID == id).FirstOrDefaultAsync();
+        }
+
+        public void SaveSettAsync(TableSetting item)
         {
             if (item.ID != 0)
             {

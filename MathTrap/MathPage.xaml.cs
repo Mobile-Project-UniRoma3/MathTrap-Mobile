@@ -50,21 +50,21 @@ namespace MathTrap
               se: se ritorna la tabella vuota -->primo record di gioco
               altrimenti: carico punteggio salvato nel database
              */
-            if ((this.value.item = this.value.GetItemLoad().Result) == null) {
-                this.value.item = new TableItem();
-                this.value.item.ID = 0;
+            if ((this.value.score = this.value.GetScoreLoad().Result) == null) {
+                this.value.score = new TableScore();
+                this.value.score.ID = 0;
             } else {
                 if (index == 0)
                 {
                     //se nuovo record -->chiudo partita vecchia inponendo done = true e aggiorno
-                    this.value.item.done = true;
-                    this.value.SaveItemAsync(this.value.item);
+                    this.value.score.done = true;
+                    this.value.SaveScoreAsync(this.value.score);
                     //aggiornando l'indice = 0 composedScore riporta i valori a 0
-                    this.value.item.ID = 0;
+                    this.value.score.ID = 0;
                 }
             }
 
-            this.composedScore(this.value.getItem);
+            this.composedScore(this.value.getScore);
 
             //aggirno score
             this.label10.Text = Convert.ToString(this.getRight());
@@ -307,7 +307,7 @@ namespace MathTrap
                          break;
             }          
         }
-        private void composedScore(TableItem item)
+        private void composedScore(TableScore score)
         {
             int i = 0;
             int j = 0;
@@ -318,21 +318,21 @@ namespace MathTrap
             //default le quattro operazioni
             this.operators = this.AggiornaSettings(this.value.getOperandi()); 
            
-            if (item.ID > 0)
+            if (score.ID > 0)
             {
-                i = item.ID;
-                r = item.right;
-                f = item.fail;
-                l = item.life;                
+                i = score.ID;
+                r = score.right;
+                f = score.fail;
+                l = score.life;                
             }
             else {//qualora resume risulta la prima partita
-                item.right = r;
-                item.fail = f ;
-                item.life = l;
-                
+                score.right = r;
+                score.fail = f ;
+                score.life = l;
+
                 //default tutte le operazioni
-                item.date = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
-                this.value.item.done = false;
+                score.date = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+                this.value.score.done = false;
             }
             this.setId(i);
             this.setRight(r);
@@ -420,10 +420,10 @@ namespace MathTrap
         }
 
         private void ExitUpDate() {
-            this.value.item.ID = this.getId();
-            this.value.item.right = this.getRight();
-            this.value.item.fail = this.getFail();
-            this.value.item.life = this.getLife();
+            this.value.score.ID = this.getId();
+            this.value.score.right = this.getRight();
+            this.value.score.fail = this.getFail();
+            this.value.score.life = this.getLife();
         }
 
         private string[] AggiornaSettings(string[,] operatori)
