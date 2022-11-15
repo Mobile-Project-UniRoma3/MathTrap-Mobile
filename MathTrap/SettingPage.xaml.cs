@@ -35,9 +35,12 @@ namespace MathTrap
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            List<string> l = new List<string>(await scomposed());
-            collectionView.ItemsSource = l;
-            //this.pik.ItemsSource = l;  
+            var list = new List<string>(await scomposed());
+
+            collectionView.ItemsSource = list;
+           
+            this.piker_.ItemsSource = list; 
+             
         }
 
         private void Save(TableScore score) 
@@ -82,5 +85,9 @@ namespace MathTrap
             return l;
         }
 
+        private void OnActionChange(object sender, EventArgs e)
+        {
+
+        }
     }
 }
