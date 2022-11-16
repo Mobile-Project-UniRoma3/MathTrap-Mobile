@@ -31,6 +31,8 @@ namespace MathTrap
 
             connection.CreateSetting();
 
+            connection.CreateTempSetting();
+
             connection.CreateOperator();
 
             connection.CreateLanguage();

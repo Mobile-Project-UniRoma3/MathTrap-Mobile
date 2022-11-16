@@ -12,8 +12,20 @@ using SQLite;
 
 namespace MathTrap
 {
+
+    public class TableTempSetting
+    {
+        //in questo caso a ogni operando corrisponde un record
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
+        public string text { get; set; }
+        public bool check { get; set; }
+        public string bonus { get; set; }
+    }
+    
     public class TableSetting
     {
+        //in questo caso tutti gli operandi vengono assemblati in una stringa
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
         public string text { get; set; }
@@ -70,6 +82,7 @@ namespace MathTrap
         public TableOperator oper;
         public TableLanguage lang;
         public TableSetting sett;
+        public TableTempSetting settTemp;
 
         private string[,] operator_;
         
@@ -80,6 +93,7 @@ namespace MathTrap
             this.score = new TableScore();
             this.lang = new TableLanguage();
             this.sett = new TableSetting();
+            this.settTemp = new TableTempSetting();
             this.save= new File();
             
             Connection = new SQLiteAsyncConnection(DatabasePath);
@@ -87,8 +101,10 @@ namespace MathTrap
             //DeleteScoreAllAsync();
             //DeleteOperAllAsync();
             //DeleteLangAllAsync();
+            //DeleteSettAllAsync();
+            //DeleteTempSettAllAsync();
         }
-     
+
         private string DatabasePath
         {
             get
@@ -152,7 +168,7 @@ namespace MathTrap
 
         public Task<TableScore> GetScoreLoad()
         {
-            return Connection .Table<TableScore>().Where(i => i.done == false).FirstOrDefaultAsync();
+            return Connection.Table<TableScore>().Where(i => i.done == false).FirstOrDefaultAsync();
         }
 
         public void SaveScoreAsync(TableScore item)
@@ -299,7 +315,7 @@ namespace MathTrap
         }
 
         //-->SQL Setting
-        async public void CreateSetting()
+        public void CreateSetting()
         {
             Connection.CreateTableAsync<TableSetting>().Wait();
         }
@@ -311,7 +327,12 @@ namespace MathTrap
         public void DeleteSettAllAsync()
         {
             Connection.DeleteAllAsync<TableSetting>().Wait();
-        } 
+        }
+
+        public void DeleteSettAsync(TableSetting score)
+        {
+            Connection.DeleteAsync(score).Wait();
+        }
 
         async public Task<TableSetting> GetSettingLoad(int id)
         {
@@ -319,6 +340,34 @@ namespace MathTrap
         }
 
         public void SaveSettAsync(TableSetting item)
+        {
+            if (item.ID != 0)
+            {
+                Connection.UpdateAsync(item).Wait();
+            }
+            else
+            {
+                Connection.InsertAsync(item).Wait();
+            }
+        }
+
+        //--> SQL Temp Setting
+        public void CreateTempSetting()
+        {
+            Connection.CreateTableAsync<TableTempSetting>().Wait();
+        }
+
+        async public Task<List<TableTempSetting>> GetTempSettingAllAsync()
+        {
+            return await Connection.Table<TableTempSetting>().ToListAsync();
+        }
+
+        public void DeleteTempSettAllAsync()
+        {
+            Connection.DeleteAllAsync<TableTempSetting>().Wait();
+        }
+
+        public void SaveTempSettingAsync(TableTempSetting item)
         {
             if (item.ID != 0)
             {

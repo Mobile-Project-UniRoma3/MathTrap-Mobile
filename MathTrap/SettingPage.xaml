@@ -24,9 +24,9 @@
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
                                 <Label Text="Operando" TextColor="Black"  Grid.Column="0" Grid.Row="1" FontSize="20" HorizontalTextAlignment="End"></Label>
-                                <Label Text="{Binding}" TextColor="Black" Grid.Column="1" Grid.Row="1" FontSize="20" ></Label>
+                                <Label Text="{Binding text}" TextColor="Black" Grid.Column="1" Grid.Row="1" FontSize="20" x:Name="operando_"></Label>
                                 <Label Text="Seleziona Operando: " TextColor="Black"  Grid.Column="0" Grid.Row="2" FontSize="20" HorizontalTextAlignment="End"></Label>
-                                <CheckBox IsChecked="False"  Grid.Column="1" Grid.Row="2" VerticalOptions="Start"  CheckedChanged="OnCheckBoxCheckedChanged_One"></CheckBox>
+                                <CheckBox IsChecked="{Binding check}" Grid.Column="1" Grid.Row="2" VerticalOptions="Start"  CheckedChanged="OnCheckBoxCheckedChanged_One"></CheckBox>
                             </Grid>
                                
                         </StackLayout>
@@ -43,7 +43,7 @@
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <Label Text="Seleziona Operatore Bonus: " TextColor="Black"  Grid.Column="0" Grid.Row="1"></Label>
+                <Label Text="Seleziona Operatore Bonus: " TextColor="Black"  Grid.Column="0" Grid.Row="1"  x:Name="label2"></Label>
                 <Picker x:Name="piker_" Grid.Column="1" Grid.Row="1" SelectedIndexChanged="OnActionChange" TextColor="Black" ></Picker>
                 <Button Text="Return" Clicked="OnReturn"  Grid.Column="0" Grid.Row="2" />
                 <Button Text="Save Setting" Clicked="OnSave"  Grid.Column="1" Grid.Row="2" />
