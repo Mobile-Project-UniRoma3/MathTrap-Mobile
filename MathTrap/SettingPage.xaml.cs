@@ -67,23 +67,27 @@ namespace MathTrap
             await Navigation.PushModalAsync(new MathPage(1), false);
         }
 
-        private void OnCheckBoxCheckedChanged_One(object sender, CheckedChangedEventArgs e)
-        {
-            if (e.Value == true) 
-            {
-                this.setTextSetting(this.textSettings); 
-            }
-        
-        }
-
         private void OnActionChange(object sender, EventArgs e)
         {
-
+            this.bonus.Bonus = this.piker_.SelectedItem.ToString();
         }
 
-        async private void OnSave(object sender, EventArgs e)
-        {                   
-                
+        private void OnSave(object sender, EventArgs e)
+        {      
+            string str = "";
+            var collection = collectionView.ItemsSource;
+            foreach (var o in collection)
+            {
+                this.value.settTemp = (TableTempSetting)o;
+                if (this.value.settTemp.check==true) 
+                { 
+                    str=str+this.value.settTemp.text;
+                }
+            }
+            this.value.sett.ID = 0;
+            this.value.sett.text = str;
+            this.value.sett.bonus = this.piker_.SelectedItem.ToString();
+           
         }
 
         //-->Funzioni

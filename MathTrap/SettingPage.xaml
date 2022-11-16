@@ -24,9 +24,9 @@
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
                                 <Label Text="Operando" TextColor="Black"  Grid.Column="0" Grid.Row="1" FontSize="20" HorizontalTextAlignment="End"></Label>
-                                <Label Text="{Binding text}" TextColor="Black" Grid.Column="1" Grid.Row="1" FontSize="20" x:Name="operando_"></Label>
+                                <Label Text="{Binding text}" TextColor="Black" Grid.Column="1" Grid.Row="1" FontSize="20" ></Label>
                                 <Label Text="Seleziona Operando: " TextColor="Black"  Grid.Column="0" Grid.Row="2" FontSize="20" HorizontalTextAlignment="End"></Label>
-                                <CheckBox IsChecked="{Binding check}" Grid.Column="1" Grid.Row="2" VerticalOptions="Start"  CheckedChanged="OnCheckBoxCheckedChanged_One"></CheckBox>
+                                <CheckBox IsChecked="{Binding check}" Grid.Column="1" Grid.Row="2" VerticalOptions="Start"></CheckBox>
                             </Grid>
                                
                         </StackLayout>
