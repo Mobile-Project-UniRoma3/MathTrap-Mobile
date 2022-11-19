@@ -21,23 +21,22 @@ namespace MathTrap
         private long index = 10;
         private long level = 1;
         private string operator_;
-
-        private string[] operators;
-
         private int id_score;
         private long right_counter;
         private long fail_counter;
         private long life;
 
         private ClassSQL value;
+        private Setting set;
 
-
-        public MathPage(int index)
+        public MathPage(int index, Setting set)
         {
             InitializeComponent();
-
+            try { 
             //assegno la connessione aperta
             value = App.connection;
+            //assegno riferimento alla classse setting
+            this.set = set;
 
             this.label1.Text = "0";
             this.label2.Text = "0";
@@ -64,7 +63,7 @@ namespace MathTrap
                 }
             }
 
-            this.composedScore(this.value.getScore);
+            _ = this.composedScore(this.value.getScore);
 
             //aggirno score
             this.label10.Text = Convert.ToString(this.getRight());
@@ -73,6 +72,9 @@ namespace MathTrap
 
             //gioca
             calculetor(this.index, this.level);
+
+            } catch (System.NullReferenceException e) { _ = Task.CompletedTask; }
+
         }
 
         private void onOne(object sender, EventArgs e)
@@ -186,7 +188,7 @@ namespace MathTrap
         async private void onSettings(object sender, EventArgs e)
         {
             ExitUpDate();
-            await Navigation.PushModalAsync(new SettingPage(this.value), false);
+            await Navigation.PushModalAsync(new SettingPage(this.value,this.set), false);
         }
 
         private void onPoint(object sender, EventArgs e)
@@ -272,11 +274,6 @@ namespace MathTrap
             this.life = v;
         }
 
-       
-        public void setOperator_(string[] s) {
-            this.operators = s;
-        }
-
         //--> FUNZIONI      
         private void tastiera(string numero) {
 
@@ -307,17 +304,17 @@ namespace MathTrap
                          break;
             }          
         }
-        private void composedScore(TableScore score)
+        async public Task composedScore(TableScore score)
         {
             int i = 0;
-            int j = 0;
             long r = 0;
             long f = 0;
             long l = 5;
 
+            try { 
             //default le quattro operazioni
-            this.operators = this.AggiornaSettings(this.value.getOperandi()); 
-           
+            await this.set.AggiornaSettings() ;
+                       
             if (score.ID > 0)
             {
                 i = score.ID;
@@ -333,11 +330,14 @@ namespace MathTrap
                 //default tutte le operazioni
                 score.date = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
                 this.value.score.done = false;
+                this.value.score.name = "new";
             }
             this.setId(i);
             this.setRight(r);
             this.setFail(f);
             this.setLife(l);
+            
+            } catch (System.NullReferenceException e) { _ = Task.CompletedTask; }
         }
 
         private void calculetor(long index, long level) {
@@ -348,16 +348,16 @@ namespace MathTrap
 
             this.label6.Text = "";
             this.label3.Text = "0";
-          
 
+            
             if (level % 10 == 0)
             {
                 //livello bonus 
-                str = operators[r.Next(((operators.Length) - 1), operators.Length)];                         
+                str = this.set.returnOper()[r.Next(((this.set.returnOper().Length) - 1), this.set.returnOper().Length)];                         
             }
             else
             { 
-                str = operators[r.Next(0, ((operators.Length) - 1))];  
+                str = this.set.returnOper()[r.Next(0, ((this.set.returnOper().Length) - 1))];  
             }
 
             operator_int_A = r.Next(Convert.ToInt32(index), (Convert.ToInt32(index) * 10));
@@ -426,42 +426,6 @@ namespace MathTrap
             this.value.score.life = this.getLife();
         }
 
-        private string[] AggiornaSettings(string[,] operatori)
-        {
 
-            int count = 0;
-            string bonus = "x";//-->operatore bonus di default
-
-            for (int i = 0; i < (operatori.Length / this.value.CONST_OPERATOR); i++)
-            {
-                if (operatori[i, (this.value.CONST_OPERATOR - 2)] == "1")
-                {
-                    count++;//-->aggiungo un posto
-                }
-                if (operatori[i, (this.value.CONST_OPERATOR - 1)] == "1") //se bonus -->
-                { 
-                    if (operatori[i, (this.value.CONST_OPERATOR - 2)] == "1")//se operatore -->
-                    {
-                        count++;//-->aggiungo un posto
-                    }               
-                    bonus = operatori[i, 0];
-                }
-            }
-
-            string[] oper = new string[count];
-            count = 0;
-
-            for (int i = 0; i < (operatori.Length / this.value.CONST_OPERATOR); i++)
-            {
-                if (operatori[i, (this.value.CONST_OPERATOR - 2)] == "1")
-                {
-                    oper[count] = operatori[i, 0];
-                    count++;
-                }
-            }
-            oper[count] = bonus;
-
-            return oper;
-        }
     }
 }

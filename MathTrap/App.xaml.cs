@@ -23,6 +23,7 @@ namespace MathTrap
             }
         }
 
+
         public App()
         {
             InitializeComponent();

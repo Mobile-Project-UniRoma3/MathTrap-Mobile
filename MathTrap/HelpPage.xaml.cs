@@ -13,15 +13,14 @@ namespace MathTrap
     public partial class HelpPage : ContentPage
     {
         private ClassSQL value;
-
+        
         public HelpPage()
         {
-            
             InitializeComponent();
 
             //assegno la connessione aperta
-            value = App.connection;
-
+            this.value = App.connection;
+      
             this.label1.Text = "MATHTRAP";
             this.textcell1.Text = this.value.getLang.text;
         }

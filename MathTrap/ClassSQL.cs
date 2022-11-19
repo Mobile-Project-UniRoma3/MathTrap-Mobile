@@ -66,18 +66,17 @@ namespace MathTrap
      * utilizza l'inizializzazione lazy asincrona. 
      * Il delegato factory passato al costruttore può essere sincrono o asincrono.
      */
-    
-   
-    public class ClassSQL 
+
+
+    public class ClassSQL
     {
         static SQLiteAsyncConnection Connection;
-        
+
         private const string DatabaseFilename = "MathTrap.db3";
         private const string SaveOper = "SaveOperator.txt";
         private const string SaveLang = "SaveLanguage.txt";
         public int CONST_OPERATOR = 3;
         private File save;
-
         public TableScore score;
         public TableOperator oper;
         public TableLanguage lang;
@@ -85,7 +84,7 @@ namespace MathTrap
         public TableTempSetting settTemp;
 
         private string[,] operator_;
-        
+
 
         public ClassSQL()
         {
@@ -94,27 +93,24 @@ namespace MathTrap
             this.lang = new TableLanguage();
             this.sett = new TableSetting();
             this.settTemp = new TableTempSetting();
-            this.save= new File();
-            
+            this.save = new File();
+
             Connection = new SQLiteAsyncConnection(DatabasePath);
 
-            //DeleteScoreAllAsync();
-            //DeleteOperAllAsync();
-            //DeleteLangAllAsync();
-            //DeleteSettAllAsync();
-            //DeleteTempSettAllAsync();
+            //DeleteAll();
         }
 
         private string DatabasePath
         {
             get
-            {               
+            {
                 return this.getSave().PathToFile(this.getSave().PathToDirApplicationData(), DatabaseFilename);
             }
         }
 
         // --> GET & SET
-        private File getSave() {
+        private File getSave()
+        {
             return this.save;
         }
 
@@ -128,14 +124,23 @@ namespace MathTrap
             get { return this.lang; }
         }
 
-        public string[,] getOperandi() 
-        {              
+        public string[,] getOperandi()
+        {
             return this.operator_;
         }
 
         public void setOperandi(string[,] s)
         {
             this.operator_ = s;
+        }
+
+        public void DeleteAll()
+        {
+            DeleteScoreAllAsync();
+            DeleteOperAllAsync();
+            DeleteLangAllAsync();
+            DeleteSettAllAsync();
+            DeleteTempSettAllAsync();
         }
 
         /*
@@ -147,7 +152,8 @@ namespace MathTrap
         */
 
         //--> SQL Punteggio
-        public void CreateScore() {
+        public void CreateScore()
+        {
             Connection.CreateTableAsync<TableScore>().Wait();
         }
 
@@ -194,54 +200,26 @@ namespace MathTrap
         }
 
         //-->SQL Operandi 
-        async public void CreateOperator() 
+        async public void CreateOperator()
         {
             Connection.CreateTableAsync<TableOperator>().Wait();
             var operazioni = await GetAllOperAsync();
-            int i= operazioni.Count;
-            string flag_oper = "1";
-            string flag_bonus = "0";
 
-            if ((operazioni.Count) ==0)
+            if ((operazioni.Count) == 0)
             {
-                composed(1, SaveOper);              
+                composed(1, SaveOper);
             }
-           
-            operazioni =await GetAllOperAsync();
-            i = operazioni.Count;
 
-            this.operator_= new string[i,3];
-            i = 0;
-            foreach (var o in operazioni)
-            {
-                //i primi 4 operandi sono di default true
-                this.operator_[i, 0] = o.text;
-                if (i > 3) {
-                    flag_oper = "0";
-                }
-                this.operator_[i, 1] = flag_oper;
-
-                if (o.text == "x")
-                {
-                    this.operator_[i, 2] = "1";//-->operatore bonus di default 
-                }
-                else 
-                { 
-                    this.operator_[i, 2] = flag_bonus;
-                }
-                
-                i++;
-            }          
         }
 
         async public Task<List<TableOperator>> GetSqlAllOperAsync()
         {
-            return await Connection.QueryAsync<TableOperator>("SELECT * FROM [TableOperator] ");         
+            return await Connection.QueryAsync<TableOperator>("SELECT * FROM [TableOperator] ");
         }
-
+      
         async public Task<List<TableOperator>> GetAllOperAsync()
         {
-            return await Connection.Table<TableOperator>().ToListAsync();
+            return await Connection.Table<TableOperator>().ToListAsync();  
         }
 
         public void DeleteOperAllAsync()
@@ -249,9 +227,9 @@ namespace MathTrap
             Connection.DeleteAllAsync<TableOperator>().Wait();
         }
 
-        async public Task<TableOperator> GetOperLoad(string text)
+        public Task<TableOperator> GetOperLoad(string text)
         {
-            return await Connection.Table<TableOperator>().Where(i => i.text == text).FirstOrDefaultAsync();
+            return Connection.Table<TableOperator>().Where(i => i.text == text).FirstOrDefaultAsync();
         }
 
         public void SaveOperAsync(TableOperator item)
@@ -272,14 +250,13 @@ namespace MathTrap
             Connection.CreateTableAsync<TableLanguage>().Wait();
 
             var language = await GetAllLanguageAsync();
-            int i= language.Count;
-            
+
             if (language.Count == 0)
             {
-                composed(2, SaveLang);   
+                composed(2, SaveLang);
             }
             string l = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-            this.lang = await GetLenguageLoad(l);           
+            this.lang = await GetLenguageLoad(l);
         }
 
         async public Task<List<TableLanguage>> GetSqlAllLanguageAsync()
@@ -288,8 +265,8 @@ namespace MathTrap
         }
 
         async public Task<List<TableLanguage>> GetAllLanguageAsync()
-        {
-            return await Connection.Table<TableLanguage>().ToListAsync(); 
+        {  
+            return await Connection.Table<TableLanguage>().ToListAsync();             
         }
 
         public void DeleteLangAllAsync()
@@ -334,9 +311,14 @@ namespace MathTrap
             Connection.DeleteAsync(score).Wait();
         }
 
-        async public Task<TableSetting> GetSettingLoad(int id)
+        public async Task<TableSetting> GetSettingLoad(int id)
         {
-            return await Connection.Table<TableSetting>().Where(i => i.ID == id).FirstOrDefaultAsync();
+            return await Connection.Table<TableSetting>().Where(i => i.ID == id).FirstOrDefaultAsync(); 
+        }
+
+        async public Task<TableSetting> GetSqlSettingIDAsync()
+        {
+            return await Connection.Table<TableSetting>().OrderByDescending(i => i.ID).FirstAsync();
         }
 
         public void SaveSettAsync(TableSetting item)
@@ -380,7 +362,7 @@ namespace MathTrap
         }
 
         //-->Funzioni di composizione
-        public void composed(int index, string file) 
+        public void composed(int index, string file)
         {
             //Carico il txt
             string str;
@@ -408,21 +390,30 @@ namespace MathTrap
             insertIntoDateComposed(index, r);
         }
 
-        public void insertIntoDateComposed(int index, string str) {
-            switch (index) {
-                case 1 : this.oper.ID = 0; this.oper.text = str;
-                         Connection.InsertAsync(this.oper).Wait();
-                         break;
+        public void insertIntoDateComposed(int index, string str)
+        {
+            switch (index)
+            {
+                case 1:
+                    this.oper.ID = 0; this.oper.text = str;
+                    Connection.InsertAsync(this.oper).Wait();
+                    break;
 
-                case 2: this.lang.ID = 0; this.lang.text = str.Substring(2, (str.Length -2)); this.lang.state= str.Substring(0, 2);
-                        Connection.InsertAsync(this.lang).Wait(); 
-                        break;
-                
-                default:break;
+                case 2:
+                    this.lang.ID = 0; this.lang.text = str.Substring(2, (str.Length - 2)); this.lang.state = str.Substring(0, 2);
+                    Connection.InsertAsync(this.lang).Wait();
+                    break;
+
+                default: break;
             }
 
         }
 
-    }
+        public async Task getTaskDelayAsync(int index)
+        {
+            await Task.Delay(index);
+        }
+
+    }    
 
 }
