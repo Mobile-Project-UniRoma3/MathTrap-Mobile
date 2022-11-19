@@ -80,6 +80,7 @@ namespace MathTrap
             this.value.score.IdSetting = this.value.sett.ID;
             //salva score
             this.value.SaveScoreAsync(this.value.score);
+            
         }
     }
 }

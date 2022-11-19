@@ -151,7 +151,7 @@ namespace MathTrap
                 //bonus
                 foreach (var o in l)
                 {
-                    this.operators[count] = l.ToString();
+                    this.operators[count] = o;
                     count++;
                 }
                 this.getBonus().Bonus = setting_.bonus;
