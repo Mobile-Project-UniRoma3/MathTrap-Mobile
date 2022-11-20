@@ -97,7 +97,7 @@ namespace MathTrap
 
             Connection = new SQLiteAsyncConnection(DatabasePath);
 
-            //DeleteAll();
+            DeleteAll();
         }
 
         private string DatabasePath

@@ -33,47 +33,40 @@ namespace MathTrap
         {
             InitializeComponent();
             try { 
-            //assegno la connessione aperta
-            value = App.connection;
-            //assegno riferimento alla classse setting
-            this.set = set;
+                //assegno la connessione aperta
+                value = App.connection;
+                //assegno riferimento alla classse setting
+                this.set = set;
 
-            this.label1.Text = "0";
-            this.label2.Text = "0";
-            this.label3.Text = "0";
-            this.label4.Text = "";
-            this.label5.Text = "";
-            this.label6.Text = "";
+                this.label1.Text = "0";
+                this.label2.Text = "0";
+                this.label3.Text = "0";
+                this.label4.Text = "";
+                this.label5.Text = "";
+                this.label6.Text = "";
 
-            /*Carico l'ultima partita aperta
-              se: se ritorna la tabella vuota -->primo record di gioco
-              altrimenti: carico punteggio salvato nel database
-             */
-            if ((this.value.score = this.value.GetScoreLoad().Result) == null) {
-                this.value.score = new TableScore();
-                this.value.score.ID = 0;
-            } else {
-                if (index == 0)
-                {
-                    //se nuovo record -->chiudo partita vecchia inponendo done = true e aggiorno
-                    this.value.score.done = true;
-                    this.value.SaveScoreAsync(this.value.score);
-                    //aggiornando l'indice = 0 composedScore riporta i valori a 0
+                /*Carico l'ultima partita aperta
+                se: se ritorna la tabella vuota -->primo record di gioco
+                altrimenti: carico punteggio salvato nel database
+                */
+                if ((this.value.score = this.value.GetScoreLoad().Result) == null) {
+                    this.value.score = new TableScore();
                     this.value.score.ID = 0;
+                } else {
+                    if (index == 0)
+                    {
+                        //se nuovo record -->chiudo partita vecchia inponendo done = true e aggiorno
+                        this.value.score.done = true;
+                        this.value.SaveScoreAsync(this.value.score);
+                        //aggiornando l'indice = 0 composedScore riporta i valori a 0
+                        this.value.score.ID = 0;
+                    }
                 }
-            }
 
-            _ = this.composedScore(this.value.getScore);
+                _ = this.composedScore(this.value.getScore);
 
-            //aggirno score
-            this.label10.Text = Convert.ToString(this.getRight());
-            this.label11.Text = Convert.ToString(this.getFail());
-            this.label12.Text = Convert.ToString(this.getLife());
-
-            //gioca
-            calculetor(this.index, this.level);
-
-            } catch (System.NullReferenceException e) { _ = Task.CompletedTask; }
+            } catch (System.NullReferenceException e)//<-- chiudi il task comunque
+            { _ = Task.CompletedTask; }
 
         }
 
@@ -128,7 +121,6 @@ namespace MathTrap
 
         private void onInvio(object sender, EventArgs e)
         {
-
             if (this.label3.Text.Equals(this.operator_)) {
                 this.label6.Text = "ok";
                 this.level += 1;
@@ -163,7 +155,6 @@ namespace MathTrap
             }
 
             //aggiorno le etichette
-
             this.label10.Text = Convert.ToString(this.getRight());
             this.label11.Text = Convert.ToString(this.getFail());
             this.label12.Text = Convert.ToString(this.getLife());
@@ -312,32 +303,44 @@ namespace MathTrap
             long l = 5;
 
             try { 
-            //default le quattro operazioni
-            await this.set.AggiornaSettings() ;
+                //default le quattro operazioni
+                await this.set.AggiornaSettings() ;
                        
-            if (score.ID > 0)
-            {
-                i = score.ID;
-                r = score.right;
-                f = score.fail;
-                l = score.life;                
-            }
-            else {//qualora resume risulta la prima partita
-                score.right = r;
-                score.fail = f ;
-                score.life = l;
+                if (score.ID > 0)
+                {
+                    i = score.ID;
+                    r = score.right;
+                    f = score.fail;
+                    l = score.life;                
+                }
+                else 
+                {//qualora resume risulta la prima partita
+                    score.right = r;
+                    score.fail = f ;
+                    score.life = l;
 
-                //default tutte le operazioni
-                score.date = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
-                this.value.score.done = false;
-                this.value.score.name = "new";
-            }
-            this.setId(i);
-            this.setRight(r);
-            this.setFail(f);
-            this.setLife(l);
+                    //default tutte le operazioni
+                    score.date = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+                    this.value.score.done = false;
+                    this.value.score.name = "new";
+                    this.value.score.IdSetting = 0;
+                }
+
+                this.setId(i);
+                this.setRight(r);
+                this.setFail(f);
+                this.setLife(l);
             
-            } catch (System.NullReferenceException e) { _ = Task.CompletedTask; }
+                //aggirno score
+                this.label10.Text = Convert.ToString(this.getRight());
+                this.label11.Text = Convert.ToString(this.getFail());
+                this.label12.Text = Convert.ToString(this.getLife());
+
+                //gioca
+                calculetor(this.index, this.level);
+
+            } catch (System.NullReferenceException e)//<-- chiudi il task comunque
+            { _ = Task.CompletedTask; }
         }
 
         private void calculetor(long index, long level) {
@@ -416,7 +419,6 @@ namespace MathTrap
             this.label2.Text = Convert.ToString(operator_int_B);
             this.label4.Text = str;
             this.label5.Text = "=";
-
         }
 
         private void ExitUpDate() {
@@ -425,7 +427,6 @@ namespace MathTrap
             this.value.score.fail = this.getFail();
             this.value.score.life = this.getLife();
         }
-
 
     }
 }

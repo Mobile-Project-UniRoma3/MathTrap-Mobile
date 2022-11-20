@@ -65,6 +65,7 @@ namespace MathTrap
             this.value.sett.ID = this.value.score.IdSetting;
             this.value.sett.text = str;
             this.value.sett.bonus = this.piker_.SelectedItem.ToString();
+
             //salva sett
             this.value.SaveSettAsync(this.value.sett);
 
@@ -76,8 +77,10 @@ namespace MathTrap
             {
                 this.value.sett = await this.value.GetSettingLoad(this.value.score.IdSetting);
             }
+
             //assegna
             this.value.score.IdSetting = this.value.sett.ID;
+
             //salva score
             this.value.SaveScoreAsync(this.value.score);
             

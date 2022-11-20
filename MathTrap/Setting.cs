@@ -137,65 +137,70 @@ namespace MathTrap
         async public Task AggiornaSettings()
         {
             try { 
-            var l = new List<string>();
+                var l = new List<string>();
 
-            var setting_ = await this.value.GetSettingLoad(this.value.score.IdSetting);
+                var setting_ = await this.value.GetSettingLoad(this.value.score.IdSetting);
 
-            int count = 0;
+                int count = 0;
 
-            //Esiste un recordo di setting per la partita
-            if (setting_ != null)
-            {
-                l = await this.getListSetting(setting_.text);
-                this.operators = new string[(l.Count)];
-                //bonus
-                foreach (var o in l)
+                //Esiste un recordo di setting per la partita
+                if (setting_ != null)
                 {
-                    this.operators[count] = o;
-                    count++;
+                    l = await this.getListSetting(setting_.text);
+                    this.operators = new string[(l.Count+1)];
+                    //bonus
+                    foreach (var o in l)
+                    {
+                        this.operators[count] = o;
+                        count++;
+                    }
+                    this.getBonus().Bonus = setting_.bonus;
+                    this.operators[count] = this.getBonus().Bonus;
                 }
-                this.getBonus().Bonus = setting_.bonus;
-            }
-            else
-            {
-                await this.AggOper();
-            }
-            } catch (System.NullReferenceException e) { _ = Task.CompletedTask; }
+                else
+                {
+                    await this.AggOper();
+                }
+
+            } catch (System.NullReferenceException e) //<-- chiudi il task comunque
+            { _ = Task.CompletedTask; }
         }
 
         async public Task AggOper()
         {
             try { 
-            var list = await this.getListOperator();
+                var list = await this.getListOperator();
             
-            if (list != null) { 
-                int i = list.Count(); 
-            }
-
-            var lst = new List<string>();
-            int count = 0;
-
-            foreach (var o in list)
-            {
-                //i primi 4 operandi sono di default
-                if (count <= 3)
-                {
-                    lst.Add(o.ToString());
+                if (list != null) { 
+                    int i = list.Count(); 
                 }
-                count++;
-            }
-            count = 0;
-            this.operators = new string[(lst.Count + 1)];
-            this.getBonus().Bonus = this.ConstBonus();
-            foreach (var b in lst)
-            {
-                this.operators[count] = (b.ToString());
-                count++;
-            }
 
-            //-->operatore bonus di default
-            this.operators[count] = (this.ConstBonus());
-            } catch (System.NullReferenceException e) { _ = Task.CompletedTask; }
+                var lst = new List<string>();
+                int count = 0;
+
+                foreach (var o in list)
+                {
+                    //i primi 4 operandi sono di default
+                    if (count <= 3)
+                    {
+                        lst.Add(o.ToString());
+                    }
+                    count++;
+                }
+                count = 0;
+                this.operators = new string[(lst.Count + 1)];
+                this.getBonus().Bonus = this.ConstBonus();
+                foreach (var b in lst)
+                {
+                    this.operators[count] = (b.ToString());
+                    count++;
+                }
+
+                //-->operatore bonus di default
+                this.operators[count] = (this.ConstBonus());
+
+            } catch (System.NullReferenceException e) //<-- chiudi il task comunque
+            { _ = Task.CompletedTask; }
         }
         public string[] returnOper() { return this.operators; }
     }
