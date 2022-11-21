@@ -36,6 +36,11 @@
     <Compile Update="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="MathTrapResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MathTrapResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="SettingPage.xaml.cs">
       <DependentUpon>SettingPage.xaml</DependentUpon>
     </Compile>
@@ -47,6 +52,10 @@
     </EmbeddedResource>
     <EmbeddedResource Update="MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MathTrapResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MathTrapResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="SettingPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

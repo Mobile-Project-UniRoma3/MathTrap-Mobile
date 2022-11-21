@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:res="clr-namespace:MathTrap"
              mc:Ignorable="d"
              x:Class="MathTrap.SavePage">
     <ContentPage.Content>
@@ -15,7 +16,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <Label Text="Vuoi salvare il punteggio?" VerticalOptions="Center" HorizontalOptions="Center" 
+                <Label Text="{x:Static res:MathTrapResources.label1}" VerticalOptions="Center" HorizontalOptions="Center" 
                        TextColor="Black" Grid.Row="1" Grid.Column="0" FontSize="22" x:Name="label1"></Label>
             </Grid>
             <Grid  RowSpacing="4" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
@@ -26,8 +27,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <Button Grid.Row="1" Grid.Column="0" Text="Yes" BackgroundColor="AliceBlue" Clicked="onYes" TextColor="Black"></Button>
-                <Button Grid.Row="1" Grid.Column="1" Text="No" BackgroundColor="AliceBlue" Clicked="onNo" TextColor="Black"></Button>
+                <Button Grid.Row="1" Grid.Column="0" Text="{x:Static res:MathTrapResources.save_Button1}" BackgroundColor="AliceBlue" Clicked="onYes" TextColor="Black" x:Name="save_Button1"></Button>
+                <Button Grid.Row="1" Grid.Column="1" Text="{x:Static res:MathTrapResources.save_Button2}" BackgroundColor="AliceBlue" Clicked="onNo" TextColor="Black"  x:Name="save_Button2"></Button>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

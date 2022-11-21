@@ -3,19 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:res="clr-namespace:MathTrap"
              mc:Ignorable="d"
              x:Class="MathTrap.HelpPage">
     <ContentPage.Content>
         <StackLayout BackgroundColor="#FFB200">
             <Grid>
-                <Label Text="Welcome MathTrap!!" x:Name="label1" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Black" FontSize="28" ></Label>
+                <Label Text="" x:Name="label31" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Black" FontSize="28" ></Label>
             </Grid>
             <Grid  VerticalOptions="Center" HorizontalOptions="Center" >
                 <Label x:Name="textcell1"   VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"  TextColor="Black" FontSize="16" >
                 </Label>
             </Grid>
             <Grid>
-                <Button Text="Main" Clicked="onMain" TextColor="Black"></Button>
+                <Button Text="{x:Static res:MathTrapResources.help_Button1}" Clicked="onMain" TextColor="Black" x:Name="help_Button1" ></Button>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

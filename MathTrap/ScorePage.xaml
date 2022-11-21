@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:res="clr-namespace:MathTrap"
              mc:Ignorable="d"
              x:Class="MathTrap.ScorePage">
     <StackLayout VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="#FFB200">
@@ -15,7 +16,7 @@
                <RowDefinition />
             </Grid.RowDefinitions>
             <StackLayout>
-                <Label Text="HIGH SCORE" HorizontalTextAlignment="Center"  Grid.Column="0" Grid.Row="1"  TextColor="Black"></Label>
+                <Label Text="{x:Static res:MathTrapResources.label32}" HorizontalTextAlignment="Center"  Grid.Column="0" Grid.Row="1"  TextColor="Black"  x:Name="label32"></Label>
             </StackLayout>
         </Grid>
 
@@ -32,9 +33,9 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Label Grid.Column="0" Grid.Row="1"  HorizontalTextAlignment="End" Text="   " TextColor="Black"></Label>
-            <Label Grid.Column="1" Grid.Row="1"  HorizontalTextAlignment="End" Text="Date" TextColor="Black"></Label>
-            <Label Grid.Column="2" Grid.Row="1"  HorizontalTextAlignment="End" Text="Right" TextColor="Black"></Label>
-            <Label Grid.Column="3" Grid.Row="1"  HorizontalTextAlignment="End" Text="Fail" TextColor="Black"></Label>
+            <Label Grid.Column="1" Grid.Row="1"  HorizontalTextAlignment="End" Text="{x:Static res:MathTrapResources.label33}" TextColor="Black"  x:Name="label33"></Label>
+            <Label Grid.Column="2" Grid.Row="1"  HorizontalTextAlignment="End" Text="{x:Static res:MathTrapResources.label34}" TextColor="Black"  x:Name="label34"></Label>
+            <Label Grid.Column="3" Grid.Row="1"  HorizontalTextAlignment="End" Text="{x:Static res:MathTrapResources.label35}" TextColor="Black"  x:Name="label35"></Label>
             <Label Grid.Column="4" Grid.Row="1"  HorizontalTextAlignment="End" Text="   " TextColor="Black"></Label>
         </Grid>
         
@@ -78,8 +79,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Button Text="Main" Grid.Column="0" Grid.Row="1" Clicked="onMain" TextColor="Black"></Button>
-            <Button Text="Clear High Score" Grid.Column="1" Grid.Row="1" Clicked="onClear" TextColor="Black"></Button>
+            <Button Text="{x:Static res:MathTrapResources.score_Button1}" Grid.Column="0" Grid.Row="1" Clicked="onMain" TextColor="Black" x:Name="score_Button1"></Button>
+            <Button Text="{x:Static res:MathTrapResources.score_Button2}" Grid.Column="1" Grid.Row="1" Clicked="onClear" TextColor="Black" x:Name="score_Button2"></Button>
         </Grid>
             
             

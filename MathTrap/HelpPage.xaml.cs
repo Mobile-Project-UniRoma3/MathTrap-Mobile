@@ -21,7 +21,7 @@ namespace MathTrap
             //assegno la connessione aperta
             this.value = App.connection;
       
-            this.label1.Text = "MATHTRAP";
+            this.label31.Text = "MATHTRAP";
             this.textcell1.Text = this.value.getLang.text;
         }
 
