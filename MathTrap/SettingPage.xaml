@@ -34,7 +34,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -44,8 +43,8 @@
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <Label Text="{x:Static res:MathTrapResources.label39}" TextColor="Black"  Grid.Column="0" Grid.Row="1"  x:Name="label39"></Label>
-                <Picker x:Name="piker_" Grid.Column="1" Grid.Row="1" SelectedIndexChanged="OnActionChange" TextColor="Black" ></Picker>
+                <Label Text="{x:Static res:MathTrapResources.label39}" TextColor="Black"  Grid.Column="0" Grid.Row="1"  x:Name="label39"  VerticalTextAlignment="Center"></Label>
+                <Picker x:Name="piker_" Grid.Column="1" Grid.Row="1" SelectedIndexChanged="OnActionChange" TextColor="Black" VerticalTextAlignment="End" FontSize="Small"></Picker>
                 <Button Text="{x:Static res:MathTrapResources.setting_Button1}" Clicked="OnReturn"  Grid.Column="0" Grid.Row="2" x:Name="setting_Button1"></Button>
                 <Button Text="{x:Static res:MathTrapResources.setting_Button2}" Clicked="OnSave"  Grid.Column="1" Grid.Row="2"  x:Name="setting_Button2"></Button>
             </Grid>

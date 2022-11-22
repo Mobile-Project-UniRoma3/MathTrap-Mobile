@@ -12,8 +12,7 @@
                 <Label Text="" x:Name="label31" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Black" FontSize="28" ></Label>
             </Grid>
             <Grid  VerticalOptions="Center" HorizontalOptions="Center" >
-                <Label x:Name="textcell1"   VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"  TextColor="Black" FontSize="16" >
-                </Label>
+                <Label x:Name="textcell1" VerticalOptions="Center" HorizontalOptions="Center"  TextColor="Black" FontSize="16" ></Label>
             </Grid>
             <Grid>
                 <Button Text="{x:Static res:MathTrapResources.help_Button1}" Clicked="onMain" TextColor="Black" x:Name="help_Button1" ></Button>
