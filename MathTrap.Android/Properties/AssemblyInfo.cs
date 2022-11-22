@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Android.App;
+using System.Resources;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -32,3 +33,11 @@ using Android.App;
 // Add some common permissions, these can be removed if not needed
 [assembly: UsesPermission(Android.Manifest.Permission.Internet)]
 [assembly: UsesPermission(Android.Manifest.Permission.WriteExternalStorage)]
+
+// The resources from the neutral language .resx file are stored directly
+// within the library assembly. For that reason, changing en-US to a different
+// language in this line will not by itself change the language shown in the
+// app. See the discussion of UltimateResourceFallbackLocation in the
+// documentation for additional information:
+// https://docs.microsoft.com/dotnet/api/system.resources.neutralresourceslanguageattribute
+[assembly: NeutralResourcesLanguage("en-US")]

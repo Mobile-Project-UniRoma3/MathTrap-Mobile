@@ -286,7 +286,7 @@ namespace MathTrap {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a CLEAR SCORE.
+        ///   Cerca una stringa localizzata simile a CLEAR.
         /// </summary>
         internal static string score_Button2 {
             get {

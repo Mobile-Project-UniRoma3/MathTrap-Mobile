@@ -118,87 +118,87 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="help_Button1" xml:space="preserve">
-    <value>MAIN</value>
+    <value>HAUPT</value>
   </data>
   <data name="label1" xml:space="preserve">
-    <value>Do you want to save score?</value>
+    <value>Möchten Sie Punkte speichern?</value>
   </data>
   <data name="label32" xml:space="preserve">
-    <value>High Score</value>
+    <value>Ergebinisse</value>
   </data>
   <data name="label33" xml:space="preserve">
-    <value>Date</value>
+    <value>Datum</value>
   </data>
   <data name="label34" xml:space="preserve">
-    <value>Right</value>
+    <value>Recht</value>
   </data>
   <data name="label35" xml:space="preserve">
-    <value>Fail</value>
+    <value>Falsch</value>
   </data>
   <data name="label36" xml:space="preserve">
-    <value>Setting Game</value>
+    <value>Parameter</value>
   </data>
   <data name="label37" xml:space="preserve">
     <value>Operator</value>
   </data>
   <data name="label38" xml:space="preserve">
-    <value>Select Operator: </value>
+    <value>Operator auswählen:</value>
   </data>
   <data name="label39" xml:space="preserve">
-    <value>Select Operator Bonus: </value>
+    <value>Operator-Bonus auswählen:</value>
   </data>
   <data name="label7" xml:space="preserve">
-    <value>Right</value>
+    <value>Recht</value>
   </data>
   <data name="label8" xml:space="preserve">
-    <value>Fail</value>
+    <value>Falsch</value>
   </data>
   <data name="label9" xml:space="preserve">
-    <value>Life</value>
+    <value>Leben</value>
   </data>
   <data name="main_Button1" xml:space="preserve">
-    <value>NEW</value>
+    <value>NEU</value>
   </data>
   <data name="main_Button2" xml:space="preserve">
-    <value>RESUME</value>
+    <value>FORTSETZEN</value>
   </data>
   <data name="main_Button3" xml:space="preserve">
-    <value>HELP</value>
+    <value>HILFE</value>
   </data>
   <data name="main_Button4" xml:space="preserve">
-    <value>SCORES</value>
+    <value>ERGEBNISSE</value>
   </data>
   <data name="math_Button1" xml:space="preserve">
     <value>INVIO</value>
   </data>
   <data name="math_Button2" xml:space="preserve">
-    <value>CANCEL</value>
+    <value>ABBRECHEN</value>
   </data>
   <data name="math_Button3" xml:space="preserve">
-    <value>EXIT</value>
+    <value>HINAUSGEHEN</value>
   </data>
   <data name="math_Button4" xml:space="preserve">
-    <value>SKIP</value>
+    <value>SPRINGEN</value>
   </data>
   <data name="math_Button5" xml:space="preserve">
-    <value>SETTINGS</value>
+    <value>PARAMETER</value>
   </data>
   <data name="save_Button1" xml:space="preserve">
-    <value>Yes</value>
+    <value>Ja</value>
   </data>
   <data name="save_Button2" xml:space="preserve">
-    <value>No</value>
+    <value>Nein</value>
   </data>
   <data name="score_Button1" xml:space="preserve">
-    <value>MAIN</value>
+    <value>HAUPT</value>
   </data>
   <data name="score_Button2" xml:space="preserve">
-    <value>CLEAR</value>
+    <value>AUFRÄUMEN</value>
   </data>
   <data name="setting_Button1" xml:space="preserve">
-    <value>RETURN</value>
+    <value>RÜCKKEHR</value>
   </data>
   <data name="setting_Button2" xml:space="preserve">
-    <value>SAVE</value>
+    <value>SPAREN</value>
   </data>
 </root>

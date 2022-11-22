@@ -193,7 +193,7 @@
     <value>MAIN</value>
   </data>
   <data name="score_Button2" xml:space="preserve">
-    <value>CLEAR SCORE</value>
+    <value>CLEAR</value>
   </data>
   <data name="setting_Button1" xml:space="preserve">
     <value>RETURN</value>

@@ -118,87 +118,87 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="help_Button1" xml:space="preserve">
-    <value>MAIN</value>
+    <value>菜單</value>
   </data>
   <data name="label1" xml:space="preserve">
-    <value>Do you want to save score?</value>
+    <value>你想保存分數嗎？</value>
   </data>
   <data name="label32" xml:space="preserve">
-    <value>High Score</value>
+    <value>分類</value>
   </data>
   <data name="label33" xml:space="preserve">
-    <value>Date</value>
+    <value>日期</value>
   </data>
   <data name="label34" xml:space="preserve">
-    <value>Right</value>
+    <value>正確的</value>
   </data>
   <data name="label35" xml:space="preserve">
-    <value>Fail</value>
+    <value>你錯了</value>
   </data>
   <data name="label36" xml:space="preserve">
-    <value>Setting Game</value>
+    <value>設置</value>
   </data>
   <data name="label37" xml:space="preserve">
-    <value>Operator</value>
+    <value>操作員</value>
   </data>
   <data name="label38" xml:space="preserve">
-    <value>Select Operator: </value>
+    <value>選擇運營商：</value>
   </data>
   <data name="label39" xml:space="preserve">
-    <value>Select Operator Bonus: </value>
+    <value>選擇獎金：</value>
   </data>
   <data name="label7" xml:space="preserve">
-    <value>Right</value>
+    <value>正確的</value>
   </data>
   <data name="label8" xml:space="preserve">
-    <value>Fail</value>
+    <value>你錯了</value>
   </data>
   <data name="label9" xml:space="preserve">
-    <value>Life</value>
+    <value>生活</value>
   </data>
   <data name="main_Button1" xml:space="preserve">
-    <value>NEW</value>
+    <value>新的</value>
   </data>
   <data name="main_Button2" xml:space="preserve">
-    <value>RESUME</value>
+    <value>再接再厲</value>
   </data>
   <data name="main_Button3" xml:space="preserve">
-    <value>HELP</value>
+    <value>幫助</value>
   </data>
   <data name="main_Button4" xml:space="preserve">
-    <value>SCORES</value>
+    <value>分數</value>
   </data>
   <data name="math_Button1" xml:space="preserve">
-    <value>INVIO</value>
+    <value>進入</value>
   </data>
   <data name="math_Button2" xml:space="preserve">
-    <value>CANCEL</value>
+    <value>清除</value>
   </data>
   <data name="math_Button3" xml:space="preserve">
-    <value>EXIT</value>
+    <value>出口</value>
   </data>
   <data name="math_Button4" xml:space="preserve">
-    <value>SKIP</value>
+    <value>跳</value>
   </data>
   <data name="math_Button5" xml:space="preserve">
-    <value>SETTINGS</value>
+    <value>設置</value>
   </data>
   <data name="save_Button1" xml:space="preserve">
-    <value>Yes</value>
+    <value>是的</value>
   </data>
   <data name="save_Button2" xml:space="preserve">
-    <value>No</value>
+    <value>不</value>
   </data>
   <data name="score_Button1" xml:space="preserve">
-    <value>MAIN</value>
+    <value>菜單</value>
   </data>
   <data name="score_Button2" xml:space="preserve">
-    <value>CLEAR</value>
+    <value>清除</value>
   </data>
   <data name="setting_Button1" xml:space="preserve">
-    <value>RETURN</value>
+    <value>回來</value>
   </data>
   <data name="setting_Button2" xml:space="preserve">
-    <value>SAVE</value>
+    <value>節省</value>
   </data>
 </root>
