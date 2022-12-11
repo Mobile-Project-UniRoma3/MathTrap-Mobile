@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathTrap.Android", "MathTra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathTrap.iOS", "MathTrap.iOS\MathTrap.iOS.csproj", "{8E114A96-0A89-488B-90C0-1364907D6540}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathTrap", "MathTrap\MathTrap.csproj", "{2D0AB4EF-80A0-4A51-BA4D-A36191B5B254}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MathTrap", "MathTrap\MathTrap.csproj", "{2D0AB4EF-80A0-4A51-BA4D-A36191B5B254}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,9 +40,9 @@ Global
 		{8E114A96-0A89-488B-90C0-1364907D6540}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
 		{8E114A96-0A89-488B-90C0-1364907D6540}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
 		{8E114A96-0A89-488B-90C0-1364907D6540}.Debug|Any CPU.Deploy.0 = Debug|iPhoneSimulator
-		{8E114A96-0A89-488B-90C0-1364907D6540}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{8E114A96-0A89-488B-90C0-1364907D6540}.Debug|iPhone.Build.0 = Debug|iPhone
-		{8E114A96-0A89-488B-90C0-1364907D6540}.Debug|iPhone.Deploy.0 = Debug|iPhone
+		{8E114A96-0A89-488B-90C0-1364907D6540}.Debug|iPhone.ActiveCfg = Debug|iPhoneSimulator
+		{8E114A96-0A89-488B-90C0-1364907D6540}.Debug|iPhone.Build.0 = Debug|iPhoneSimulator
+		{8E114A96-0A89-488B-90C0-1364907D6540}.Debug|iPhone.Deploy.0 = Debug|iPhoneSimulator
 		{8E114A96-0A89-488B-90C0-1364907D6540}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{8E114A96-0A89-488B-90C0-1364907D6540}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{8E114A96-0A89-488B-90C0-1364907D6540}.Debug|iPhoneSimulator.Deploy.0 = Debug|iPhoneSimulator
