@@ -4,11 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
     <UserSecretsId>943539ac-f687-4c6d-aaa4-e9a5d7964776</UserSecretsId>
+    <Authors>Douglas Ruffini</Authors>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>portable</DebugType>
     <DebugSymbols>true</DebugSymbols>
+    <OutputPath>C:\Users\Valentina\source\repos\PubblicMathTrap\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
