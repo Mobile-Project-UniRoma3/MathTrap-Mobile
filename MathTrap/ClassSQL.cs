@@ -152,9 +152,9 @@ namespace MathTrap
         */
 
         //--> SQL Punteggio
-        async public void CreateScore()
+        public void CreateScore()
         {          
-            await Connection.CreateTableAsync<TableScore>() ;
+            Connection.CreateTableAsync<TableScore>().Wait() ;
         }
 
         async public Task<List<TableScore>> GetScoreAllAsync()
@@ -292,9 +292,9 @@ namespace MathTrap
         }
 
         //-->SQL Setting
-         async public void CreateSetting()
+        public void CreateSetting()
         {
-           await Connection.CreateTableAsync<TableSetting>();
+           Connection.CreateTableAsync<TableSetting>().Wait();
         }
 
         async public Task<List<TableSetting>> GetAllSettingAsync()
@@ -334,9 +334,9 @@ namespace MathTrap
         }
 
         //--> SQL Temp Setting
-        async public void CreateTempSetting()
+        public void CreateTempSetting()
         {
-            await Connection.CreateTableAsync<TableTempSetting>();
+            Connection.CreateTableAsync<TableTempSetting>().Wait();
         }
 
         async public Task<List<TableTempSetting>> GetTempSettingAllAsync()
