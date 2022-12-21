@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="#FFB200">
              <!-- Place new controls here -->
-            <Grid  RowSpacing="4" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" >
+            <Grid  RowSpacing="4" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
@@ -19,14 +19,14 @@
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <Label HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="0" FontSize="20" x:Name="label7" TextColor="Black" BackgroundColor="AliceBlue" Text="{x:Static res:MathTrapResources.label7}"></Label>
-                <Label HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="1" FontSize="20" x:Name="label8" TextColor="Black" BackgroundColor="AliceBlue" Text="{x:Static res:MathTrapResources.label8}"></Label>
-                <Label HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="2" FontSize="20" x:Name="label9" TextColor="Black" BackgroundColor="AliceBlue" Text="{x:Static res:MathTrapResources.label9}"></Label>
+                <Label HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="0" FontSize="18" x:Name="label7" TextColor="Black" BackgroundColor="AliceBlue" Text="{x:Static res:MathTrapResources.label7}"></Label>
+                <Label HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="1" FontSize="18" x:Name="label8" TextColor="Black" BackgroundColor="AliceBlue" Text="{x:Static res:MathTrapResources.label8}"></Label>
+                <Label HorizontalTextAlignment="End" Grid.Row="1" Grid.Column="2" FontSize="18" x:Name="label9" TextColor="Black" BackgroundColor="AliceBlue" Text="{x:Static res:MathTrapResources.label9}"></Label>
                     <Label HorizontalTextAlignment="End" Grid.Row="2" Grid.Column="0" FontSize="20" x:Name="label10" TextColor="Black" BackgroundColor="AliceBlue" ></Label>
                     <Label HorizontalTextAlignment="End" Grid.Row="2" Grid.Column="1" FontSize="20" x:Name="label11" TextColor="Black" BackgroundColor="AliceBlue" ></Label>
                 <Label HorizontalTextAlignment="End" Grid.Row="2" Grid.Column="2" FontSize="20" x:Name="label12" TextColor="Black" BackgroundColor="AliceBlue" ></Label>
             </Grid>
-            <Grid  RowSpacing="4" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" >
+            <Grid  RowSpacing="4" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" >
                  <Grid.ColumnDefinitions>
                      <ColumnDefinition />
                      <ColumnDefinition />
@@ -68,13 +68,13 @@
                 <Button Grid.Row="3" Grid.Column="2" Text="9" BackgroundColor="AliceBlue" Clicked="onNine" TextColor="Black"></Button>
                 <Button Grid.Row="4" Grid.Column="0" Text="." BackgroundColor="AliceBlue" Clicked="onPoint" TextColor="Black"></Button>
                 <Button Grid.Row="4" Grid.Column="1" Text="0" BackgroundColor="AliceBlue" Clicked="onZero" TextColor="Black"></Button>
-                <Button Grid.Row="4" Grid.Column="2" Text="{x:Static res:MathTrapResources.math_Button2}" BackgroundColor="AliceBlue" Clicked="onCancel" TextColor="Black" x:Name="math_Button2"></Button>
+                <Button Grid.Row="4" Grid.Column="2" Text="{x:Static res:MathTrapResources.math_Button2}" BackgroundColor="AliceBlue" FontSize="10" Clicked="onCancel" TextColor="Black" x:Name="math_Button2"></Button>
                 <Button Grid.Row="5" Grid.Column="0" Text="" BackgroundColor="AliceBlue" TextColor="Black"></Button>
-                <Button Grid.Row="5" Grid.Column="1" Text="{x:Static res:MathTrapResources.math_Button1}" BackgroundColor="AliceBlue" Clicked="onInvio" TextColor="Black" x:Name="math_Button1"></Button>
+                <Button Grid.Row="5" Grid.Column="1" Text="{x:Static res:MathTrapResources.math_Button1}" BackgroundColor="AliceBlue" FontSize="10" Clicked="onInvio" TextColor="Black" x:Name="math_Button1"></Button>
                 <Button Grid.Row="5" Grid.Column="2" Text="" BackgroundColor="AliceBlue" TextColor="Black"></Button>
-                <Button Grid.Row="6" Grid.Column="0" Text="{x:Static res:MathTrapResources.math_Button5}" BackgroundColor="AliceBlue" Clicked="onSettings" TextColor="Black"  x:Name="math_Button5"></Button>
-                <Button Grid.Row="6" Grid.Column="1" Text="{x:Static res:MathTrapResources.math_Button4}" BackgroundColor="AliceBlue" Clicked="onSkip" TextColor="Black"  x:Name="math_Button4"></Button>
-                <Button Grid.Row="6" Grid.Column="2" Text="{x:Static res:MathTrapResources.math_Button3}" BackgroundColor="AliceBlue" Clicked="onExit" TextColor="Black"  x:Name="math_Button3"></Button> 
+                <Button Grid.Row="6" Grid.Column="0" Text="{x:Static res:MathTrapResources.math_Button5}" BackgroundColor="AliceBlue" FontSize="10" Clicked="onSettings" TextColor="Black"  x:Name="math_Button5"></Button>
+                <Button Grid.Row="6" Grid.Column="1" Text="{x:Static res:MathTrapResources.math_Button4}" BackgroundColor="AliceBlue" FontSize="10" Clicked="onSkip" TextColor="Black"  x:Name="math_Button4"></Button>
+                <Button Grid.Row="6" Grid.Column="2" Text="{x:Static res:MathTrapResources.math_Button3}" BackgroundColor="AliceBlue" FontSize="10" Clicked="onExit" TextColor="Black"  x:Name="math_Button3"></Button> 
                 
             </Grid>
         </StackLayout>

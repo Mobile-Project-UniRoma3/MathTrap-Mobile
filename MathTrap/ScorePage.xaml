@@ -33,9 +33,9 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Label Grid.Column="0" Grid.Row="1"  HorizontalTextAlignment="End" Text="   " TextColor="Black"></Label>
-            <Label Grid.Column="1" Grid.Row="1" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="End" Text="{x:Static res:MathTrapResources.label33}" TextColor="Black"  x:Name="label33"></Label>
-            <Label Grid.Column="2" Grid.Row="1" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="End" Text="{x:Static res:MathTrapResources.label34}" TextColor="Black"  x:Name="label34"></Label>
-            <Label Grid.Column="3" Grid.Row="1" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="End" Text="{x:Static res:MathTrapResources.label35}" TextColor="Black"  x:Name="label35"></Label>
+            <Label Grid.Column="1" Grid.Row="1" FontSize="12" VerticalTextAlignment="Center" HorizontalTextAlignment="End" Text="{x:Static res:MathTrapResources.label33}" TextColor="Black"  x:Name="label33"></Label>
+            <Label Grid.Column="2" Grid.Row="1" FontSize="12" VerticalTextAlignment="Center" HorizontalTextAlignment="End" Text="{x:Static res:MathTrapResources.label34}" TextColor="Black"  x:Name="label34"></Label>
+            <Label Grid.Column="3" Grid.Row="1" FontSize="12" VerticalTextAlignment="Center" HorizontalTextAlignment="End" Text="{x:Static res:MathTrapResources.label35}" TextColor="Black"  x:Name="label35"></Label>
             <Label Grid.Column="4" Grid.Row="1"  HorizontalTextAlignment="End" Text="   " TextColor="Black"></Label>
         </Grid>
         
@@ -59,9 +59,9 @@
                                             <RowDefinition />
                                      </Grid.RowDefinitions>
                                      <Label Text="   " HorizontalTextAlignment="End" Grid.Column="0" Grid.Row="1" TextColor="Black"></Label>
-                                     <Label Text="{Binding date}" HorizontalTextAlignment="End"  BackgroundColor="AliceBlue" Grid.Column="1" Grid.Row="1" TextColor="Black"></Label>
-                                     <Label Text="{Binding right}" HorizontalTextAlignment="End"  BackgroundColor="AliceBlue" Grid.Column="2" Grid.Row="1" TextColor="Black"></Label>
-                                     <Label Text="{Binding fail}" HorizontalTextAlignment="End"  BackgroundColor="AliceBlue" Grid.Column="3" Grid.Row="1" TextColor="Black"></Label>
+                                     <Label Text="{Binding date}" HorizontalTextAlignment="End" BackgroundColor="AliceBlue" Grid.Column="1" Grid.Row="1" TextColor="Black"></Label>
+                                     <Label Text="{Binding right}" HorizontalTextAlignment="End" BackgroundColor="AliceBlue" Grid.Column="2" Grid.Row="1" TextColor="Black"></Label>
+                                     <Label Text="{Binding fail}" HorizontalTextAlignment="End" BackgroundColor="AliceBlue" Grid.Column="3" Grid.Row="1" TextColor="Black"></Label>
                                      <Label Text="   " HorizontalTextAlignment="End" Grid.Column="4" Grid.Row="1" TextColor="Black"></Label>
                                  </Grid>
                              </StackLayout>
@@ -79,8 +79,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Button Text="{x:Static res:MathTrapResources.score_Button1}" Grid.Column="0" Grid.Row="1" Clicked="onMain" TextColor="Black" x:Name="score_Button1"></Button>
-            <Button Text="{x:Static res:MathTrapResources.score_Button2}" Grid.Column="1" Grid.Row="1" Clicked="onClear" TextColor="Black" x:Name="score_Button2"></Button>
+            <Button Text="{x:Static res:MathTrapResources.score_Button1}" BackgroundColor="AliceBlue" Grid.Column="0" Grid.Row="1" Clicked="onMain" TextColor="Black" x:Name="score_Button1"></Button>
+            <Button Text="{x:Static res:MathTrapResources.score_Button2}" BackgroundColor="AliceBlue" Grid.Column="1" Grid.Row="1" Clicked="onClear" TextColor="Black" x:Name="score_Button2"></Button>
         </Grid>
             
             
