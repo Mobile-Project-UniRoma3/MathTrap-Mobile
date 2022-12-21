@@ -24,9 +24,7 @@ namespace MathTrap.iOS
         {
             global::Xamarin.Forms.Forms.Init();
            
-            //accoppiamento sql connection IOS
-            App.IOS_ANDROID_CONST = 0;
-
+           
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

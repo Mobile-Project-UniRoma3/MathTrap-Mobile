@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 using System.Globalization;
 using SQLite;
 using SQLitePCL;
-
-
+using System.Runtime.InteropServices;
+using Xamarin.Forms.Shapes;
 
 namespace MathTrap
 {
@@ -71,8 +71,9 @@ namespace MathTrap
 
     public class ClassSQL
     {
-        static SQLiteAsyncConnection Connection;
 
+        static SQLiteAsyncConnection Connection;
+        
         private const string DatabaseFilename = "MathTrap.db3";
         private const string SaveOper = "SaveOperator.txt";
         private const string SaveLang = "SaveLanguage.txt";
@@ -88,18 +89,18 @@ namespace MathTrap
 
 
         public ClassSQL()
-        {
+        {   
+            SQLitePCL.Batteries.Init();
             this.oper = new TableOperator();
             this.score = new TableScore();
             this.lang = new TableLanguage();
             this.sett = new TableSetting();
             this.settTemp = new TableTempSetting();
             this.save = new File();
-
-            SQLitePCL.Batteries_V2.Init();
             
-            Connection = new SQLiteAsyncConnection(DatabasePath);            
-
+             
+            Connection = new SQLiteAsyncConnection(DatabasePath); 
+           
             //DeleteAll();
         }
 

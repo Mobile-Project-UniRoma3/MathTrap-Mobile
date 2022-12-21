@@ -13,11 +13,11 @@ namespace MathTrap.iOS
         [Obsolete]
         static void Main(string[] args)
         {
-            try {
-                // if you want to use a different Application Delegate class from "AppDelegate"
-                // you can specify it here.
-                UIApplication.Main(args, null, typeof(AppDelegate)); 
-            } catch (Exception e) {   }
+            
+            // if you want to use a different Application Delegate class from "AppDelegate"
+            // you can specify it here.
+            UIApplication.Main(args, null, typeof(AppDelegate)); 
+            
         }
 
         //public class MathTrap : UIApplication

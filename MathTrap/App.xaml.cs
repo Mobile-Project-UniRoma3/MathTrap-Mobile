@@ -12,8 +12,7 @@ namespace MathTrap
          */
         static ClassSQL database;
 
-        public static int IOS_ANDROID_CONST;
-
+        
         public static ClassSQL connection {
             get
             {
