@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Globalization;
 using SQLite;
+using SQLitePCL;
 
 
 
@@ -95,7 +96,9 @@ namespace MathTrap
             this.settTemp = new TableTempSetting();
             this.save = new File();
 
-            Connection = new SQLiteAsyncConnection(DatabasePath);
+            SQLitePCL.Batteries_V2.Init();
+            
+            Connection = new SQLiteAsyncConnection(DatabasePath);            
 
             //DeleteAll();
         }

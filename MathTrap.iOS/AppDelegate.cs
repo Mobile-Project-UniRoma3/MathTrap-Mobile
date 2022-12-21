@@ -23,7 +23,10 @@ namespace MathTrap.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            //accoppiamento sql connection
+           
+            //accoppiamento sql connection IOS
+            App.IOS_ANDROID_CONST = 0;
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

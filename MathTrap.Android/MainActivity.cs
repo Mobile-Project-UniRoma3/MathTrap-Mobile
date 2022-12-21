@@ -21,7 +21,10 @@ namespace MathTrap.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            //accoppiamento sql connection
+            
+            //accoppiamento sql connection Android
+            App.IOS_ANDROID_CONST = 1;
+
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

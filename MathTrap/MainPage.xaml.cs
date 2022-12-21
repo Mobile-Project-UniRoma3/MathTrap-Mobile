@@ -17,7 +17,7 @@ namespace MathTrap
         public MainPage()
         {
             InitializeComponent();
-            this.set =  new Setting(App.connection); ;
+            this.set =  new Setting(App.connection); 
         }
 
         async private void onNew(object sender, EventArgs e)
