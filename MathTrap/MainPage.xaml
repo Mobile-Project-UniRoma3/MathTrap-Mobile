@@ -9,7 +9,13 @@
    <ContentPage.Content>
         <StackLayout VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="#FFB200">
             <Grid >
-                <Image Source="Principale.png" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Aspect="Fill"></Image>
+                <Image  VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Aspect="Fill">
+                <Image.Source>
+                    <OnPlatform x:TypeArguments="ImageSource" >
+                        <On Platform="Android" Value="Principale.png.png"/>
+                        <On Platform="iOS" Value="Principale"/>
+                    </OnPlatform>
+                </Image.Source></Image>
             </Grid>
             <Grid RowSpacing="2">
             <Grid.ColumnDefinitions>
