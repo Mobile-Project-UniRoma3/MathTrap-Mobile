@@ -8,14 +8,16 @@
              x:Class="MathTrap.HelpPage">
     <ContentPage.Content>
         <StackLayout BackgroundColor="#FFB200">
-            <Grid>
+            <Grid RowSpacing="2">
                 <Label Text="" x:Name="label31" VerticalOptions="Center" HorizontalOptions="Center" TextColor="Black" FontSize="28" ></Label>
             </Grid>
             <Grid  VerticalOptions="Center" HorizontalOptions="Center" >
-                <Label x:Name="textcell1" VerticalOptions="Center" HorizontalOptions="Center"  TextColor="Black" FontSize="16" ></Label>
+                <ScrollView>
+                    <Label x:Name="textcell1" VerticalOptions="Center" HorizontalOptions="Center"  TextColor="Black" FontSize="16" ></Label>
+                </ScrollView>
             </Grid>
             <Grid>
-                <Button Text="{x:Static res:MathTrapResources.help_Button1}" Clicked="onMain" TextColor="Black" x:Name="help_Button1" ></Button>
+                <Button Text="{x:Static res:MathTrapResources.help_Button1}" Clicked="onMain" TextColor="Black" x:Name="help_Button1"  BackgroundColor="AliceBlue" ></Button>
             </Grid>
         </StackLayout>
     </ContentPage.Content>
