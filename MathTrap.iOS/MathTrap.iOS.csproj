@@ -76,18 +76,6 @@
     <ImageAsset Include="Assets.xcassets\splash_mathtrap.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\splash_mathtrap.imageset\7291_34546_20 Principale.jpg">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\splash_mathtrap.imageset\7291_34546_20 Principale1.jpg">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\splash_mathtrap.imageset\7291_34546_20 Principale2.jpg">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\splash_mathtrap.imageset\Binder1.pdf">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\splash_mathtrap.imageset\Principale.png">
       <Visible>false</Visible>
     </ImageAsset>
