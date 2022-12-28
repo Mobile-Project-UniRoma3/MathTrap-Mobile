@@ -173,6 +173,9 @@
       <Name>MathTrap</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets.xcassets\splash_mathtrap.imageset\" />
+  </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
       <UserProperties XamarinHotReloadDebuggerTimeoutExceptionMathTrapiOSHideInfoBar="True" />
