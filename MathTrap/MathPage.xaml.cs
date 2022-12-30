@@ -320,7 +320,7 @@ namespace MathTrap
                     score.life = l;
 
                     //default tutte le operazioni
-                    score.date = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+                    score.date = DateTime.Now.ToString("dd/MM/yyyy");
                     this.value.score.done = false;
                     this.value.score.name = "new";
                     this.value.score.IdSetting = 0;
