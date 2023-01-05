@@ -16,7 +16,8 @@ namespace MathTrap
         private ClassSQL value;
         private OperatorBonus bonus;
         private Setting set;
-
+         
+        
         public SettingPage(ClassSQL value, Setting set)
         {
             InitializeComponent();
@@ -41,7 +42,11 @@ namespace MathTrap
 
         async private void OnReturn(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new MathPage(1, this.set), false);
+            TableScore score = this.value.score;
+            MathPage r = new MathPage(1, this.set);
+            
+            await Navigation.PushModalAsync(r, false);
+            r.returnSetting(score);
         }
 
         private void OnActionChange(object sender, EventArgs e)
@@ -83,7 +88,7 @@ namespace MathTrap
 
             //salva score
             this.value.SaveScoreAsync(this.value.score);
-            
+
         }
     }
 }

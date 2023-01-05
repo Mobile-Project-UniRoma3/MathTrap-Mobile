@@ -25,7 +25,7 @@ namespace MathTrap
         private long right_counter;
         private long fail_counter;
         private long life;
-
+        
         private ClassSQL value;
         private Setting set;
 
@@ -46,10 +46,10 @@ namespace MathTrap
                 this.label6.Text = "";
 
                 /*Carico l'ultima partita aperta
-                se: se ritorna la tabella vuota -->primo record di gioco
-                altrimenti: carico punteggio salvato nel database
+                se: se ritorna la tabella vuota e non torna dal setting -->primo record di gioco
+                altrimenti: se nuovo con dati sporchi --> carico punteggio salvato nel database
                 */
-                if ((this.value.score = this.value.GetScoreLoad().Result) == null) {
+                if ((this.value.score = this.value.GetScoreLoad().Result) == null)   {
                     this.value.score = new TableScore();
                     this.value.score.ID = 0;
                 } else {
@@ -60,7 +60,7 @@ namespace MathTrap
                         this.value.SaveScoreAsync(this.value.score);
                         //aggiornando l'indice = 0 composedScore riporta i valori a 0
                         this.value.score.ID = 0;
-                    }
+                    }                  
                 }
 
                 _ = this.composedScore(this.value.getScore);
@@ -426,6 +426,21 @@ namespace MathTrap
             this.value.score.right = this.getRight();
             this.value.score.fail = this.getFail();
             this.value.score.life = this.getLife();
+        }
+
+        public void returnSetting(TableScore score) 
+        {
+           
+            this.setId(score.ID);
+            this.setRight(score.right);
+            this.setFail(score.fail);
+            this.setLife(score.life);
+
+            //aggirno score
+            this.label10.Text = Convert.ToString(this.getRight());
+            this.label11.Text = Convert.ToString(this.getFail());
+            this.label12.Text = Convert.ToString(this.getLife());
+
         }
 
     }
