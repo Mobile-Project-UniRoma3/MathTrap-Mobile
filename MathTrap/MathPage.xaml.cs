@@ -444,5 +444,7 @@ namespace MathTrap
 
         }
 
+        public TableScore getScore() { return this.value.score; }
+
     }
 }
