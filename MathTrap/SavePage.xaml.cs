@@ -41,5 +41,11 @@ namespace MathTrap
             await Navigation.PushModalAsync(new MainPage(), false);
         }
 
+        private void verificaZeroLife() {
+            if (this.saveMetodo.getScore.life == 0) {
+                //bonus di rientro partita salvata e vite esaurite
+                this.saveMetodo.getScore.life = 1;
+            }
+        }
     }
 }

@@ -162,7 +162,7 @@ namespace MathTrap
                     await this.AggOper();
                 }
 
-            } catch (System.NullReferenceException e) //<-- chiudi il task comunque
+            } catch (System.NullReferenceException ) //<-- chiudi il task comunque
             { _ = Task.CompletedTask; }
         }
 
@@ -199,7 +199,7 @@ namespace MathTrap
                 //-->operatore bonus di default
                 this.operators[count] = (this.ConstBonus());
 
-            } catch (System.NullReferenceException e) //<-- chiudi il task comunque
+            } catch (System.NullReferenceException ) //<-- chiudi il task comunque
             { _ = Task.CompletedTask; }
         }
         public string[] returnOper() { return this.operators; }

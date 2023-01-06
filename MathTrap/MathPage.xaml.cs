@@ -65,7 +65,7 @@ namespace MathTrap
 
                 _ = this.composedScore(this.value.getScore);
 
-            } catch (System.NullReferenceException e)//<-- chiudi il task comunque
+            } catch (System.NullReferenceException )//<-- chiudi il task comunque
             { _ = Task.CompletedTask; }
 
         }
@@ -150,6 +150,7 @@ namespace MathTrap
                 //controllo vita residua
                 if (this.getLife() <= 0) {
                     //fine gioco
+                    ExitUpDate();
                     saveAndExit();
                 }
             }
@@ -269,8 +270,8 @@ namespace MathTrap
         private void tastiera(string numero) {
 
             switch (numero) {
-                case "cancel": this.label3.Text = "0";
-                               break;
+                case "cancel": this.label3.Text = "0"; this.label6.Text = "";
+                    break;
                 case "point": if(!this.label3.Text.Contains("."))
                                  this.label3.Text += ".";
                               break;
@@ -339,7 +340,7 @@ namespace MathTrap
                 //gioca
                 calculetor(this.index, this.level);
 
-            } catch (System.NullReferenceException e)//<-- chiudi il task comunque
+            } catch (System.NullReferenceException )//<-- chiudi il task comunque
             { _ = Task.CompletedTask; }
         }
 
