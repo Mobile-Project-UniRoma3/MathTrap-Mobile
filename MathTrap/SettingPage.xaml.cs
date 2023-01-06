@@ -43,23 +43,18 @@ namespace MathTrap
         async private void OnReturn(object sender, EventArgs e)
         {
             TableScore score = this.value.score;
-            MathPage r = new MathPage(1, this.set);
 
             if ((score.ID>0)&&(this.flag==false)) 
             {
                 OnSave(sender, e);
-            } 
-
+            }
+            
+            MathPage r = new MathPage(1, this.set);
+             
             await Navigation.PushModalAsync(r, false);
-
-            if ((score.ID == 0) && (this.flag == false))
-            {
-                r.returnSetting(score);
-            }
-            else { 
-                r.returnSetting(r.getScore()); 
-            }
-                      
+           
+            r.returnSetting(score);
+                
         }
 
         private void OnActionChange(object sender, EventArgs e)
