@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Timers;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,8 +16,9 @@ namespace MathTrap
         private ClassSQL value;
         private OperatorBonus bonus;
         private Setting set;
-        private bool flag = false; 
-        
+        private bool flag = false;
+        private TableScore score;
+
         public SettingPage(ClassSQL value, Setting set)
         {
             InitializeComponent();
@@ -26,6 +27,7 @@ namespace MathTrap
             this.value = value;
             this.set = set;
             this.bonus = this.set.getBonus();
+            this.score = this.value.score;
         }
 
 
@@ -42,19 +44,17 @@ namespace MathTrap
 
         async private void OnReturn(object sender, EventArgs e)
         {
-            TableScore score = this.value.score;
-
-            if ((score.ID>0)&&(this.flag==false)) 
-            {
-                OnSave(sender, e);
-            }
-            
+            this.value.SaveScoreAsync(this.score);
+                      
             MathPage r = new MathPage(1, this.set);
-             
-            await Navigation.PushModalAsync(r, false);
-           
-            r.returnSetting(score);
-                
+            
+            await Navigation.PushModalAsync(r, false); 
+            
+            //nel secondo caso se la fase asincrona non è terminata //
+            if (r.getScore().right< this.score.right)
+            {
+                r.returnSetting(this.score);
+            }                    
         }
 
         private void OnActionChange(object sender, EventArgs e)
@@ -97,8 +97,6 @@ namespace MathTrap
             //salva score
             this.value.SaveScoreAsync(this.value.score);
 
-            //flag
-            this.flag = true;
         }
     }
 }
