@@ -16,7 +16,6 @@ namespace MathTrap
         private ClassSQL value;
         private OperatorBonus bonus;
         private Setting set;
-        private bool flag = false;
         private TableScore score;
 
         public SettingPage(ClassSQL value, Setting set)
